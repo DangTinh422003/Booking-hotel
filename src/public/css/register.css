@@ -1,0 +1,92 @@
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.log-page {
+    display: flex;
+    height: 100vh;
+}
+.log-page-img div {
+    /* background-color: #003c71; */
+    width: 100%;
+    height: 100%;
+    /* position: relative; */
+    background-image: url(https://storage.googleapis.com/vin3sprodauth0.vin3s.vn/vinpearl_login_screen.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+.log-page-info div {
+    margin: 0 auto;
+    width: 100%;
+    height: fit-content;
+}
+
+.log-logo {
+    padding-top: 10%;
+    height: 100%;
+}
+
+.log-logo-item {
+    display: flex;
+    justify-content: center;
+    height: fit-content !important;
+}
+.log-logo-item img {
+    width: 134px;
+    height: 62px;
+}
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+#nav-tab{
+    width: fit-content !important;
+}
+.tab-log {
+    width: 80%;
+    padding: 40px;
+}
+.tab-content>.active {
+    display: block;
+}
+.login-input-item {
+    /* border: 1px #ccc solid; */
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+.login-input-item input {
+    padding: 8px;
+    font-size: 16px;
+}
+#nav-register-tab{
+    font-size: 24px;
+    font-family: inherit;
+    font-weight: 700;
+    line-height: normal;
+    color: #312f49;
+    background: inherit;
+    border-top-right-radius: 10px;
+    border-bottom: 3px solid #e6a523; 
+}
+.tab-content{
+    margin-top: 20px;
+}
+.register-form-reg-btn{
+    width: 100%;
+    height: 40px;
+    background: #e6a523;
+    border-radius: 5px;
+    border: 0;
+    color: inherit;
+    font-family: inherit;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 16px;
+}

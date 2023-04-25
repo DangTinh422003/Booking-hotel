@@ -1,0 +1,178 @@
+.slide-profile {
+  background: #fff;
+  box-shadow: 0 10px 20px rgb(0 0 0 / 5%);
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid #eceaea;
+}
+.ava-box {
+  line-height: 0;
+  display: inline-block;
+  margin: 5px;
+  border-radius: 100%;
+  transition: linear 0.25s;
+  /* height: 128px;
+    width: 128px; */
+  display: flex;
+  justify-content: center;
+}
+.ava-box img {
+  border-radius: 50%;
+  height: 128px;
+  width: 128px;
+  object-fit: cover;
+}
+.name_id p {
+  text-align: center;
+  font-family: "Montserrat", sans-serif !important;
+}
+.name_id p:nth-child(1) {
+  margin-bottom: 0;
+}
+.slide-profile-main {
+  padding: 10px 0px;
+  border-bottom: 1px solid #d9d9d9;
+}
+.tichluy_diem {
+  display: flex;
+  align-items: center;
+}
+.tichluy_diem_main {
+  margin-bottom: 0;
+}
+.choose-item-profile {
+  width: 100%;
+}
+
+.choose-item-profile div {
+  color: #222 !important;
+  padding: 10px;
+  /* background-color: #f4f4f4!important;; */
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+/*.choose-item-profile div:first-child{*/
+/*    background-color: #f4f4f4!important;;*/
+/*}*/
+.choose-item-profile-a {
+  color: #222 !important;
+}
+.choose-item-profile-a i {
+  margin-right: 4px;
+  color: rgb(136, 136, 255);
+}
+.thongtinthe select {
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.tichluy-box {
+}
+.circle-tichluy {
+  margin-top: 50px !important;
+  width: 50%;
+  margin: 0 auto;
+  position: relative;
+}
+.point-circle {
+  position: absolute;
+  -webkit-transform: translate(-100%, -50%);
+
+  font-weight: 600;
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: center;
+  padding-right: 20px;
+  z-index: 10;
+}
+.point-circle-1 {
+  left: 30px;
+  top: 49%;
+  transform: translate(-100%, -50%);
+}
+.point-circle-2 {
+  left: 55%;
+  /* width: 100%; */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  top: -7px;
+  align-items: center;
+}
+.point-circle-2 img {
+  width: 12px;
+}
+.point-circle-3 {
+  right: 10px;
+  transform: translate(100%, -50%);
+  top: 49%;
+}
+.tichluy-card {
+  position: absolute;
+  -webkit-transform: translate(-100%, -50%);
+  font-weight: 600;
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: center;
+  padding-right: 20px;
+  /* z-index: 10; */
+  left: 55%;
+  /* width: 50%; */
+  margin: 0 auto;
+  transform: translate(-50%, -50%);
+  top: 25%;
+}
+.tichluy-card img {
+  width: 90%;
+}
+
+.tichluy-barcode {
+  position: absolute;
+  -webkit-transform: translate(-100%, -50%);
+  font-weight: 600;
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: center;
+  padding-right: 20px;
+  z-index: 10;
+  left: 55%;
+  width: 100%;
+  margin: 0 auto;
+  transform: translate(-50%, -50%);
+  top: 100%;
+  height: 100%;
+  overflow: hidden;
+  object-fit: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tichluy-barcode img {
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+  object-fit: conver;
+}
+.thongtincanhanh-input {
+  font-size: 16px !important;
+}
+
+/* avatar */
+
+.ava-box:hover .ava-box-img {
+  filter: brightness(75%);
+}
+
+.ava-box:hover .modal {
+  display: block;
+}
+
+.ava-box .ava-box-img {
+  clip-path: circle();
+  object-fit: cover;
+  transition: filter 0.3s ease;
+}

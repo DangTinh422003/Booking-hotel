@@ -1,0 +1,106 @@
+.manageRoom__content {
+  margin-top: 50px;
+}
+
+.open.modal-deleting {
+  display: block;
+}
+.modal-deleting {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999999;
+}
+
+.modal-deleting .overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(147, 147, 147, 0.5);
+}
+
+.loading-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border-top: 5px solid #1fadcd;
+  border-bottom: 5px solid #1fadcd;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  animation: loading infinite ease-in-out 1s;
+}
+
+@keyframes loading {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.open.modal-updateroom {
+  display: block;
+}
+.modal-updateroom {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+}
+
+.modal-updateroom .overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(147, 147, 147, 0.5);
+}
+
+.modal-updateroom form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80vw;
+  height: 80vh;
+}
+
+.modal-updateroom form .form-group {
+  margin-bottom: 20px;
+}
+
+.modal-updateroom form .form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.modal-updateroom form .form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #1fadcd;
+  border-radius: 5px;
+}
+
+.modal-updateroom form .form-group input:focus {
+  outline: none;
+}
+
+.sendRequestUpdateRoom {
+  background: #1fadcd;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

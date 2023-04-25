@@ -1,0 +1,118 @@
+<div class="tab-log">
+  <div>
+    <nav>
+      <div id="nav-tab">
+        <a class="nav-item nav-link" id="nav-register-tab">Đăng ký</a>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <!--              ĐĂNG KÝ-->
+      <div id="nav-register">
+        <div id="nav-login">
+          <div class="login-input">
+            <form method="POST" class="register-form">
+              <div class="login-input-item">
+                <input id="reg-email" name="email" type="email" placeholder="Email" class="form-control" required>
+              </div>
+              <div class="login-input-item">
+                <input id="reg-name" name="userName" type="text" placeholder="Họ và tên" class="form-control"
+                  pattern="[a-z\sA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]{1,255}"
+                  required>
+              </div>
+              <div class="login-input-item">
+                <input id="reg-phone" name="phoneNumber" type="text" placeholder="Số điện thoại" class="form-control"
+                  required pattern="[0]{1}[0-9]{3}[0-9]{3}[0-9]{3}">
+              </div>
+              <div class="login-input-item">
+                <input id="reg-password" name="password" type="password" placeholder="Mật khẩu" class="form-control"
+                  required>
+              </div>
+              <div class="login-input-item">
+                <input id="reg-confirmPassword" name="confirmPassword" type="password" placeholder="Nhập lại mật khẩu"
+                  class="form-control">
+              </div>
+              <div class="btn">
+                <button type="submit" class="register-form-reg-btn">ĐĂNG KÝ</button>
+              </div>
+              <div class="alert-message">
+                <i class="fal fa-check-circle"></i>
+                <span>Đăng ký thành công</span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display: flex;justify-content: space-between;">
+    <div>
+      <a href="/">Bạn có tài khoản?</a>
+    </div>
+    <div>
+      <a data-toggle="modal" data-target="#forgotPass" style="float: right;color: #007bff;">Quên mật khẩu?</a>
+    </div>
+  </div>
+</div>
+
+{{!-- MODAL QUÊN MẬT KHẨU --}}
+<div class="modal fade" id="forgotPass" tabindex="-1" role="dialog" aria-labelledby="forgotPasslLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="forgotPasslLabel">Quên mật khẩu</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="forgotPass-form">
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Email của bạn:</label>
+            <input required type="email" name="to" id="email-input-reset" class="form-control" placeholder="Nhập Email của bạn...">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            <button type="submit" class="btn btn-primary">Xác nhận</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import resgisterFeatures from '/js/register.js'; resgisterFeatures();
+</script>
+
+<script>
+  $("#forgotPass-form").submit(function (event) {
+    event.preventDefault()
+    const data = new FormData($("#forgotPass-form")[0])
+    $.ajax({
+      type: "POST",
+      url: "/api/forgot",
+      data: JSON.stringify({
+        to: data.get("to")
+      }),
+      processData: false,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.code === 0) {
+          swal("Thành công", "Vui lòng kiểm tra email và làm theo hướng dẫn", "success")
+          $('#email-input-reset').val('')
+        }
+        if (res.code == 1) {
+          swal("Thất bại", res.message, "error")
+        }
+      },
+      error: function (err) {
+        console.log("fail")
+      }
+    })
+  })
+</script>

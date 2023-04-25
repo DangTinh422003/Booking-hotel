@@ -1,0 +1,413 @@
+<link rel="stylesheet" href="/admin/css/index.css">
+<style>
+    .nav-tabs .nav-item.show .nav-link,
+    .nav-tabs .nav-link.active {
+        color: #495057;
+        background-color: #fff;
+        border: 2px solid;
+        border-color: orangered orangered #fff !important;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    #idbooking-user:hover {
+        cursor: pointer;
+        color: red;
+    }
+
+    [title=selected] {
+        color: #ff5b00 !important;
+    }
+</style>
+
+<div class="sales-boxes">
+    <div class="recent-sales box" style="width: 100% !important;">
+        <div class="title">DANH SÁCH ĐẶT PHÒNG</div>
+        <div class="sales-details">
+            <div style="width: 100%">
+                <ul class="nav nav-tabs" role="tablist" style="display: flex;justify-content: center">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-cxn active" data-toggle="tab" href="#tabs-1" role="tab"
+                            value="Chờ xác nhận">Chờ xác nhận</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab" value="Đã xác nhận">Đã
+                            duyệt</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab" value="Thành công">Đã
+                            nhận phòng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab" value="Đã trả phòng">Đã
+                            trả phòng</a>
+                    </li>
+                </ul><!-- Tab panes -->
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                        <div>
+                            <div class="row">
+                                <div class="col-sm-12 col-lg-8">
+                                    <div class="tabpanel-content">
+                                        <div style="padding: 8px;display: inline-flex;align-items: center">
+                                            <b>Số lượng</b>
+                                            <div id="soluong"
+                                                style="border-radius: 50%;background-color: #eee;font-size: 18px;width: 2.2rem;height:2.2rem;display: flex;justify-content: center;align-items: center"
+                                                class="rounded-circle ml-3"></div>
+                                        </div>
+                                        <div class="list-hotel-by-status">
+
+                                        </div>
+                                        <div id="pagination-container"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-lg-4">
+                                    <div class="tabpanel-content">
+                                        <div style="border-bottom: 0.0625rem solid rgba(231,234,243,.7);padding: 8px">
+                                            <b>Thông tin khách hàng</b>
+                                        </div>
+                                        <div style="padding: 8px">
+                                            <div id="thongtinlienhe">
+                                                <div
+                                                    style="display: flex;align-items: center;justify-content: space-between">
+                                                    <div style="display: flex;align-items: center">
+                                                        <img id=avaaccount
+                                                            style="width: 50px;height: 50px;object-fit: cover"
+                                                            class="rounded-circle"
+                                                            src="https://kenh14cdn.com/thumb_w/660/203336854389633024/2021/7/27/photo-1-1627385343987657351288.jpg" />
+                                                        <div style="margin-left: 4px" id="tenaccount">Taylor
+                                                            Swift</div>
+                                                    </div>
+                                                    <a style="float: right" id="seehistorybookinguser">></a>
+                                                </div>
+                                                {{!-- <div class="ht-item" style="align-items: center">
+                                                    <div style="display:inline-flex;align-items: center">
+                                                        <div
+                                                            style="color: #00c9db;background: rgba(0,201,219,.1);border-radius: 50%;width: 2.625rem;height: 2.625rem;display: flex;justify-content: center;align-items: center">
+                                                            <i class="uil-history"></i>
+                                                        </div>
+                                                        <b style="margin-left: 4px" id="soluongthanhcong">10</b>
+                                                    </div>
+                                                </div> --}}
+                                                <div class="ht-item">
+                                                    <div>
+                                                        <b>Thông tin liên hệ</b>
+                                                    </div>
+                                                    <div>
+                                                        <i class="uil-envelope mt-3"></i><i style="font-style: normal"
+                                                            id="emailaccount">
+                                                            @gmail</i>
+                                                        <br>
+                                                        <i class="uil-phone-alt mt-3"></i> <i style="font-style: normal"
+                                                            id="sdtaccount"> 000</i>
+                                                    </div>
+                                                </div>
+                                                <div class="ht-item">
+                                                    <div>
+                                                        <b>Thông tin đặt phòng</b>
+                                                    </div>
+                                                    <div>
+                                                        <i class="uil-user mt-3 mr-2"></i><i style="font-style: normal"
+                                                            id="nguoidaidien">
+                                                            Huy</i>
+                                                        <br>
+                                                        <i class="uil-envelope mt-3 mr-2"></i><i
+                                                            style="font-style: normal" id="emaildaidien">
+                                                            Huy</i>
+                                                        <br>
+                                                        <i class="uil-phone-alt mt-3 mr-2"></i><i
+                                                            style="font-style: normal" id="sdtdaidien"> Huy</i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="loading">
+    <img src="/img/loading.svg" />
+</div>
+
+<script src="/js/loading.js"></script>
+
+<script>
+    document.querySelector('#idbooking-user')
+    $(document).ready(function () {
+        document.querySelector('.nav-link-cxn').click()
+    })
+
+    document.getElementById('item-datphong').classList.add("active")
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function () {
+        sidebar.classList.toggle("active");
+        if (sidebar.classList.contains("active")) {
+            sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+        } else
+            sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+
+    let navlink = document.querySelectorAll('.nav-link')
+    navlink.forEach(ele => {
+        ele.onclick = function (e) {
+            let data = {
+                statusbooking: 0
+            }
+            let status = ele.getAttribute('value')
+            if (status == 'Chờ xác nhận')
+                data = {
+                    statusbooking: 0
+                }
+            if (status == 'Đã xác nhận')
+                data = {
+                    statusbooking: 1
+                }
+            if (status == 'Thành công')
+                data = {
+                    statusbooking: 2
+                }
+            if (status == 'Đã trả phòng')
+                data = {
+                    statusbooking: 3
+                }
+            $.ajax({
+                type: "GET",
+                url: '/admin/api/list/' + data.statusbooking,
+                success: function (res) {
+                    console.log(res.data)
+                    $('#soluong').text(res.data.length)
+                    let htmlbooking = res.data.map(item => {
+                        return `
+                                <div class="ht-item ht-item-main ht-item-${item._id}">
+                                    <div class="ht-item-content">
+                                        <div class="row">
+                                            <div class="col-md-1 col-4">
+                                                <div><b id="idbooking-user" value="${item._id}">${item._id.substr(-7)}</b></div>
+                                            </div>
+                                            <div class="ht-item-img col-md-2 col-8">
+                                                <div style="width: 100%;">
+                                                    <img src="${item.imgr}" />
+                                                </div>
+                                            </div>
+                                            <div class="ht-item-desc col-md-9 col-12" style="width: 100%">
+                                                <div class="row" style="padding-right: 6px">
+                                                    <div class="ht-item-desc-content col-5">
+                                                        <div>
+                                                            <a href="" value="">${item.namer}</a>
+                                                            <p> ${item.infoBooking.adult} Người lớn - ${item.infoBooking.child} Trẻ em</p>
+                                                            <p style="color: #f65e5e">${item.timeBooking.split('GMT')[0]}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ht-item-desc-content col-3" style="display: flex;flex-direction: column">
+                                                        <div>
+                                                            <i>Số phòng: </i><b> ${item.infoBooking.amountRoom}</b>
+                                                            <p id="datecheckin"> <i>In: </i> ${item.infoBooking.from}</p>
+                                                            <p> <i>Out: </i>${item.infoBooking.to}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <div>
+                                                            <b class="lht-price-detail">${item.totalPrice} VND</b>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <div>
+                                                        ${item.statusBooking == 0 ?
+                                `<button class="btn btn-primary" onclick="clickduyet('${item._id}')">Duyệt</button> <button style="width: 100%" class="btn btn-danger" onclick="clickhuy('${item._id}')">Hủy</button>` :
+                                item.statusBooking == 1 ?
+                                    `<button class="btn btn-warning" onclick="clicknhanphong('${item._id}')">Nhận phòng</button>` :
+                                    item.statusBooking == 2 ?
+                                        `<a class="btn btn-success" style="color: black" href="/admin/quanly-bill-khachhang/${item._id}/${item.idroom}" >Xem Bill</a>` :
+                                        `<a class="btn btn-info" href="/admin/quanly-bill-khachhang/${item._id}/${item.idroom}" style="color: white;text-decoration: none" >Hoàn tất</a>`
+                            }
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        `
+                    })
+                    document.querySelector('.list-hotel-by-status').innerHTML = htmlbooking.join('')
+
+
+
+                    //THÔNG TIN LIÊN HÊ
+                    let htitem = document.querySelectorAll('#idbooking-user')
+                    htitem.forEach(ele => {
+                        ele.onclick = function (e) {
+                            ele.setAttribute("title", "selected")
+                            $('[title=selected]').removeAttr("title");
+                            //tô màu ô sao được chọn
+                            $(this).attr("title", "selected");
+
+                            $.ajax({
+                                type: "GET",
+                                url: '/admin/booking/info/'+ele.getAttribute('value'),
+                                success: function (res) {
+                                    res = res.data
+                                    $('#nguoidaidien').text(res.infoBooking.name)
+                                    $('#emaildaidien').text(res.infoBooking.email)
+                                    $('#sdtdaidien').text(res.infoBooking.phone)
+                                    $('#tenaccount').text(res.inforUser.userName)
+                                    $('#emailaccount').text(res.inforUser.email)
+                                    $('#sdtaccount').text(res.inforUser.phoneNumber)
+                                    $('#avaaccount').attr("src", res.inforUser.image)
+                                }
+                                , error: function (err) {
+
+                                }
+                            })
+                        }
+                    })
+
+                    //click mặc định
+                    document.querySelector('#idbooking-user').click()
+
+                    //SET PRICE
+                    var price = document.querySelectorAll(".lht-price-detail")
+                    for (let i = 0; i < price.length; i++) {
+                        let money = price[i].innerText
+                        var price1 = Number(money.substring(0, money.indexOf(' ')))
+                        document.querySelectorAll(".lht-price-detail")[i].innerHTML = new Intl.NumberFormat({ style: 'currency', currency: 'JPY' }).format(price1) + " VND"
+                    }
+
+                },
+                error: function (err) {
+
+                    console.log('Lỗi');
+                }
+
+            })
+        }
+    })
+
+    /*$('#seehistorybookinguser').click(function () {
+        let iduser = $(this).attr('iduser')
+        window.location.href = '/admin/quanly/khachhang/historybooking/' + iduser;
+    })*/
+
+    function clickduyet(uid) {
+        $.ajax({
+            type: "POST",
+            url: "/admin/booking/update",
+            data: {
+                idbooking: uid,
+                statusbooking: 1
+            },
+            success: function (res) {
+                if (res.code == 0) {
+                    swal({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Đã duyệt!',
+                        showConfirmButton: false,
+                        timer: 1000
+                    }).then(() => {
+                        $('.ht-item-' + uid).remove()
+                        $('#soluong').text($('#soluong').text() - 1)
+                    })
+                }
+            },
+            error: function (e) {
+                console.log("Lỗi")
+            }
+        });
+    }
+
+    function clickhuy(uid) {
+        $.ajax({
+            type: "POST",
+            url: "/admin/booking/update",
+            data: {
+                idbooking: uid,
+                statusbooking: 4
+            },
+            success: function (res) {
+                if (res.code == 0) {
+                    swal({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Đã hủy yêu cầu đặt phòng!',
+                        showConfirmButton: false,
+                        timer: 1000
+                    }).then(() => {
+                        $('.ht-item-' + uid).remove()
+                        $('#soluong').text($('#soluong').text() - 1)
+                    })
+                }
+            },
+            error: function (e) {
+                console.log("Lỗi")
+            }
+        });
+    }
+
+
+    function clicknhanphong(uid) {
+        console.log(uid)
+        if (uid.toString().length == 7)
+            uid = '0' + uid
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/booking/update",
+            data: {
+                idbooking: uid,
+                statusbooking: 2
+            },
+            success: function (response) {
+                if (response.code == 0) {
+                    swal({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Khách hàng đã nhận phòng!',
+                        showConfirmButton: false,
+                        timer: 1000
+                    }).then(() => {
+                        $('.ht-item-' + uid).remove()
+                        $('#soluong').text($('#soluong').text() - 1)
+                    })
+                }
+            },
+            error: function (e) {
+                console.log("Lỗi")
+            }
+        });
+    }
+
+</script>
+
+<script>
+    //SEARCH
+    function searchBar() {
+        $('#search_field').on('keyup', function () {
+            console.log("ok")
+            let searchString = $(this).val();
+            $(".ht-item-main").each(function (index, value) {
+                currentName = $(value).text()
+                if (currentName.toUpperCase().indexOf(searchString.toUpperCase()) > -1) {
+                    $(value).show();
+                } else {
+                    $(value).hide();
+                }
+            });
+        });
+    };
+    searchBar();
+</script>

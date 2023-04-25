@@ -1,0 +1,61 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/img/favicon.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <link rel="stylesheet" href="/css/mainLayout.css">
+      <title>iVIVU</title>
+    {{!-- icon --}}                 
+  <link rel="icon" type="image/x-icon" href="/img/favicon.png" />
+  </head>
+  <body>
+    {{>header }}
+
+    <div class="chat_box">
+      <div class="chat__box-icon"><i class="fal fa-comments"></i></div>
+      <div class="chat_box-container">
+        <div class="chat_box-container-heading">
+          <div class="chat_box-logo">
+            <img src="/img/chatbox.png" alt="logo">
+          </div>
+          <div class="chat_box-title">
+            <h3>Chat Cùng Admin</h3>
+            <p>Đang hoạt động</p>
+          </div>
+          <div class="chat_box-control">
+            <i class="fas fa-minus"></i>
+          </div>
+        </div>
+        <div class="chat_box-container-content">Đang tải tin nhắn...</div>
+        <div class="chat_box-container-type">
+          <input type="text" placeholder="Nhập tin nhắn...">
+          <button><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+    </div>
+
+    {{{body}}}
+    {{>footer }}
+
+
+    {{!-- jquery --}}
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/js/script.js"></script>
+    
+  </body>
+</html>

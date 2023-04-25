@@ -1,0 +1,593 @@
+<link rel="stylesheet" href="/css/danhsachtour.css" />
+
+<div class="detailPage">
+  {{! banner_main }}
+  <section class="banner_main">
+    <div id="demo" class="carousel slide" data-ride="carousel">
+
+      <!-- Indicators -->
+      <ul class="carousel-indicators" hidden="hidden">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+      </ul>
+
+      <!-- The slideshow -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="/img/caption1.jpg" alt="hotel" />
+        </div>
+        <div class="carousel-item">
+          <img src="/img/caption2.jpg" alt="hotel" />
+        </div>
+        <div class="carousel-item">
+          <img src="/img/caption3.jpg" alt="hotel" />
+        </div>
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+    </div>
+
+    <div class="caption">
+      <h5 class="caption__des1">Bạn đang tìm kiếm trải nghiệm du lịch nào ?</h5>
+      <h1 class="caption__main">Lãng mạn</h1>
+      <h4 class="caption__des2">Chốn riêng tư và lãng mạn tuyệt vời</h4>
+    </div>
+
+    <div class="booking-form">
+      <div
+        class="container"
+        style="padding : 30px 30px 0 30px;background: #fff;border-top-left-radius: 12px;border-top-right-radius: 12px;"
+      >
+        <div class="row">
+          <div class="col-md-9 col-lg-3">
+            <label class="form__title">Điểm đến</label>
+            <input
+              class="form__info"
+              style="height: 40.4px;"
+              type="text"
+              placeholder="Bạn muốn đi đâu ?"
+            />
+          </div>
+          <div class="col-md-6 col-lg-2">
+            <label class="form__title">Ngày đi</label>
+            <input class="form__info" type="date" />
+          </div>
+          <div class="col-md-6 col-lg-2">
+            <label class="form__title">Ngày về</label>
+            <input class="form__info" type="date" />
+          </div>
+          <div class="col-md-9 col-lg-4" style="z-index: 1;">
+            <label class="form__title">Số người</label>
+            <div
+              class="form__info form__info--number"
+              style="height: 40.2px;"
+            ><span class="sum__room"></span>
+              phòng
+              <span class="sum__adult"></span>
+              người lớn
+              <span class="sum__child"></span>
+              trẻ em</div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="number-box">
+                  <li>
+                    <div class="number-left">
+                      <p>Người lớn</p>
+                    </div>
+                    <div class="number-right adult">
+                      <i class="fa fa-minus adultMinus"></i>
+                      <span>0</span>
+                      <i class="fa fa-plus adultPlus"></i>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="number-left">
+                      <p>Trẻ em</p>
+                    </div>
+                    <div class="number-right child">
+                      <i class="fa fa-minus childMinus"></i>
+                      <span>0</span>
+                      <i class="fa fa-plus childPlus"></i>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="number-left">
+                      <p>Phòng</p>
+                    </div>
+                    <div class="number-right room">
+                      <i class="fa fa-minus roomMinus"></i>
+                      <span>0</span>
+                      <i class="fa fa-plus roomPlus"></i>
+                    </div>
+                  </li>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-lg-1">
+            <button class="form__search">Tìm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="content">
+    <div class="container">
+      <div class="content__heading">
+        <h2>Chùm Tour Lễ 30/04</h2>
+        <p>Chơi Lễ thả ga, không lo về giá</p>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <div class="content__card">
+            <div class="content__card-thumbnail"><img
+                src="https://cdn2.ivivu.com/2022/06/02/14/ivivu-ho-ta-dung-360x225.jpg"
+                alt=""
+                loading="lazy"
+              /></div>
+            <div class="content__card-infomation">
+              <p class="destination-name">
+                Tour Campuchia 4N3D: Siem Riep - Angkor Thom - Phnom Penh
+              </p>
+              <div class="rating_star">
+                <i class="fas fa-star good-rating"></i>
+                <i class="fas fa-star good-rating"></i>
+                <i class="fas fa-star good-rating"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div class="timer">
+                <i class="far fa-clock"></i>
+                <span>5 Ngày 4 Đêm</span>
+              </div>
+              <div class="rating">
+                <span>9.6</span>
+                <span>Tuyệt vời</span>
+                <span>74 đánh giá</span>
+              </div>
+              <ul class="detail">
+                <li>Hoàng Cung Campuchia </li>
+                <li>Chùa Vàng, Chùa bạc</li>
+                <li>Bí mật ngôi mộ cổ</li>
+                <li>Angkor Thom</li>
+              </ul>
+              <div class="price">
+                <div class="price-old">5.690.000 VND</div>
+                <div class="price-new">5.490.000 VND</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="content__card">
+            <div class="content__card-thumbnail"><img
+                src="https://cdn2.ivivu.com/2022/06/02/14/ivivu-ho-ta-dung-360x225.jpg"
+                alt=""
+                loading="lazy"
+              /></div>
+            <div class="content__card-infomation">
+              <p class="destination-name">
+                Tour Campuchia 4N3D: Siem Riep - Angkor Thom - Phnom Penh
+              </p>
+              <div class="rating_star">
+                <i class="fas fa-star good-rating"></i>
+                <i class="fas fa-star good-rating"></i>
+                <i class="fas fa-star good-rating"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div class="timer">
+                <i class="far fa-clock"></i>
+                <span>5 Ngày 4 Đêm</span>
+              </div>
+              <div class="rating">
+                <span>9.6</span>
+                <span>Tuyệt vời</span>
+                <span>74 đánh giá</span>
+              </div>
+              <ul class="detail">
+                <li>Hoàng Cung Campuchia </li>
+                <li>Chùa Vàng, Chùa bạc</li>
+                <li>Bí mật ngôi mộ cổ</li>
+                <li>Angkor Thom</li>
+              </ul>
+              <div class="price">
+                <div class="price-old">5.690.000 VND</div>
+                <div class="price-new">5.490.000 VND</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="content__card">
+            <div class="content__card-thumbnail"><img
+                src="https://cdn2.ivivu.com/2022/06/02/14/ivivu-ho-ta-dung-360x225.jpg"
+                alt=""
+                loading="lazy"
+              /></div>
+            <div class="content__card-infomation">
+              <p class="destination-name">
+                Tour Campuchia 4N3D: Siem Riep - Angkor Thom - Phnom Penh
+              </p>
+              <div class="rating_star">
+                <i class="fas fa-star good-rating"></i>
+                <i class="fas fa-star good-rating"></i>
+                <i class="fas fa-star good-rating"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div class="timer">
+                <i class="far fa-clock"></i>
+                <span>5 Ngày 4 Đêm</span>
+              </div>
+              <div class="rating">
+                <span>9.6</span>
+                <span>Tuyệt vời</span>
+                <span>74 đánh giá</span>
+              </div>
+              <ul class="detail">
+                <li>Hoàng Cung Campuchia </li>
+                <li>Chùa Vàng, Chùa bạc</li>
+                <li>Bí mật ngôi mộ cổ</li>
+                <li>Angkor Thom</li>
+              </ul>
+              <div class="price">
+                <div class="price-old">5.690.000 VND</div>
+                <div class="price-new">5.490.000 VND</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="content__card">
+            <div class="content__card-thumbnail"><img
+                src="https://cdn2.ivivu.com/2022/06/02/14/ivivu-ho-ta-dung-360x225.jpg"
+                alt=""
+                loading="lazy"
+              /></div>
+            <div class="content__card-infomation">
+              <p class="destination-name">
+                Tour Campuchia 4N3D: Siem Riep - Angkor Thom - Phnom Penh
+              </p>
+              <div class="rating_star">
+                <i class="fas fa-star good-rating"></i>
+                <i class="fas fa-star good-rating"></i>
+                <i class="fas fa-star good-rating"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div class="timer">
+                <i class="far fa-clock"></i>
+                <span>5 Ngày 4 Đêm</span>
+              </div>
+              <div class="rating">
+                <span>9.6</span>
+                <span>Tuyệt vời</span>
+                <span>74 đánh giá</span>
+              </div>
+              <ul class="detail">
+                <li>Hoàng Cung Campuchia </li>
+                <li>Chùa Vàng, Chùa bạc</li>
+                <li>Bí mật ngôi mộ cổ</li>
+                <li>Angkor Thom</li>
+              </ul>
+              <div class="price">
+                <div class="price-old">5.690.000 VND</div>
+                <div class="price-new">5.490.000 VND</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="content__card">
+            <div class="content__card-thumbnail"><img
+                src="https://cdn2.ivivu.com/2022/06/02/14/ivivu-ho-ta-dung-360x225.jpg"
+                alt=""
+                loading="lazy"
+              /></div>
+            <div class="content__card-infomation">
+              <p class="destination-name">
+                Tour Campuchia 4N3D: Siem Riep - Angkor Thom - Phnom Penh
+              </p>
+              <div class="rating_star">
+                <i class="fas fa-star good-rating"></i>
+                <i class="fas fa-star good-rating"></i>
+                <i class="fas fa-star good-rating"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div class="timer">
+                <i class="far fa-clock"></i>
+                <span>5 Ngày 4 Đêm</span>
+              </div>
+              <div class="rating">
+                <span>9.6</span>
+                <span>Tuyệt vời</span>
+                <span>74 đánh giá</span>
+              </div>
+              <ul class="detail">
+                <li>Hoàng Cung Campuchia </li>
+                <li>Chùa Vàng, Chùa bạc</li>
+                <li>Bí mật ngôi mộ cổ</li>
+                <li>Angkor Thom</li>
+              </ul>
+              <div class="price">
+                <div class="price-old">5.690.000 VND</div>
+                <div class="price-new">5.490.000 VND</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="content__card">
+            <div class="content__card-thumbnail"><img
+                src="https://cdn2.ivivu.com/2022/06/02/14/ivivu-ho-ta-dung-360x225.jpg"
+                alt=""
+                loading="lazy"
+              /></div>
+            <div class="content__card-infomation">
+              <p class="destination-name">
+                Tour Campuchia 4N3D: Siem Riep - Angkor Thom - Phnom Penh
+              </p>
+              <div class="rating_star">
+                <i class="fas fa-star good-rating"></i>
+                <i class="fas fa-star good-rating"></i>
+                <i class="fas fa-star good-rating"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div class="timer">
+                <i class="far fa-clock"></i>
+                <span>5 Ngày 4 Đêm</span>
+              </div>
+              <div class="rating">
+                <span>9.6</span>
+                <span>Tuyệt vời</span>
+                <span>74 đánh giá</span>
+              </div>
+              <ul class="detail">
+                <li>Hoàng Cung Campuchia </li>
+                <li>Chùa Vàng, Chùa bạc</li>
+                <li>Bí mật ngôi mộ cổ</li>
+                <li>Angkor Thom</li>
+              </ul>
+              <div class="price">
+                <div class="price-old">5.690.000 VND</div>
+                <div class="price-new">5.490.000 VND</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="content__card">
+            <div class="content__card-thumbnail"><img
+                src="https://cdn2.ivivu.com/2022/06/02/14/ivivu-ho-ta-dung-360x225.jpg"
+                alt=""
+                loading="lazy"
+              /></div>
+            <div class="content__card-infomation">
+              <p class="destination-name">
+                Tour Campuchia 4N3D: Siem Riep - Angkor Thom - Phnom Penh
+              </p>
+              <div class="rating_star">
+                <i class="fas fa-star good-rating"></i>
+                <i class="fas fa-star good-rating"></i>
+                <i class="fas fa-star good-rating"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div class="timer">
+                <i class="far fa-clock"></i>
+                <span>5 Ngày 4 Đêm</span>
+              </div>
+              <div class="rating">
+                <span>9.6</span>
+                <span>Tuyệt vời</span>
+                <span>74 đánh giá</span>
+              </div>
+              <ul class="detail">
+                <li>Hoàng Cung Campuchia </li>
+                <li>Chùa Vàng, Chùa bạc</li>
+                <li>Bí mật ngôi mộ cổ</li>
+                <li>Angkor Thom</li>
+              </ul>
+              <div class="price">
+                <div class="price-old">5.690.000 VND</div>
+                <div class="price-new">5.490.000 VND</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="content__card">
+            <div class="content__card-thumbnail"><img
+                src="https://cdn2.ivivu.com/2022/06/02/14/ivivu-ho-ta-dung-360x225.jpg"
+                alt=""
+                loading="lazy"
+              /></div>
+            <div class="content__card-infomation">
+              <p class="destination-name">
+                Tour Campuchia 4N3D: Siem Riep - Angkor Thom - Phnom Penh
+              </p>
+              <div class="rating_star">
+                <i class="fas fa-star good-rating"></i>
+                <i class="fas fa-star good-rating"></i>
+                <i class="fas fa-star good-rating"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div class="timer">
+                <i class="far fa-clock"></i>
+                <span>5 Ngày 4 Đêm</span>
+              </div>
+              <div class="rating">
+                <span>9.6</span>
+                <span>Tuyệt vời</span>
+                <span>74 đánh giá</span>
+              </div>
+              <ul class="detail">
+                <li>Hoàng Cung Campuchia </li>
+                <li>Chùa Vàng, Chùa bạc</li>
+                <li>Bí mật ngôi mộ cổ</li>
+                <li>Angkor Thom</li>
+              </ul>
+              <div class="price">
+                <div class="price-old">5.690.000 VND</div>
+                <div class="price-new">5.490.000 VND</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="content__card">
+            <div class="content__card-thumbnail"><img
+                src="https://cdn2.ivivu.com/2022/06/02/14/ivivu-ho-ta-dung-360x225.jpg"
+                alt=""
+                loading="lazy"
+              /></div>
+            <div class="content__card-infomation">
+              <p class="destination-name">
+                Tour Campuchia 4N3D: Siem Riep - Angkor Thom - Phnom Penh
+              </p>
+              <div class="rating_star">
+                <i class="fas fa-star good-rating"></i>
+                <i class="fas fa-star good-rating"></i>
+                <i class="fas fa-star good-rating"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div class="timer">
+                <i class="far fa-clock"></i>
+                <span>5 Ngày 4 Đêm</span>
+              </div>
+              <div class="rating">
+                <span>9.6</span>
+                <span>Tuyệt vời</span>
+                <span>74 đánh giá</span>
+              </div>
+              <ul class="detail">
+                <li>Hoàng Cung Campuchia </li>
+                <li>Chùa Vàng, Chùa bạc</li>
+                <li>Bí mật ngôi mộ cổ</li>
+                <li>Angkor Thom</li>
+              </ul>
+              <div class="price">
+                <div class="price-old">5.690.000 VND</div>
+                <div class="price-new">5.490.000 VND</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="content__card">
+            <div class="content__card-thumbnail"><img
+                src="https://cdn2.ivivu.com/2022/06/02/14/ivivu-ho-ta-dung-360x225.jpg"
+                alt=""
+                loading="lazy"
+              /></div>
+            <div class="content__card-infomation">
+              <p class="destination-name">
+                Tour Campuchia 4N3D: Siem Riep - Angkor Thom - Phnom Penh
+              </p>
+              <div class="rating_star">
+                <i class="fas fa-star good-rating"></i>
+                <i class="fas fa-star good-rating"></i>
+                <i class="fas fa-star good-rating"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <div class="timer">
+                <i class="far fa-clock"></i>
+                <span>5 Ngày 4 Đêm</span>
+              </div>
+              <div class="rating">
+                <span>9.6</span>
+                <span>Tuyệt vời</span>
+                <span>74 đánh giá</span>
+              </div>
+              <ul class="detail">
+                <li>Hoàng Cung Campuchia </li>
+                <li>Chùa Vàng, Chùa bạc</li>
+                <li>Bí mật ngôi mộ cổ</li>
+                <li>Angkor Thom</li>
+              </ul>
+              <div class="price">
+                <div class="price-old">5.690.000 VND</div>
+                <div class="price-new">5.490.000 VND</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="get-more-tours">Xem thêm Tours</button>
+    </div>
+  </div>
+
+  {{! introduction }}
+  <div class="introduction">
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <div class="introduction__item">
+            <div class="introduction__item-logo"><img
+                src="https://www.ivivu.com/du-lich/content/img/icon-support.svg"
+                loading="lazy"
+                alt="introduction__item-logo"
+              />
+            </div>
+            <div class="introduction__item-info">
+              <h3>Tư Vấn Chuyên Nghiệp</h3>
+              <p>Hỗ trợ nhiệt tình, chăm sóc chu đáo</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="introduction__item">
+            <div class="introduction__item-logo"><img
+                src="https://www.ivivu.com/du-lich/content/img/icon-location.svg"
+                loading="lazy"
+                alt="introduction__item-logo"
+              />
+            </div>
+            <div class="introduction__item-info">
+              <h3>Trải Nghiệm Đa Dạng</h3>
+              <p>Chọn tour phù hợp, giá tour hợp lý</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="introduction__item">
+            <div class="introduction__item-logo"><img
+                src="https://www.ivivu.com/du-lich/content/img/icon-payment.svg"
+                loading="lazy"
+                alt="introduction__item-logo"
+              />
+            </div>
+            <div class="introduction__item-info">
+              <h3>Thanh Toán An Toàn</h3>
+              <p>Linh hoạt, rõ ràng, bảo mật</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{! script }}
+<script
+  src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"
+></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+></script>
+<script src="/js/detail.js"></script>
+<script src="/js/detail2.js"></script>

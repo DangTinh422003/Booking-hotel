@@ -1,0 +1,233 @@
+.thumbnail {
+  height: calc(80vh - 60px);
+  position: relative;
+}
+
+.thumbnail-images {
+  width: 100%;
+  height: 100%;
+}
+
+.thumbnail-images ul {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow-x: auto;
+  transition: all 0.25s ease-in-out;
+  scroll-behavior: smooth;
+}
+
+.thumbnail-images ul::-webkit-scrollbar {
+  display: none;
+}
+
+.thumbnail-images ul li {
+  flex-shrink: 0;
+  flex-basis: 1;
+}
+
+.thumbnail-images ul img {
+  width: 100vw;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbnail__info {
+  position: absolute;
+  top: 40%;
+  left: 14%;
+  transform: translateY(-50%);
+  color: #fff;
+}
+
+.thumbnail__info-heading {
+  margin-top: 0;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.thumbnail__info-heading span {
+  position: relative;
+  font-size: 16px;
+  padding: 10px 15px;
+  background: #f4dcdb;
+  border-radius: 30px;
+  color: #e52822;
+  top: -7px;
+  font-weight: 400;
+}
+
+.thumbnail__info-subheading {
+  margin-top: 0;
+  font-family: Helvetica;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  font-size: 20px;
+  text-decoration: underline;
+}
+
+.introduction {
+  background: #e0e7ee;
+  padding: 20px;
+}
+
+.introduction__item {
+  display: flex;
+  align-items: center;
+}
+
+.introduction__item img {
+  margin-right: 10px;
+}
+
+.introduction__item h3,
+.introduction__item p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.introduction__item h3 {
+  font-size: 20px;
+}
+
+.content {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background: #ecf0f5;
+}
+
+.ticket {
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 12px;
+  background: #fff;
+  transition: all 0.2s ease-in-out;
+}
+
+.ticket:hover {
+  -webkit-box-shadow: 3px 5px 17px -2px rgba(0, 0, 0, 0.85);
+  -moz-box-shadow: 3px 5px 17px -2px rgba(0, 0, 0, 0.85);
+  box-shadow: 3px 5px 17px -2px rgba(0, 0, 0, 0.85);
+}
+
+.ticket-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ticket .timer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticket .timer span {
+  display: block;
+  color: #000;
+  white-space: normal;
+  font-size: 16px;
+  font-weight: 300;
+  margin: 0 10px 0 10px;
+  font-weight: bold;
+}
+
+.ticket-detail button {
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 1px 2px #0000001f, 0 0 2px #0000003d;
+  background: #f79321;
+  border: 0px solid #f79321;
+  color: #fff;
+  font-size: 14px;
+  padding: 5px 16px;
+  box-shadow: none;
+  font-weight: 700;
+  outline: none !important;
+  display: inline-block;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.ticket .destination {
+  white-space: nowrap;
+}
+
+.ticket .destination span {
+  font-size: 20px;
+  font-weight: 400;
+  color: #000;
+}
+
+.ticket .destination i {
+  margin: 4px;
+}
+
+.ticket .price {
+  color: #26bed6;
+  font-size: 16px;
+}
+
+.ticket .price span {
+  font-size: 24px;
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+.slider {
+  background: #ecf0f5;
+}
+
+.wrap__slider {
+  margin-top: 20px;
+  display: flex;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.wrap__slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slider__heading,
+.content__heading {
+  font-size: 35px;
+  color: #000;
+  font-weight: 700;
+  text-align: left;
+  margin-bottom: 10px;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+@supports (-webkit-tap-highlight-color: rgba(0, 0, 0, 0)) {
+  .slider__heading,
+  .content__heading {
+    font-size: 35px;
+    color: #000;
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 10px;
+    margin-top: 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+}
+
+.content__subheading,
+.slider__subheading {
+  font-size: 18px;
+  color: #000;
+  font-weight: 300;
+  margin-bottom: 0;
+  text-align: left;
+}

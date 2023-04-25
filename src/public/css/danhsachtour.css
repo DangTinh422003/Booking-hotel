@@ -1,0 +1,411 @@
+.carousel-item img {
+  width: 100%;
+  max-height: 600px;
+}
+
+.banner_main {
+  position: relative;
+}
+
+.booking-form {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.form--booking {
+  background: #fff;
+  margin-top: -104px;
+  padding: 30px 30px 0px 30px;
+  border-radius: 40px 40px 0px 0px;
+}
+
+.form--booking .form__title {
+  color: #7e7e7e;
+  font-weight: bold;
+  font-size: 15px;
+  text-transform: uppercase;
+  padding-left: 17px;
+  margin: 5px;
+}
+
+.form__info {
+  border: inherit;
+  border-radius: 20px;
+  background-color: #eeeeee;
+  width: 100%;
+  font-size: 16px;
+  height: auto;
+  line-height: normal;
+  padding: 10px 20px;
+}
+
+.form__search {
+  font-size: 17px;
+  background-color: #000;
+  color: #fff;
+  font-weight: 500;
+  padding: 7px;
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  transition: ease-in all 0.5s;
+  border-radius: 15px;
+  margin-top: 30px;
+}
+
+.form__search:hover {
+  background-color: red;
+  color: #fff;
+  transition: ease-in all 0.5s;
+  border-radius: 25px;
+}
+.card {
+  border-radius: 5px;
+  margin-top: 40px;
+  position: relative;
+  float: left;
+  padding: 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+  padding: 0 0 20px 0;
+}
+
+.card__img {
+  width: 100%;
+  height: 220px;
+}
+
+.cardinfo {
+  padding: 20px;
+  color: black;
+}
+
+.cardinfo__title {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.cardinfo__price {
+  background-color: red;
+  padding: 10px;
+  padding-right: 15px;
+  padding-left: 15px;
+  position: absolute;
+  right: -10px;
+  bottom: 8px;
+  margin-bottom: 10px;
+  z-index: 1;
+  font-weight: bold;
+  color: white;
+}
+
+.cardinfo__price::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -6px;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #832929;
+  clear: both;
+  transform: rotate(135deg);
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  overflow: hidden;
+}
+
+figure:hover {
+  opacity: 1;
+}
+
+.card figure img {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.card figure:hover img {
+  -webkit-transform: scale(1.3);
+  transform: scale(1.3);
+}
+
+.checked {
+  color: orange;
+}
+
+.cardinfo__star {
+  margin-bottom: 8px;
+}
+
+a.score__a {
+  text-decoration: none;
+}
+
+.score__title {
+  padding: 3px 5px;
+  margin-left: 10px;
+  border-radius: 6px;
+  background: green;
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.score__description,
+.score__num {
+  font-size: 11px;
+  color: green;
+}
+
+.score__description {
+  font-weight: bold;
+}
+
+.form__info--number {
+  cursor: pointer;
+}
+
+.number-box {
+  position: absolute;
+  top: 100%;
+  background-color: #fff;
+  width: 300px;
+  background-color: rgba(221, 221, 221, 0.8);
+  display: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.number-box.active {
+  display: block;
+}
+
+.number-box.inactive {
+  display: none;
+}
+
+.number-box li {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 12px;
+  height: 40px;
+}
+
+.number-left {
+  width: 50%;
+}
+
+.number-left p {
+  line-height: 40px;
+}
+
+.number-right {
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+
+.caption {
+  position: absolute;
+  text-align: center;
+  font-size: 24px;
+  left: 0;
+  right: 0;
+  top: 41%;
+  color: #fff;
+}
+
+.caption__des1,
+.caption__des2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.caption__main {
+  font-weight: bold;
+  font-size: 80px;
+  margin-bottom: 20px;
+}
+
+.link-to-detail1 {
+  color: #003c71;
+}
+
+.introduction {
+  background: #fff;
+  padding: 20px;
+}
+
+.introduction__item {
+  display: flex;
+  align-items: center;
+}
+
+.introduction__item img {
+  margin-right: 10px;
+}
+
+.introduction__item h3,
+.introduction__item p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.introduction__item h3 {
+  font-size: 20px;
+}
+
+.content {
+  padding: 20px;
+}
+
+.content__heading {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.content__heading * {
+  margin: 0;
+  font-weight: bold;
+}
+
+.content__heading h2 {
+  color: #3f3b3b;
+}
+
+.content__heading p {
+  color: rgb(159, 159, 159);
+}
+
+.content__card {
+  border: rgb(226, 226, 226) solid 1px;
+  margin-bottom: 30px;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.15s linear;
+}
+
+.content__card:hover {
+  transform: translateY(-10px);
+  -webkit-box-shadow: 3px 2px 19px 3px rgba(0, 0, 0, 0.54);
+  -moz-box-shadow: 3px 2px 19px 3px rgba(0, 0, 0, 0.54);
+  box-shadow: 3px 2px 19px 3px rgba(0, 0, 0, 0.54);
+  background: #dbe9f5;
+}
+
+.content__card-infomation {
+  padding: 20px;
+  padding-top: 10px;
+}
+
+.content__card-infomation .destination-name {
+  color: #003c71;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.good-rating {
+  color: gold;
+}
+
+.content__card-infomation .rating span {
+  font-size: 13px;
+}
+
+.content__card-infomation .rating span:nth-child(1) {
+  color: #fff;
+  font-weight: bold;
+  background: #9fc43a;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 0 4px;
+}
+
+.content__card-infomation .rating span:nth-child(2) {
+  color: #9fc43a;
+  font-weight: bold;
+  display: inline-block;
+  padding: 0 4px;
+  position: relative;
+  margin: 0 10px;
+}
+
+.content__card-infomation .rating span:nth-child(2)::after {
+  content: "";
+  height: 60%;
+  width: 1px;
+  background: #4e4e4e;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -8px;
+}
+
+.content__card-infomation ul {
+  list-style-type: disc;
+}
+
+.content__card-infomation ul li {
+  display: inline-block;
+  color: #00abc5;
+  font-size: 13px;
+  margin-right: 10px;
+  text-decoration: underline;
+}
+
+.content__card .price {
+  text-align: end;
+}
+
+.content__card .price-old {
+  color: #828282;
+  font-size: 16px;
+  text-decoration: line-through;
+}
+
+.content__card .price-new {
+  color: #f79321;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.content__card .timer {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: 828282;
+}
+
+.get-more-tours {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-block;
+  color: #26bed6;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 2px;
+  border: solid 1px #26bed6;
+  background-color: #fff;
+  padding: 7px 20px;
+  margin-top: 10px;
+  transition: all 0.25s ease-in-out;
+}
+
+.get-more-tours:hover {
+  background-color: #26bed6;
+  color: #fff;
+  cursor: pointer;
+}

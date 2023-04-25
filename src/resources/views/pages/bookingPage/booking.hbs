@@ -1,0 +1,202 @@
+<style>
+  .mainvoucher {
+    padding: 12px 23px;
+    margin: 0 0 6px;
+    display: flex;
+    align-items: center;
+    background: #fffefb;
+    border: 1px solid rgba(224, 168, 0, .4);
+    border-radius: 2px;
+    justify-content: space-between;
+  }
+</style>
+<link rel="stylesheet" href="/css/progress.css" />
+<link rel="stylesheet" href="/css/booking.css" />
+{{!-- LOADING --}}
+<link rel="stylesheet" href="/css/loading.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+<div class="container">
+  <ul class="progressbar">
+    <li class="active">Step 1</li>
+    <li>Step 2</li>
+    <li>Step 3</li>
+  </ul>
+</div>
+<div class="main">
+  <div class="row">
+    <div class="col-12 col-md-8">
+      <div class="payinfo">
+        <div class="pay-block">
+          <div style="color: #ff5b00;font-size: 18px;font-weight:bold">
+            <div class="pay-title" style="margin-bottom: 0;margin-left: 6px;">Xác nhận thông tin</div>
+          </div>
+        </div>
+        <div class="iteminfo">
+          <div style="display:inline-flex;align-items:center">
+            <div style="width: 6px;height: 28px; background-color: #ff5b00;border-radius: 6px">
+            </div>
+            <p style="margin-bottom:0;font-size: 18px;font-weight: 400;" class="pay-title">Thông tin phòng</p>
+          </div>
+          <div style="padding: 8px">
+            <div class="thongtinhotel">
+              <div class="thongtinhotel-img">
+                <img src="{{img_room}}" alt="">
+              </div>
+              <div class="thongtinhotel-content">
+                <p style="font-weight: 700;font-size: 18px;">Khách sạn Vinpearl Phú Quốc</p>
+                <p style="font-size:16px">{{name_room}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="iteminfo">
+          <div style="display:inline-flex;align-items:center">
+            <div style="width: 6px;height: 38px; background-color: #ff5b00;border-radius: 6px">
+            </div>
+            <div class="pay-title">
+              <p style="margin-bottom:0;font-size: 18px;font-weight: 400;">Thông tin liên lạc</p>
+              <p style="color:#757575;font-size:16px">Chúng tôi sẽ thông báo mọi thay đổi về đơn hàng cho bạn</p>
+            </div>
+          </div>
+          <!-- NHẬP THÔNG TIN -->
+          <div style="padding: 8px">
+            <div class="thongtinhotel form-input-info">
+              <form style="width:100%;font-size: 18px;">
+                <div class="form-group">
+                  <label for="">Họ và tên người đại diện</label>
+                  <input style="height: 40px;font-size:18px" type="text" class="form-control" id="ndd"
+                    value="{{user.userName}}">
+                </div>
+                <div class="form-group">
+                  <label for="">Số điện thoại liên lạc</label>
+                  <input style="height: 40px;font-size:18px" type="text" class="form-control" id="sdd" placeholder=""
+                    value="{{user.phoneNumber}}">
+                </div>
+                <div class="form-group">
+                  <label for="">Địa chỉ email</label>
+                  <input style="height: 40px;font-size:18px" type="email" class="form-control" id="mdd"
+                    value="{{user.email}}">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- ƯU ĐÃI -->
+        <div class="iteminfo">
+          <div style="display:inline-flex;align-items:center">
+            <div style="width: 6px;height: 38px; background-color: #ff5b00;border-radius: 6px">
+            </div>
+            <div class="pay-title">
+              <p style="margin-bottom:0;font-size: 18px;font-weight: 400;">Loại ưu đãi</p>
+            </div>
+          </div>
+          <div style="padding: 8px">
+            <div class="thongtinhotel form-input-info">
+              <form style="width:100%;font-size: 18px;">
+                <div class="form-group inputvoucher">
+                  <label for="">Nhập mã ưu đãi</label>
+                  <input style="height: 40px;font-size:18px" type="text" class="form-control txtvoucher"
+                    id="inputvoucher" placeholder="Mã ưu đãi của bạn">
+                  <button type="button" class="btnvoucher">Xác nhận</button>
+                </div>
+              </form>
+            </div>
+            <!-- VOUCHER -->
+            <div style="padding: 14px 0px; display: none;" id="voucherform" name="idvoucher">
+              <div class="containervoucher">
+                <div class="mainvoucher">
+                  <div>
+                    <div>Áp mã giảm giá thành công</div>
+                  </div>
+                  <div>
+                    <b class="sale-value">-320.000đ <span>&times;</span></b>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{!-- LỖI --}}
+            <div class="voucher-error" style="margin-top: 15px; display: none;">
+              <div class="mainvoucher">
+                <div>
+                  <div>Mã giảm giá không hợp lệ</div>
+                </div>
+              </div>
+            </div>
+            <!-- VOUCHER -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="bill">
+        <div class="bill-title bill-item" style="border-bottom: 1px solid #ccc">Thông tin đặt phòng</div>
+        <div class="bill-title bill-item" style="border-bottom: 1px dashed #ccc">Thời gian giữ phòng</div>
+        <div class="bill-item">
+          <h3 class="bill-title">{{name_room}}</h3>
+          <!-- Ngày nhận trả -->
+          <div class="bill-date">
+            <div>
+              <div class="bill-date-title">Nhận phòng</div>
+              <div>
+                <div class="bill-date-input" th:text="${checkin}"></div>
+              </div>
+            </div>
+            <div>
+              <img src="https://booking.vinpearl.com/static/media/hotel-timeline.aefc7908.svg" alt="">
+            </div>
+            <div>
+              <div class="bill-date-title">Trả phòng</div>
+              <div>
+                <div class="bill-date-input" th:text="${checkout}"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Người -->
+          <div class="bill-people">
+            <div class="bill-people-item">
+              <input type="number" class="form-control" style="font-size: 16px" value="{{adult}}" disabled>
+              <div>Người lớn</div>
+            </div>
+            <div class="bill-people-item">
+              <input style="font-size: 16px" type="number" class="form-control" value="{{child}}" disabled>
+              <div>Trẻ em</div>
+            </div>
+          </div>
+          <div style="display: flex;justify-content:space-between">
+            <p>Số ngày</p>
+            <b th:text="${dff}+' Ngày'">{{numDate}} ngày</b>
+          </div>
+          <div class="bill-item"
+            style="display: flex;justify-content:space-between; border-bottom: 1px solid #ccc;padding: 8px 0px">
+            <p>Số phòng</p>
+            <input style="font-size: 16px;width:50px" type="number" name="" id="" value="{{amount_room}}"
+              class="form-control sophong" disabled>
+          </div>
+          <div style="display: flex;justify-content:space-between;padding: 8px 0;">
+            <div style="display: flex">
+              <img style="width:32px;object-fit: contain"
+                src="https://res.klook.com/image/upload/v1649666436/ued/Hotel/illustration_Earn_Klook_credits___save_xl.png"
+                alt="">
+              <b class="bill-title">Tổng cộng:</b>
+            </div>
+            <b class="total" style="color: #ff5b00;font-weight:800;font-size: 20px;" value="{{total}}">{{formatPrice
+              total}} VND</b>
+          </div>
+          <div style="width:100%;display: flex;justify-content: flex-end;">
+            <button id="bookingok" type="submit" class="btn btn-success submitbooking"
+              style="padding:10px !important;font-size: 16px;background-color: #ff5722;border: none;font-weight: 600;">Tiến
+              hành đặt phòng</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="loading">
+  <img src="/img/loading.svg" />
+</div>
+
+<script src="/js/loading.js"></script>
+<script src="/js/booking.js"></script>

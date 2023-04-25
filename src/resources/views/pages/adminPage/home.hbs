@@ -1,0 +1,589 @@
+    <div class="overview-boxes">
+      {{!-- đặt phòng --}}
+      <div class="box">
+        <div class="right-side">
+          <div class="box-topic">Đặt phòng</div>
+          <div class="number">{{bookings.length}}</div>
+          {{#if bookingsUpOrDown}}
+            <div class="indicator">
+              <i class='bx bx-up-arrow-alt'></i>
+              <span class="text">{{bookingsUpOrDown}} Up from yesterday</span>
+            </div>
+          {{else}}
+            <div class="indicator">
+              <i class='bx bx-minus-circle'></i>
+              <span class="text">No change from yesterday</span>
+            </div>
+          {{/if}}
+        </div>
+        <i class='bx bx-cart-alt cart'></i>
+      </div>
+      {{!-- doanh thu --}}
+      <div class="box">
+        <div class="right-side">
+          <div class="box-topic">Doanh thu</div>
+          <div class="number">{{money-format revenue}}</div>
+          {{#ifCondition revenueLastDay ">" 0}}
+            <div class="indicator">
+              <i class='bx bx-up-arrow-alt'></i>
+              <span class="text">{{money-format revenueLastDay}} Up from yesterday</span>
+            </div>
+          {{else}}
+            {{#ifEqual revenueLastDay 0}}
+              <div class="indicator">
+                <i class='bx bx-minus-circle'></i>
+                <span class="text">No change from yesterday</span>
+              </div>
+            {{else}}
+              <div class="indicator">
+                <i class='bx bx-down-arrow-alt down'></i>
+                <span class="text">{{revenueLastDay}} Down From yesterday</span>
+              </div>
+            {{/ifEqual}}
+          {{/ifCondition}}
+        </div>
+        <i class='bx bxs-cart-add cart two' ></i>
+      </div>
+      {{!-- khách hàng mới --}}
+      <div class="box">
+        <div class="right-side">
+          <div class="box-topic">Khách hàng mới</div>
+          <div class="number">{{customers.length}}</div>
+          <div class="indicator">
+            <i class='bx bx-up-arrow-alt'></i>
+            <span class="text">Up from the start</span>
+          </div>
+        </div>
+        <i class='bx bx-cart cart three' ></i>
+      </div>
+      {{!-- hài lòng --}}
+      <div class="box">
+        <div class="right-side">
+          <div class="box-topic">Mức độ hài lòng</div>
+          <div class="number">{{satisfied}} <span class="mx-1" style="font-size:2rem; color:gold">★</span>
+          </div>
+          {{#if satisfiedLastDay}}
+            <div class="indicator">
+              <i class='bx bx-up-arrow-alt'></i>
+              <span class="text">{{satisfiedLastDay}} Up from yesterday</span>
+            </div>
+          {{else}}
+            {{#ifEqual satisfiedLastDay 0}}
+              <div class="indicator">
+                <i class='bx bx-minus-circle'></i>
+                <span class="text">No change from yesterday</span>
+              </div>
+            {{else}}
+              <div class="indicator">
+                <i class='bx bx-down-arrow-alt down'></i>
+                <span class="text">{{satisfiedLastDay}} Down From yesterday</span>
+              </div>
+            {{/ifEqual}}
+          {{/if}}
+        </div>
+        <i class='bx bxs-cart-download cart four' ></i>
+      </div>
+    </div>
+
+    <div class="sales-boxes">
+      <div class="recent-sales box">
+        <div class="title">THỐNG KÊ DOANH THU</div>
+        <div class="sales-details">
+          <div id="chart" style="width:100%"></div>
+        </div>
+        <div class="button">
+          <a href="#">See All</a>
+        </div>
+      </div>
+
+      <div class="top-sales box">
+        <div class="title">Dịch vụ và sản phẩm bán chạy</div>
+        <ul class="top-sales-details" id="TopService">
+          {{!-- <li>
+            <a href="#">
+              <img src="" alt="">
+              <span class="product" >Tên</span>
+            </a>
+            <span class="price lht-price-detail" style="font-weight: 700">Giá</span>
+          </li> --}}
+        </ul>
+      </div>
+    </div>
+
+    <div class="sales-boxes" style="margin-top: 20px">
+      <div class="recent-sales box">
+        <div class="title">THỐNG KÊ LƯỢNG ĐẶT PHÒNG Ở KHÁCH SẠN</div>
+        <div class="sales-details">
+          <div id="chart2" style="width:100%"></div>
+        </div>
+        <div class="button">
+          <a href="#">See All</a>
+        </div>
+
+        <div class="title mt-5">THỐNG KÊ LƯỢNG PHẢN HỒI TỪ KHÁCH HÀNG</div>
+        <div class="sales-details">
+          <div id="chart3" style="width:100%"></div>
+        </div>
+        <div class="button">
+          <a href="#">See All</a>
+        </div>
+      </div>
+
+      <div class="top-sales box ">
+        <div class="title">Tin nhắn của khách hàng
+          <div>
+            <div class="uil-bell" id="bell">
+              <div id="num-bell">{{questionsLength}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="top-sales-details messages-section">
+          <div class="message" style="padding-top: 20px">
+            {{#each questions}}
+            <div class="message-box" id="ms-{{this._id}}">
+              <img src="{{this.imgUser}}" alt="profile image">
+              <div class="message-content">
+                <div class="message-header">
+                  <div class="name" >{{this.nameUser}}</div>
+                  <div class="star-checkbox" style="display: flex;align-items: center">
+                    <input type="checkbox" id="star-1" >
+                    <i id="" class="uil-trash-alt" style="font-size: 20px;color: red;cursor:pointer" onclick="handleDelete('{{this._id}}')"></i>
+                    <button class="buttonrep btn btn-success ml-2" style="padding: 2px !important;" data-toggle="modal" data-target="#exampleModal" data-value="{{this._id}}">Rep</button>
+
+                    <label for="star-1" style="margin-left: 4px;margin-bottom: 0px !important;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                    </label>
+                  </div>
+                </div>
+                <p class="message-line" id="contentquestion-{{this._id}}">
+                  {{this.question}}
+                </p>
+                <p class="message-line time" >
+                  {{this.datesendString}}
+                </p>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Rep ib-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Trả lời</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="answer">Câu trả lời</label>
+          <textarea class="form-control" id="answer" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button id="repSubmit" data-dismiss="modal" type="button" class="btn btn-primary">Gửi</button>
+      </div>
+    </div>
+  </div>
+</div>
+{{!-- handler modal rep message --}}
+<script>
+  let data = {}
+  $(".buttonrep").on("click", function (e) {
+    const id = $(this).data("value");
+    data.id = id;
+  });
+  $("#repSubmit").on("click", function (e) {
+    e.preventDefault();
+    data.repquestion =$("#answer").val();
+    const currentPath = window.location.pathname;
+    $.ajax({
+      type: "POST",
+      url: currentPath+'rep',
+      data: data,
+      success: function (response){
+        Swal.fire({
+          title: 'Trả lời thành công',
+          text: 'Đã trả lời',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $(`#ms-${data.id}`).remove();
+            const length = parseInt($("#num-bell").text());
+            const newLength = length - 1;
+            $("#num-bell").text(newLength);
+          }
+        });
+
+
+      },
+      error: function(xhr, textStatus, errorThrown) {
+        console.log(textStatus,errorThrown);
+      }
+    })
+  })
+</script>
+  {{!-- delete message --}}
+<script>
+ function handleDelete(uid)
+  {
+    {{!-- console.log(uid) --}}
+    swal({
+      title: "Xác nhận xóa!",
+      text: "Câu hỏi này sẽ bị xóa",
+      icon: "warning",
+      buttons: true,
+      dangerMode: false,
+    }).then((value) => {
+      if (value) {
+        const currentPath = window.location.pathname;
+        console.log("đã xác nhận")
+        $.ajax({
+          type: "Post",
+          url: currentPath+"deleteQuestion",
+          data: {
+            id: uid,
+          },
+          success: function (response)
+          {
+            swal({
+              position: 'top-end',
+              icon: 'success',
+              title: "Xóa thành công",
+              showConfirmButton: false,
+              timer: 1000
+            }).then(()=>{
+              $('#ms-'+uid).remove()
+              const value = parseInt($("#num-bell").text())-1
+              $("#num-bell").text(value)
+            })
+          },
+          error:function ()
+          {
+            console.log("lỗi")
+          }
+        });
+      }
+    });
+  }
+</script>
+
+    <!-- apexcharts js -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js" integrity="sha512-Dz4zO7p6MrF+VcOD6PUbA08hK1rv0hDv/wGuxSUjImaUYxRyK2gLC6eQWVqyDN9IM1X/kUA8zkykJS/gEVOd3w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        // databooking and datebooking
+        const bookings = {{{json bookings}}};
+        const filteredBookings = bookings.filter(booking => booking.statusBooking === 3);
+        const dataBookings = filteredBookings.map(booking => booking.totalBill);
+        const dateBookings = filteredBookings.map(booking => {
+          const date = new Date(booking.checkout);
+          return date.getTime();
+        });
+        //console.log(filteredBookings)
+        //console.log(dataBookings);
+        //console.log(dateBookings);
+        // dataService and dateService
+        const dataServices = filteredBookings.map(booking => {
+          return booking.totalService;
+        });
+        //console.log(dataServices);
+        const filteredBookingsService = bookings.filter(booking => booking.statusBooking === 2 || booking.statusBooking === 3 && booking.totalService!=0);
+        let dataServiceFromBookings = filteredBookingsService.map(booking => {
+          if (booking.services.length > 0) {
+            return booking.services;
+          }
+        }).filter(item => item !== undefined);
+        //console.log(dataServiceFromBookings)
+        // Sử dụng reduce() để tính toán số lượng sản phẩm bán được và lưu vào mảng results
+        const results = dataServiceFromBookings.reduce((acc, item) => {
+          item.forEach(product => {
+            const foundProduct = acc.find(p => p.name === product.name);
+            if (foundProduct) {
+              foundProduct.amount += product.amount;
+            } else {
+              acc.push({stt:product.stt, name: product.name, amount: product.amount });
+            }
+          });
+          return acc;
+        }, []);
+        // Sắp xếp mảng theo số lượng sản phẩm bán được giảm dần theo top 10
+        const topProducts = results
+          .sort((a, b) => b.amount - a.amount)
+          .slice(0, 6);
+        const services = {{{json services}}};
+        //console.log(topProducts);
+        //console.log(services)
+        for (let i = 0; i < topProducts.length; i++) {
+          const product = topProducts[i];
+          const service = services.find(s => s.stt === product.stt);
+          if (service) {
+            product.img = service.imgsv;
+            product.price = service.pricesv
+          }
+        }
+        //console.log(topProducts);
+        const topSales = $('#TopService.top-sales-details');
+        for (let i = 0; i < topProducts.length; i++) {
+          const product = topProducts[i];
+          const li = $('<li></li>');
+          const a = $('<a></a>');
+          const img = $('<img>');
+          const span1 = $('<span></span>');
+          const span2 = $('<span></span>');
+
+          img.attr('src', product.img);
+          img.attr('alt', 'ảnh');
+          span1.addClass('product');
+          span1.text(product.name);
+          span2.addClass('price lht-price-detail');
+          span2.css('font-weight', '700');
+          span2.text(product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }));
+
+          a.append(img);
+          a.append(span1);
+          li.append(a);
+          li.append(span2);
+          topSales.append(li);
+        }
+
+        var options = {
+            series: [{
+                name: 'ĐẶT PHÒNG',
+                type: 'column',
+                data: dataBookings
+            }, {
+                name: 'DỊCH VỤ',
+                type: 'area',
+                data: dataServices
+            }, {
+                name: 'KHÁC',
+                type: 'line',
+                data: [25000000, 20000000, 31000000]
+            }],
+            chart: {
+                height: 350,
+                type: 'line',
+                stacked: false,
+            },
+            stroke: {
+                width: [0, 2, 5],
+                curve: 'smooth'
+            },
+            plotOptions: {
+                bar: {
+                    columnWidth: '100%'
+                }
+            },
+
+            fill: {
+                opacity: [0.85, 0.25, 1],
+                gradient: {
+                    inverseColors: false,
+                    shade: 'light',
+                    type: "vertical",
+                    opacityFrom: 0.85,
+                    opacityTo: 0.55,
+                    stops: [0, 100, 100, 100]
+                }
+            },
+            labels: dateBookings,
+            markers: {
+                size: 0
+            },
+            xaxis: {
+                type: 'datetime'
+            },
+            yaxis: {
+                title: {
+                    text: 'Triệu(VND)',
+                },
+                min: 0
+            },
+            tooltip: {
+                shared: true,
+                intersect: false,
+                y: {
+                  formatter: function (y) {
+                      if (typeof y !== "undefined" || y !=null) {
+                          // Chuyển đổi giá trị số sang chuỗi tiền tệ VND
+                          const formatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' });
+                          const vndValue = formatter.format(y);
+                          return vndValue;
+                      }
+                      return 0 + " VND";
+                  }
+                }
+            }
+        };
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+
+        // Thống kê room ở chart 2
+        const rooms = {{{json rooms}}}
+        //console.log(rooms)
+        //console.log(bookings)
+        const roomBookings = {};
+        for (let i = 0; i < rooms.length; i++) {
+          const roomType = rooms[i].type_room;
+          let bookingCount = 0;
+          if (roomType in roomBookings) {bookingCount=roomBookings[roomType]}
+          for (let j = 0; j < bookings.length; j++) {
+            const booking = bookings[j];
+            if (booking.idroom == rooms[i].number_room) {
+              bookingCount++;
+            }
+          }
+          roomBookings[roomType] = bookingCount;
+        }
+        //console.log(roomBookings);
+        const roomTypes = Object.keys(roomBookings);
+        const bookingCounts = Object.values(roomBookings);
+        var options2 = {
+            series: bookingCounts,
+            chart: {
+                width: 380,
+                type: 'pie',
+            },
+            labels: roomTypes,
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+        var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+        chart2.render();
+
+// thống kê feedback ở chart 3
+        const feedbacks = {{{json feedbacks}}};
+        console.log(feedbacks)
+        // Tạo các đối tượng để lưu trữ dữ liệu theo phòng và theo ngày
+        const roomData = {};
+        const dateData = {};
+        // Lặp qua từng phản hồi để lưu trữ dữ liệu theo phòng và theo ngày
+        for (let i = 0; i < feedbacks.length; i++) {
+          const feedback = feedbacks[i];
+          const room = feedback.idroom;
+          const date = new Date(feedback.timeFb).toLocaleDateString();
+
+          // Lưu trữ dữ liệu theo phòng
+          if (!roomData[room] &&room!=null) {
+            roomData[room] = { name: `Phòng ${room}`, data: [] };
+          }else if(!roomData[room] &&room==null){
+            roomData[room] = {name: "Website",data: []}
+          }
+          roomData[room].data.push(feedback.starFb);
+
+          // Lưu trữ dữ liệu theo ngày
+          if (!dateData[date]) {
+            dateData[date] = { x: date, data: {} };
+          }
+          if (!dateData[date].data[room] &&room!=null) {
+            dateData[date].data[room] = { name: `Phòng ${room}`, data: [] };
+          } else if (!dateData[date].data[room] &&room==null){
+            dateData[date].data[room] = { name: `Website`, data: [] };
+          }
+          dateData[date].data[room].data.push(feedback.starFb);
+        }
+        // Tạo danh sách các ngày để sử dụng trong biểu đồ
+        const dates = Object.keys(dateData).sort();
+        // Tạo một mảng dữ liệu ApexCharts từ các dữ liệu về phòng đã thu thập được
+        const roomSeries = Object.values(roomData);
+        // Tạo một mảng dữ liệu ApexCharts từ các dữ liệu về ngày đã thu thập được
+        const dateSeries = Object.entries(dateData).map(([date, data]) => ({
+          x: date,
+          ...Object.values(data.data),
+        }));
+        console.log(roomSeries)
+        console.log(dateSeries)
+        
+          dateSeries.forEach((data, index)=>{
+            const dataArrays = Object.values(data);
+            console.log(dataArrays)
+          })
+
+        for (let i = 0; i < roomSeries.length; i++){
+          roomSeries[i].data = []
+          const newData = []
+          dateSeries.forEach((data, index)=>{
+            const dataArrays = Object.values(data);
+            for (let j = 0; j < dataArrays.length-1; j++){
+              if (dataArrays[j].name == roomSeries[i].name){
+                newData.push(dataArrays[j].data[0])
+              } else if (dataArrays[j].name != roomSeries[i].name && j==dataArrays.length-2){
+                newData.push(null)
+              }
+            }
+          })
+          roomSeries[i].data = newData
+        }
+        console.log(roomSeries)
+        // Cấu hình
+        const options3 = {
+          chart: {
+            height: 350,
+            type: "line",
+          },
+          stroke: {
+            width: 2,
+            curve: "smooth",
+          },
+          series: roomSeries,
+          xaxis: {
+            categories: dates,
+          },
+          yaxis: {
+            title: {
+              text: "Đánh giá (sao)",
+            },
+            min: 1,
+            max: 5,
+          },
+          tooltip: {
+            shared: true,
+            intersect: false,
+            y: {
+              formatter: function (y) {
+                if (typeof y !== "undefined") {
+                  return y + " sao";
+                }
+                return 0 + " sao";
+              },
+            },
+          },
+          dataLabels: {
+            enabled: true,
+          },
+          markers: {
+            size: 5,
+            strokeColors: '#fff',
+            strokeWidth: 2,
+          },
+          legend: {
+            offsetY: 7,
+          },
+          grid: {
+            padding: {
+              bottom: 20,
+            },
+          },
+        };
+                
+        var chart3 = new ApexCharts(document.querySelector("#chart3"), options3);
+        chart3.render();
+    </script>

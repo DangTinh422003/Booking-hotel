@@ -1,0 +1,343 @@
+<link rel="stylesheet" href="/css/paginate.css">
+
+<div class="sales-boxes">
+    <div class="recent-sales box">
+        <div class="title">Danh sách Voucher
+            <button class="btn btn-primary ml-4" data-toggle="modal" data-target="#addModal">Thêm Voucher</button>
+        </div>
+        <div class="sales-details">
+            <table class="table table-striped justify-content-center" id="fid_table">
+                <thead>
+                <tr class="t_head">
+                    <th scope="col">Mã Voucher</th>
+                    <th scope="col">Giá  trị</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Còn lại</th>
+                    <th scope="col">HSD</th>
+                    <th scope="col">Tác vụ</th>
+                </tr>
+                </thead>
+                <tbody >
+                    {{#each vouchers}}
+                    <tr class="tritem" id="row_{{this.idvoucher}}" id="listnv">
+                        <td style="font-weight: bold;width: 20%" >
+                            <a id="labelvc" value="{{this.idvoucher}}" style="width: 20%" >{{this.idvoucher}}</a>
+                        </td>
+                        <td style="width: 20%">
+                            <input style="padding: 4px;width: 100%" class="row-giatri-{{this.idvoucher}}" data-idvoucher="{{this.idvoucher}}" id="giatri_+{{this.idvoucher}}" value="{{this.valuevc}}" disabled>
+                        </td>
+                        <td style="width: 20%">
+                            <input style="padding: 4px;width: 100%" class="row-soluong-{{this.idvoucher}}" value="{{this.quantity}}" disabled>
+                        </td>
+                        <td id="sudung"  data-dasudung="{{this.dasudung}}" style="width: 20%" class="row-con-{{this.idvoucher}}" >
+                            {{this.conlai}}
+                        </td>
+                        <td class="hsd">{{this.hsd}}</td>
+                        <td style="width: 20%">
+                            <button class="btn btn-success" id="ok-{{this.idvoucher}}" disabled onclick="btnok('{{this.idvoucher}}')" >✓</button>
+                            <i class="uil-comment-edit" style="font-size: 20px;cursor: pointer" data-toggle="modal" data-target="#editModal" onclick="handleEdit('{{this.idvoucher}}')"></i>
+                            <i id=deletenv"" class="uil-trash-alt" style="cursor:pointer;font-size: 20px;color: red" onclick="handleDelete('{{this.idvoucher}}')" ></i>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+
+        </div>
+        <div id="pagination-container"></div>
+    </div>
+    <div class="top-sales box">
+        <div class="title">Thống kê lượng Voucher sử dụng</div>
+        <ul class="top-sales-details">
+            <div>
+                <canvas id="myChart" style="width:100% !important; height:auto !important;"></canvas>
+            </div>
+        </ul>
+    </div>
+</div>
+
+
+<div class="sales-boxes" style="margin-top: 20px;min-height: 400px">
+    <div class="recent-sales box" style="width: 100%">
+        <div class="title">Tặng Voucher cho Khách hàng</div>
+        <div class="mt-3">
+            <div class="row" style="height: fit-content;display: none" id="div-div-vc" >
+                <div class="col-md-5" id="info_u">
+                    <div style="position: relative;display: flex">
+                        <img style="margin: 0 auto;width: 120px;height: 120px;border-radius: 4px; object-fit: cover" src="https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2022/11/8/1114032/Rose---LACMA-Gala-3A.jpeg">
+                    </div>
+                    <div style="width:95%;position: absolute;top: 70%;box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">
+                        <div style="padding-top: 60px">
+                            <div id="hoten" style="text-align: center;margin-left: -5px;font-weight: 700">Họ và tên</div>
+                            <div style="display: flex;justify-content: space-between;padding: 4px 10px;text-align: center">
+                                <div style="display: flex;justify-content: space-between;width: 100%;">
+                                    <div id="ma_u">Mã ID</div>
+                                    <div style="opacity: 0.6">||</div>
+                                    <div id="sdt_u">0125879547</div>
+                                    <div style="opacity: 0.6">||</div>
+                                    <div id="email_u">vanhuy1619@gmail.com</div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7" id="div-vc">
+                    <div >
+                        <div>
+                            <img id="icon-tang" data-toggle="modal" data-target="#addModalUser" src="https://cdn-icons-png.flaticon.com/512/9198/9198458.png" style="width: 40px;height: 40px;object-fit: cover">
+                        </div>
+                        <div id="list_voucher" style="display: flex;flex-wrap: wrap" class="mt-3">
+
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<!--MODAL THÊM VOUCHER-->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Thêm Voucher</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="needs-validation modal-body" >
+                    <div class="form-group">
+                        <label class="col-form-label">Mã Voucher</label>
+                        <input placeholder="Mã Voucher" required type="text" class="form-control is-invalid" id="add-idvoucher">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Tên Voucher</label>
+                        <input placeholder="Tên Voucher" required type="text" class="form-control is-invalid" id="add-namevc">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Giá trị</label>
+                        <input placeholder="10% 20%" required type="text" class="form-control is-invalid" id="add-discount">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Số lượng</label>
+                        <input placeholder="10% 20% 100000 30000" required type="number" class="form-control is-invalid" id="add-soluong" min="1">
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="huythem">Hủy</button>
+                <button class="btn btn-primary" id="themvc" onclick="okaddvoucher()" disabled>Thêm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js'></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<script>
+ (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('change', function(event) {
+
+                if (form.checkValidity() === false)
+                {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+                if(form.checkValidity()===true)
+                {
+                    $("#themvc").prop('disabled', false)
+
+                }
+            }, false);
+        });
+    }, false)
+})();
+
+    //THÊM VOUCHER
+function okaddvoucher()
+{
+    let datav = {
+        idvoucher:$('#add-idvoucher').val(),
+        valuevc:$('#add-discount').val(),
+        quantity:Number($('#add-soluong').val()),
+        namevc: $("#add-namevc").val()
+    }
+    console.log(datav)
+    const currentPath = window.location.pathname;
+    $.ajax({
+        type: "POST",
+        url: currentPath+"/add",
+        data: JSON.stringify(datav),
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept':'application/json'
+        },
+        success: function (response)
+        {
+            swal({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Đã Thêm',
+                showConfirmButton: false,
+                timer: 1000
+            }).then(()=>{
+                location.reload();
+            })
+        },
+        error: function (e) {
+            console.log("Lỗi")
+        }
+    });
+
+}
+
+ //XÓA VOUCHER
+function handleDelete(uid)
+{
+    console.log(uid)
+    let text = "Xóa voucher: "+uid +"?"
+    swal({
+        title: "Xác nhận xóa!",
+        text: text,
+        icon: "warning",
+        buttons: true,
+        dangerMode: false,
+    }).then((value) => {
+        if (value) {
+            const currentPath = window.location.pathname;
+            $.ajax({
+                type: "POST",
+                url: currentPath+"/delete",
+                data: {
+                    idvoucher: uid
+                },
+                success: function (response)
+                {
+                    swal({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Xóa thành công',
+                        showConfirmButton: false,
+                        timer: 1000
+                    }).then(()=>{
+                        $('#row_'+uid).remove()
+                        console.log(response)
+                    })
+                },
+                error:function ()
+                {
+                    console.log("rỗi")
+                }
+            });
+        }
+    });
+}
+
+//CẬP NHẬT VOUCHER
+function handleEdit(uid)
+{
+    console.log(uid)
+    $('.row-soluong-'+uid).prop('disabled',false)
+    $('.row-giatri-'+uid).prop('disabled',false)
+    $('#ok-'+uid).prop('disabled',false)
+}
+function btnok(uid)
+{
+    console.log(uid)
+    const currentPath = window.location.pathname;
+    $.ajax({
+        type: "POST",
+        url: currentPath+"/edit",
+        data: {
+            idvoucher:uid,
+            valuevc:$('.row-giatri-'+uid).val(),
+            quantity:$('.row-soluong-'+uid).val()
+        },
+        success: function (response)
+        {
+            console.log(response)
+            $('.row-giatri-'+uid).val(response.message.valuevc)
+            $('.row-soluong-'+uid).val(response.message.quantity)
+            $('.row-soluong-'+uid).prop('disabled',true)
+            $('.row-giatri-'+uid).prop('disabled',true)
+            $('#ok-'+uid).prop('disabled',true)
+            swal({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Cập nhật thành công',
+                showConfirmButton: false,
+                timer: 1000
+            })
+        },
+    });
+}
+
+// PHÂN TRANG
+var items = $('.tritem');
+console.log(items);
+numItems = $('table.table tr:last').index()+1;
+var perPage = 5;
+items.slice(perPage).hide();
+console.log($('#pagination-container'));
+$('#pagination-container').pagination({
+    items: numItems,
+    itemsOnPage: perPage,
+    prevText: "&laquo;",
+    nextText: "&raquo;",
+    onPageClick: function (pageNumber) {
+        var showFrom = perPage * (pageNumber - 1);
+        var showTo = showFrom + perPage;
+        items.hide().slice(showFrom, showTo).show();
+    }
+});
+</script>
+{{!-- <!-- apexcharts js -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> --}}
+<!--    CHART JS-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    let labelvc = document.querySelectorAll('#labelvc')
+    let datalabel = []
+    labelvc.forEach(ele=>{
+        datalabel.push(ele.getAttribute('value'))
+    })
+
+    let datavcused = document.querySelectorAll('#sudung')
+    let datavcusedarr = []
+    datavcused.forEach(ele=>{
+        datavcusedarr.push(ele.getAttribute('data-dasudung'))
+    })
+    console.log(datavcused)
+    console.log(datavcusedarr)
+
+    const ctx = document.getElementById('myChart')
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: datalabel,
+            datasets: [{
+                label: 'Lượt',
+                data: datavcusedarr,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>

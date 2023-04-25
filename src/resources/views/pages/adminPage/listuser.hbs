@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="/admin/css/list.css">
+<div style="display: flex;">
+    <h3 class="item__name">Danh sách khách hàng</h3>
+    <div>
+        <button onclick="changeStatus()" id="abc" hidden="hidden">Tất cả</button>
+        <select onchange="changeStatus()" id="card" class="form-control" style="width:150px; height: 50px" name="card" data-role="select-dropdown" data-profile="minimal">
+            <option class="cardFilter" value="3">Tất cả</option>
+            <option class="cardFilter" value="-1">Khách hàng chưa đăng ký thẻ</option>
+            <option class="cardFilter" value="0">Khách hàng thường</option>
+            <option class="cardFilter" value="1">Khách hàng thân thiết</option>
+            <option class="cardFilter" value="2">Khách hàng VIP</option>
+        </select>
+    </div>
+</div>
+
+<div class="board">
+    <table width="100%">
+        <thead>
+            <tr>
+                <td>Ảnh đại diện</td>
+                <td>Họ tên</td>
+                <td>Email</td>
+                <td>Số điện thoại</td>
+                <td>Giới tính</td>
+                <td>Hạng</td>
+                <td>Trạng thái</td>
+                <td>#</td>
+            </tr>
+        </thead>
+        <tbody class="user_card">
+            
+        </tbody>
+    </table>
+</div>
+<script src="/js/admin/filtercard.js"></script>

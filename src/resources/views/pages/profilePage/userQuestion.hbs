@@ -1,0 +1,156 @@
+{{!--
+<link rel="stylesheet" href="/css/listhotel.css"> --}}
+<link rel="stylesheet" href="/css/paginate.css">
+
+
+{{!-- <!--SWAL-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
+
+
+
+<div class="col-md-8">
+  <div style="height: fit-content;margin-bottom: 20px" class="row">
+    {{#each questions}}
+    <div class="col-3 col-md-4 mb-3 question" style="width: fit-content; position: relative;">
+      <div class="question-container">
+        <div class="question-header">
+          <h2>{{this.question}}</h2>
+        </div>
+        <div class="question-content">
+          {{#if this.rep}}
+          <div class="question-answer">{{this.repquestion}}</div>
+          {{else}}
+          <div class="question-answer">Chưa phản hồi</div>
+          {{/if}}
+        </div>
+        <div class="question-footer">
+          <a class="show-more" href="#">Xem thêm</a>
+        </div>
+      </div>
+      <style>
+        .question-container {
+          background-color: #fff;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          margin-bottom: 20px;
+          padding: 20px;
+        }
+
+        .question-header h2 {
+          font-size: 24px;
+          margin: 0;
+        }
+
+        .question-content {
+          margin-top: 20px;
+          overflow-y: hidden;
+          transition: max-height 0.4s ease;
+          max-height: 280px;
+          /* Chiều cao mặc định của phần nội dung câu hỏi */
+        }
+
+        /* Tùy chỉnh kiểu dáng của thanh cuộn */
+        .question-content::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        .question-content::-webkit-scrollbar-thumb {
+          background-color: #ccc;
+          border-radius: 4px;
+        }
+
+        .question-content::-webkit-scrollbar-track {
+          background-color: #f1f1f1;
+          border-radius: 4px;
+        }
+
+        .question-answer {
+          font-size: 16px;
+          line-height: 1.5;
+          margin: 0;
+        }
+
+        .show-more {
+          display: block;
+          margin-top: 20px;
+          text-align: center;
+          color: #e8952f;
+          font-size: 16px;
+          font-weight: bold;
+          text-decoration: none;
+          text-transform: uppercase;
+          transition: all 0.2s ease;
+        }
+
+        .show-more:hover {
+          color: #fff;
+          background-color: #e8952f;
+        }
+      </style>
+    </div>
+    {{/each}}
+  </div>
+  <script>
+    $(document).ready(function () {
+      $('.question').each(function () {
+        var content = $(this).find('.question-content');
+        var showMoreLink = $(this).find('.show-more');
+        var text = content.text();
+
+        if (text.length > 100) {
+          var truncatedText = text.substr(0, 100) + '...';
+          content.text(truncatedText);
+          content.addClass('truncated');
+
+          showMoreLink.show();
+
+          showMoreLink.click(function (e) {
+            e.preventDefault();
+
+            if (content.hasClass('truncated')) {
+              content.removeClass('truncated');
+              content.text(text);
+              showMoreLink.text('Ẩn bớt');
+              content.css("overflow-y", "scroll");
+            } else {
+              content.addClass('truncated');
+              content.text(truncatedText);
+              showMoreLink.text('Xem thêm');
+              content.css("overflow-y", "hidden");
+            }
+          });
+        } else {
+          showMoreLink.hide();
+        }
+      });
+    });
+  </script>
+
+  <div id="pagination-container"></div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js" />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js'></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<script>
+  // PHÂN TRANG
+  var items = $(".question");
+  let numItems = items.length
+  var perPage = 3;
+  items.slice(perPage).hide();
+  console.log($('#pagination-container'));
+  $('#pagination-container').pagination({
+    items: numItems,
+    itemsOnPage: perPage,
+    prevText: "&laquo;",
+    nextText: "&raquo;",
+    onPageClick: function (pageNumber) {
+      var showFrom = perPage * (pageNumber - 1);
+      var showTo = showFrom + perPage;
+      items.hide().slice(showFrom, showTo).show();
+    }
+  });
+</script>

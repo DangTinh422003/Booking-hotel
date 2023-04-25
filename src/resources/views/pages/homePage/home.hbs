@@ -1,0 +1,335 @@
+<link rel="stylesheet" href="/css/home.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+<div class="homePage">
+    <section class="banner_main">
+        <div class="background-main" 
+        style="background-image: url(https://statics.vinpearl.com/vinholidays-fiesta-phu-quoc-banner-dinning_1679990364.jpg);  background-repeat: no-repeat; background-size : cover">
+            <div class="booking_online">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 heading heading--main" style="margin-top: 100px; padding:15px;">
+                            <h1 style="color: white; font-weight: bold">Trải nghiệm kỳ nghỉ tuyệt vời</h1>
+                            <h5 style="color: white">Combo khách sạn - vé máy bay - đưa đón sân bay tốt nhất</h5>
+                        </div>
+                        <div class="section section--bg">
+                            <div class="section__item">
+                                <div class="row">
+                                    <div class="col-md-9" style="background: rgba(17, 29, 48,0.5); padding : 20px 20px 0 10px ;border-radius: 12px;" >
+                                        <div class="row mx-auto align-items-center d-flex ">
+                                            <div class="col-md-4 ">
+                                                <div class="search-form">
+                                                    <div class="form-group search-form__item">
+                                                        <i class="fas fa-map-marker-alt search-form__item--icon"></i>
+                                                        <input name="city" type="text" class="form-control" id="inputCity" placeholder="Type your destination..." >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 ">
+                                                <div class="search-form">
+                                                    <div class="form-group search-form__item">
+                                                        <i class="fas fa-calendar search-form__item--icon"></i>
+                                                        <input name="check-in"  type="text" class="form-control inputCheck" id="inputCheckIn" placeholder="Check In">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 ">
+                                                <div class="search-form">
+                                                    <div class="form-group search-form__item">
+                                                        <i class="fas fa-calendar search-form__item--icon"></i>
+                                                        <input name="check-out" type="text" class="form-control inputCheck" id="inputCheckOut" placeholder="Check Out">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 ">
+                                                <div class="search-form">
+                                                    <div class="form-group search-form__item">                                            
+                                                        <select name="adult" class="form-control tm-select" id="adult">
+                                                            <option value="">Adult</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10</option>
+                                                            </select>
+                                                        <i class="fas fa-user search-form__item--icon"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 ">
+                                                <div class="search-form">
+                                                    <div class="form-group search-form__item">                                            
+                                                        <select name="children" class="form-control tm-select" id="children">
+                                                            <option value="">Children</option>
+                                                            <option value="0">0</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10</option>
+                                                        </select>
+                                                        <i class="fas fa-child search-form__item--icon"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 ">
+                                                <div class="search-form">
+                                                    <div class="form-group search-form__item">
+                                                        <select name="room" class="form-control tm-select" id="room">
+                                                            <option value="">Room</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10</option>
+                                                        </select>
+                                                        <i class="fas fa-bed search-form__item--icon"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 ">
+                                                <div class="form-group search-form__item">
+                                                    <button type="submit" class="btn btn-primary tm-btn-search">Tìm kiếm</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+    </section>
+
+    <div class="container">
+        <div class="owl-stage">
+            <div class="row">
+                <div class="col-sm-12 heading heading--sub">
+                    <h2 class="heading__title">Du lịch an toàn</h2>
+                    <div class="heading__description">Nâng cao sức khỏe, cân bằng cuộc sống</div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="grid-container grid-container--travel">
+                        <a href="/danh-sach-phong">
+                            <div class="grid__item grid__item--11">
+                                <div class="col-sm-12 card card--travel" style="background-image: url(/img/travle1.png);">
+                                    <div class="cardinfo">
+                                        <p class="cardinfo__title">Lãng mạn</p>
+                                        <p class="cardinfo__description">Đi khắp thế gian, yêu thương ngập tràn - <span style="text-decoration:underline;">20 khách sạn</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="/danh-sach-phong">
+                            <div class="grid__item grid__item--12">
+                                <div class="col-sm-12 card card--travel" style="background-image: url(/img/travle2.png);">
+                                    <div class="cardinfo">
+                                        <p class="cardinfo__title">Du xuân</p>
+                                        <p class="cardinfo__description">Chào năm tươi mới - <span style="text-decoration:underline;">20 khách sạn</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="/danh-sach-phong">
+                            <div class="grid__item grid__item--13">
+                                <div class="col-sm-12 card card--travel" style="background-image: url(/img/travle3.png);">
+                                    <div class="cardinfo">
+                                        <p class="cardinfo__title">Team Bonding</p>
+                                        <p class="cardinfo__description">Ưu đãi dành cho đoàn - <span style="text-decoration:underline;">20 khách sạn</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="/danh-sach-phong">
+                            <div class="grid__item grid__item--14">
+                                <div class="col-sm-12 card card--travel" style="background-image: url(/img/travle4.png);">
+                                    <div class="cardinfo">
+                                        <p class="cardinfo__title">Gift voucher</p>
+                                        <p class="cardinfo__description">Lưu giữ khoảnh khắc, trải nghiệm hành trình - <span style="text-decoration:underline;">20 khách sạn</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-12 heading heading--sub">
+                    <h2 class="heading__title">Ưu đãi tốt nhất hôm nay</h2>
+                    <div class="heading__description" style="margin-bottom: 24px;">Nhanh tay đặt ngay. Để mai sẽ lỡ</div>
+                    <div class="col-sm-12 voucher">
+                        <img class="voucher__image" src="/img/combo.png" alt="">
+                    </div>
+                </div>
+                <div class="col-sm-12 heading heading--sub">
+                    <h2 class="heading__title">Điểm đến yêu thích trong nước</h2>
+                    <div class="heading__description">Lên rừng xuống biển. Trọn vẹn Việt Nam</div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="grid-container grid-container--domestic">
+                        <div class="grid__item grid__item--1">
+                            <a href="/danh-sach-phong">
+                                <div class="col-sm-12 card card--des" style="background-image: url(/img/domestic1.jpg);">
+                                    <div class="cardinfo">
+                                        <p class="cardinfo__title">Phú Quốc</p>
+                                        <p class="cardinfo__description">365 khách sạn</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="grid__item grid__item--2">
+                            <a href="/danh-sach-phong">
+                                <div class="col-sm-12 card card--des" style="background-image: url(/img/domestic2.jpg); height:100%">
+                                    <div class="cardinfo">
+                                        <p class="cardinfo__title">Vũng Tàu</p>
+                                        <p class="cardinfo__description">114 khách sạn</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="grid__item grid__item--3">
+                            <a href="/danh-sach-phong">
+                                <div class="col-sm-12 card card--des" style="background-image: url(/img/domestic3.jpg);">
+                                    <div class="cardinfo">
+                                        <p class="cardinfo__title">Đà Lạt</p>
+                                        <p class="cardinfo__description">543 khách sạn</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>  
+                        <div class="grid__item grid__item--4">
+                            <a href="/danh-sach-phong">
+                                <div class="col-sm-12 card card--des" style="background-image: url(/img/domestic4.jpg);">
+                                    <div class="cardinfo">
+                                        <p class="cardinfo__title">Quy Nhơn</p>
+                                        <p class="cardinfo__description">141 khách sạn</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="grid__item grid__item--5">
+                            <a href="/danh-sach-phong">
+                                <div class="col-sm-12 card card--des" style="background-image: url(/img/domestic5.jpg); height: 100%">
+                                    <div class="cardinfo">
+                                        <p class="cardinfo__title">Nha Trang</p>
+                                        <p class="cardinfo__description">507 khách sạn</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="grid__item grid__item--6">
+                            <a href="/danh-sach-phong">
+                                <div class="col-sm-12 card card--des" style="background-image: url(/img/domestic6.jpg);">
+                                    <div class="cardinfo">
+                                        <p class="cardinfo__title">Đà Nẵng</p>
+                                        <p class="cardinfo__description">797 khách sạn</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>  
+                        <div class="grid__item grid__item--7">
+                            <a href="/danh-sach-phong">
+                                <div class="col-sm-12 card card--des" style="background-image: url(/img/domestic7.jpg);">
+                                    <div class="cardinfo">
+                                        <p class="cardinfo__title">Phan Thiết</p>
+                                        <p class="cardinfo__description">107 khách sạn</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="grid__item grid__item--8">
+                            <a href="/danh-sach-phong">
+                                <div class="col-sm-12 card card--des" style="background-image: url(/img/domestic8.jpg);">
+                                    <div class="cardinfo">
+                                        <p class="cardinfo__title">Phú Yên</p>
+                                        <p class="cardinfo__description">15 khách sạn</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 heading heading--sub">
+                    <h2 class="heading__title">Điểm đến yêu thích nước ngoài</h2>
+                    <div class="heading__description">Bao la thế giới. Bốn bể là nhà</div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="grid-container grid-container--foreign">
+                        <div class="grid__item grid__item--1">
+                            <a href="/danh-sach-phong">
+                                <div class="col-sm-12 card card--des" style="background-image: url(/img/foreign1.jpg);">
+                                    <div class="cardinfo">
+                                        <p class="cardinfo__title">Hong Kong</p>
+                                        <p class="cardinfo__description">541 khách sạn</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="grid__item grid__item--2" style="grid-row: 2/3;">
+                            <a href="/danh-sach-phong">
+                                <div class="col-sm-12 card card--des" style="background-image: url(/img/foreign2.jpg);">
+                                    <div class="cardinfo">
+                                        <p class="cardinfo__title">Phuket</p>
+                                        <p class="cardinfo__description">1778 khách sạn</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="grid__item grid__item--3">
+                            <a href="/danh-sach-phong">
+                                <div class="col-sm-12 card card--des" style="background-image: url(/img/foreign3.jpg);">
+                                    <div class="cardinfo">
+                                        <p class="cardinfo__title">Bali</p>
+                                        <p class="cardinfo__description">3340 khách sạn</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>  
+                        <div class="grid__item grid__item--4">
+                            <a href="/danh-sach-phong">
+                                <div class="col-sm-12 card card--des" style="background-image: url(/img/foreign4.jpg);">
+                                    <div class="cardinfo">
+                                        <p class="cardinfo__title">Taipei</p>
+                                        <p class="cardinfo__description">973 khách sạn</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="grid__item grid__item--5" style=" grid-row: 2/3;">
+                            <a href="/danh-sach-phong">
+                                <div class="col-sm-12 card card--des" style="background-image: url(/img/foreign5.jpg);">
+                                    <div class="cardinfo">
+                                        <p class="cardinfo__title">Maldives</p>
+                                        <p class="cardinfo__description">76 khách sạn</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr(".inputCheck", {
+        dateFormat: "d-m-Y",
+    });
+</script>

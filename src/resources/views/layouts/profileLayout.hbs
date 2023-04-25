@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{!--
+  <link rel="stylesheet" href="/css/reset.css"> --}}
+  <link rel="stylesheet" href="/css/app.css">
+  {{!--
+  <link rel="stylesheet" href="/css/index.css"> --}}
+  <link rel="stylesheet" href="/css/profile.css">
+  {{!-- LOADING --}}
+  <link rel="stylesheet" href="/css/loading.css">
+  {{!-- font Awsome --}}
+  <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" rel="stylesheet"
+    type="text/css" />
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css" integrity="sha512-SgaqKKxJDQ/tAUAAXzvxZz33rmn7leYDYfBP+YoMRSENhf3zJyx3SBASt/OfeQwBHA1nxMis7mM3EV/oYT6Fdw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/brands.min.css" integrity="sha512-9YHSK59/rjvhtDcY/b+4rdnl0V4LPDWdkKceBl8ZLF5TB6745ml1AfluEU6dFWqwDw9lPvnauxFgpKvJqp7jiQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
+  {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/regular.min.css" integrity="sha512-WidMaWaNmZqjk3gDE6KBFCoDpBz9stTsTZZTeocfq/eDNkLfpakEd7qR0bPejvy/x0iT0dvzIq4IirnBtVer5A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
+  {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/solid.min.css" integrity="sha512-yDUXOUWwbHH4ggxueDnC5vJv4tmfySpVdIcN1LksGZi8W8EVZv4uKGrQc0pVf66zS7LDhFJM7Zdeow1sw1/8Jw==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- SLICK SLIDER -->
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <!-- RESPONSIVE -->
+  <link rel="stylesheet" href="/css/responsive.css">
+
+  {{!-- AJAX --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    {{!-- icon --}}                 
+  <link rel="icon" type="image/x-icon" href="/img/favicon.png" />
+  <title>iVIVU</title>
+  <!-- Thư viện SweetAlert -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.3/dist/sweetalert2.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.3/dist/sweetalert2.all.min.js"></script>
+
+</head>
+
+<body>
+  {{>header }}
+
+  {{!-- side bar --}}
+  <div class="container-fluid my-2">
+    <div class="main">
+      <div class="row">
+        <div  class="col-md-4">
+          <div id="left_side" class="slide-profile">
+            <div class="slide-profile-main">
+              <div class="ava-box">
+                <p>{{avatar}}</p>
+                <img class="ava-box-img" data-toggle="modal" data-target="#AvatarModal"
+                  style="clip-path: circle(); object-fit: cover;"
+                  src="{{#if userData.image}}{{userData.image}}{{else}}/img/avatar.jpg{{/if}}" alt="avatar">
+              </div>
+              <div class="name_id">
+                <p class="name-profile" style="text-transform: uppercase">{{#if
+                  userData.userName}}{{userData.userName}}{{/if}}{{#unless userData.userName}}Chưa cập nhật{{/unless}}
+                </p>
+                <P>Mã thẻ: <b>{{#if id_card}}{{id_card}}{{else}}Chưa đăng ký{{/if}}</b></p>
+              </div>
+            </div>
+            <div class="slide-profile-main tichluy_diem d-flex flex-wrap">
+              <div class="tichluy col-6">
+                <P class="tichluy_diem_main">Giá trị tích lũy
+                  <b>{{#if sumMoney}}{{sumMoney}}{{else}}0{{/if}} VNĐ</b><br>
+                </p>
+                {{!-- <a href="/profile/card/history">Lịch sử</a> --}}
+              </div>
+              <div class="diemkhadung col-6">
+                <P class="tichluy_diem_main">Điểm khả dụng
+                  <b>{{#if point}}{{point}}{{else}}0{{/if}} điểm</b>
+                </p>
+              </div>
+              <div class="historyTichluy col-6">
+                <a href="/profile/card/history">Lịch sử</a>
+              </div>
+            </div>
+            <div class="slide-profile-main tichluy_diem">
+              <div style="padding:0px 15px" class="choose-item-profile">
+                <!--thông tin tài khoản -->
+                {{#ifEqual currentPage "profile"}}
+                <div style="background-color: #f4f4f4">
+                  {{else}}
+                  <div>
+                    {{/ifEqual}}
+                    <a href="/profile" class="choose-item-profile-a">
+                      <i class="fa fa-user"></i>Thông tin tài khoản
+                    </a>
+                  </div>
+                  {{#ifEqual currentPage "history"}}
+                  <div style="background-color: #f4f4f4">
+                    {{else}}
+                    <div>
+                      {{/ifEqual}}
+                      <a href="/profile/history" class="choose-item-profile-a">
+                        <i class="fa fa-list-alt"></i>Lịch sử đặt chỗ
+                      </a>
+                    </div>
+                    {{#ifEqual currentPage "voucher"}}
+                    <div style="background-color: #f4f4f4">
+                      {{else}}
+                      <div>
+                        {{/ifEqual}}
+                        <a href="/profile/voucher" class="choose-item-profile-a">
+                          <i class="fa fa-money"></i>Ưu đãi của tôi
+                        </a>
+                      </div>
+                      {{#ifEqual currentPage "question"}}
+                      <div style="background-color: #f4f4f4">
+                        {{else}}
+                        <div>
+                          {{/ifEqual}}
+                          <a href="/profile/question" class="choose-item-profile-a">
+                            <i class="fa fa-question"></i>Câu hỏi của bạn
+                          </a>
+                        </div>
+                        {{#ifEqual currentPage "card"}}
+                        <div style="background-color: #f4f4f4">
+                          {{else}}
+                          <div>
+                            {{/ifEqual}}
+                            <a href="/profile/card" class="choose-item-profile-a">
+                              <i class="fa fa-credit-card"></i>Thông tin đặc quyền thẻ
+                            </a>
+                          </div>
+                          {{!-- <div>
+                            <a href="/profile/logout" class="choose-item-profile-a">
+                              <i class="fa fa-sign-out"></i>Đăng xuất
+                            </a>
+                          </div> --}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {{{body}}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+{{!-- <style>
+  #left_side {
+  position: fixed;
+}
+</style> --}}
+
+
+<!-- Nút mở modal -->
+{{!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#successModalTick">
+  Mở modal
+</button> --}}
+<!-- Modal -->
+<div class="modal" style="background-color:#3339;" id="successModalTick" tabindex="-1" role="dialog" aria-labelledby="successModalTickLabel" aria-hidden="true">
+  <div class="modal-dialog" style="top:50%;transform:translateY(-50%)">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Thông báo thành công</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="icon-container">
+          <div class="icon-checkmark">
+            <div class="icon-checkmark-circle"></div>
+            <div class="icon-checkmark-stem"></div>
+            <div class="icon-checkmark-kick"></div>
+          </div>
+        </div>
+        <p class="text-center">Thao tác của bạn đã được hoàn thành thành công!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .icon-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.icon-checkmark {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+.icon-checkmark-circle {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid #37b34a;
+  animation: icon-checkmark-circle 0.6s 0.1s forwards;
+}
+
+.icon-checkmark-stem {
+  position: absolute;
+  width: 22px;
+  height: 72px;
+  background-color: #37b34a;
+  left: 24px;
+  top: -11px;
+  transform-origin: bottom left;
+  transform: rotate(0deg);
+  animation: icon-checkmark-stem 0.3s 0.7s forwards;
+}
+
+.icon-checkmark-kick {
+  position: absolute;
+  width: 49px;
+  height: 22px;
+  background-color: #37b34a;
+  left: -8px;
+  top: 46px;
+  transform-origin: top right;
+  transform: rotate(0deg);
+  animation: icon-checkmark-kick 0.3s 0.9s forwards;
+}
+
+@keyframes icon-checkmark-circle {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes icon-checkmark-stem {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes icon-checkmark-kick {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(45deg);
+  }
+}
+</style>
+<script>
+  $("#successModalTick").on('click',()=>{
+    $('#successModalTick').hide()
+  })
+</script>
+            <!--MODAL avatar-->
+            <div class="modal fade" id="AvatarModal" tabindex="-1" aria-labelledby="avatarModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <form id="image-form" method="POST" enctype="multipart/form-data" action="/profile/edit-user-image">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="avatarModalLabel">Cập nhật ảnh đại diện</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label for="avatar">Ảnh đại diện</label>
+                          <input type="file" class="form-control-file" id="user-image" name="image"
+                            accept="image/png, image/jpeg">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-success">Cập nhật ảnh đại diện</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div id="danger_message" class="alert alert-danger" style="box-shadow:3px 3px 15px #333;min-width: 250px;display: none; position: fixed; top: 65px; right: 0px; z-index: 999;">
+                Lỗi cập nhật ảnh đại diện
+              </div>
+            </div>
+
+            {{>footer}}
+
+            <div id="loading">
+              <img src="/img/loading.svg" />
+            </div>
+
+            <script src="/js/loading.js"></script>
+            <script src="/js/profile.js"></script>
+
+</body>
+</html>

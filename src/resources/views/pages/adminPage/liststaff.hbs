@@ -1,0 +1,333 @@
+<link rel="stylesheet" href="/admin/css/list.css">
+
+<div style="display: flex;">
+    <h3 class="item__name">Danh sách nhân viên</h3>
+    <button type="button" data-target="#add" class="btn btn-primary" data-toggle="modal">Thêm nhân viên</button>
+</div>
+<div class="modal fade" id="add" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title"><b>Thêm nhân viên</b></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form method="post" enctype="multipart/form-data" id="add-form" action="/admin/nhanvien/add" class="modal-body needs-validation">
+                    <div class="form-group">
+                        <label for="staff">Họ tên</label>
+                        <input class="form-control is-invalid" type="text" placeholder="Nhập tên" id="addName"
+                            name="addName" value="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="staff">Email</label>
+                        <input class="form-control is-invalid" type="text" placeholder="Nhập email" id="addEmail"
+                            name="addEmail" value="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="staff">Password</label>
+                        <input class="form-control is-invalid" type="password" placeholder="Nhập password"
+                            id="addPassword" name="addPassword" value="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="staff">Số điện thoại</label>
+                        <input class="form-control is-invalid" type="text" placeholder="Nhập số điện thoại"
+                            id="addPhone" name="addPhone" value="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="staff">Giới tính</label> <br>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="add-gender-male" name="addGender"
+                                value="Male">
+                            <label class="custom-control-label" for="add-gender-male">Nam</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="add-gender-female" name="addGender"
+                                value="Female">
+                            <label class="custom-control-label" for="add-gender-female">Nữ</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" class="custom-control-input" id="add-gender-another" name="addGender"
+                                value="Another">
+                            <label class="custom-control-label" for="add-gender-another">Khác</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="login-input-item">
+                            <input onchange="previewImage(event)" type="file" class="form-control-file"
+                                style="padding:0" id="file" name="file" accept="image/*">
+                        </div>
+                        <img id="preview" src="#" hidden="hidden" alt="Preview">
+                    </div>
+                    <div class="form-group">
+                        <label for="staff">Địa chỉ</label>
+                        <textarea class="form-control is-invalid" type="text" placeholder="Nhập địa chỉ" id="addAddress"
+                            name="addAddress" required></textarea>
+                    </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <input type="hidden" name="email" value="{{this.email}}">
+                <button type="submit" class="btn btn-success" id="btnAdd" disabled>Thêm</button>
+                <button type="button" class="btn btn-dark" data-dismiss="modal">Đóng</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="board">
+    <table width="100%">
+        <thead>
+            <tr>
+                <td>STT</td>
+                <td>Ảnh đại diện</td>
+                <td>Họ tên</td>
+                <td>Email</td>
+                <td>Số điện thoại</td>
+                <td>Giới tính</td>
+                <td>Trạng thái</td>
+                <td>Địa chỉ</td>
+                <td>#</td>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each staff}}
+            <tr>
+                <td class="staff">
+                    <p class="num">{{@index}}</p>
+                </td>
+                <td class="staff">
+                    <img class="avatar" src="{{this.image}}" alt="" loading="lazy">
+                </td>
+                <td class="staff">
+                    <h5 class="name">{{this.userName}}</h5>
+                </td>
+                <td class="staff">
+                    <p class="email">{{this.email}}</p>
+                </td>
+                <td class="staff">
+                    <p class="phone">{{this.phoneNumber}}</p>
+                </td>
+                <td class="staff">
+                    <p class="gender">{{this.gender}}</p>
+                </td>
+                <td class="staff">
+                    <p class="statusStaff">{{this.active}}</p>
+                </td>
+                <td class="staff">
+                    <p class="address">{{this.address}}</p>
+                </td>
+                <td class="edit">
+                    <button type="button" id="edit{{@index}}" onclick="editStaff({{@index}})"
+                        data-target="#confirm-edit-{{@index}}" class="btn btn-warning" data-toggle="modal"><i
+                            class="bx bx-edit"></i></button> &nbsp
+                    <button type="button" data-target="#confirm-delete-{{@index}}" class="btn btn-danger"
+                        data-toggle="modal"><i class="bx bx-trash"></i></button>
+                </td>
+            </tr>
+            <div class="modal fade" id="confirm-edit-{{@index}}" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title"><b>Cập nhật thông tin nhân viên</b></h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="form-group"
+                                style="display: flex; justify-content: center; align-items: center;">
+                                <img class="updateImg" src="{{this.image}}" alt="avatar">
+                            </div>
+                            <div class="form-group">
+                                <label for="staff">Họ tên</label>
+                                <input class="form-control" type="text" placeholder="Nhập tên" id="updateName{{@index}}"
+                                    name="updateName" value="{{this.userName}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="staff">Email</label>
+                                <input class="form-control" type="text" id="updateEmail{{@index}}"
+                                    value="{{this.email}}" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="staff">Số điện thoại</label>
+                                <input class="form-control" type="text" placeholder="Nhập số điện thoại"
+                                    name="updatePhone" id="updatePhone{{@index}}" value="{{this.phoneNumber}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="staff">Giới tính</label> <br>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="update-gender-male{{@index}}"
+                                        name="updateGender" value="Male">
+                                    <label class="custom-control-label" for="update-gender-male{{@index}}">Nam</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="update-gender-female{{@index}}"
+                                        name="updateGender" value="Female">
+                                    <label class="custom-control-label" for="update-gender-female{{@index}}">Nữ</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input"
+                                        id="update-gender-another{{@index}}" name="updateGender" value="Another">
+                                    <label class="custom-control-label"
+                                        for="update-gender-another{{@index}}">Khác</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="staff">Địa chỉ</label>
+                                <textarea class="form-control" type="text" placeholder="Nhập địa chỉ"
+                                    id="updateAddress{{@index}}" name="updateAddress">{{this.address}}</textarea>
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success" onclick=btnClickEdit("{{@index}}")>Cập
+                                    nhật</button>
+                                <button type="button" class="btn btn-dark" data-dismiss="modal">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="confirm-delete-{{@index}}" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title"><b>Xóa nhân viên</b></h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Bạn có chắc muốn xóa nhân viên <strong>{{this.userName}} ?</strong></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger"
+                                onclick=btnClickDelete("{{this.email}}")>Xóa</button>
+                            <button type="button" class="btn btn-dark" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    
+</script>
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('change', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+
+                    form.classList.add('was-validated');
+
+                    if (form.checkValidity() === true) {
+                        $("#btnAdd").prop('disabled', false)
+                    }
+                }, false);
+            });
+        }, false)
+    })();
+
+    var divs = document.querySelectorAll('.num');
+    for (var i = 0; i < divs.length; ++i) {
+        divs[i].innerHTML = i + 1;
+    }
+
+    let status = document.querySelectorAll('.statusStaff');
+    for (var i = 0; i < status.length; ++i) {
+        if (status[i].textContent == "false") {
+            status[i].innerHTML = 'Deleted';
+        }
+        else{
+            status[i].innerHTML = 'Active';
+        }
+    }
+
+    function editStaff(id) {
+        var currentRow = $(document.getElementById('edit' + id)).closest('tr');
+        var gender = $.trim(currentRow.find('td:eq(5)').text());
+        if (gender.localeCompare('Male') == 0) {
+            $("#update-gender-male" + id).prop("checked", true);
+        }
+        else if (gender.localeCompare('Female') == 0) {
+            $("#update-gender-female" + id).prop("checked", true);
+        }
+        else {
+            $("#update-gender-another" + id).prop("checked", true);
+        }
+    }
+
+    function btnClickEdit(id) {
+        let name = $('#updateName' + id).val();
+        let email = $('#updateEmail' + id).val();
+        let phone = $('#updatePhone' + id).val();
+        let address = $('#updateAddress' + id).val();
+        let gender = $("input[name='updateGender']:checked").val();
+        $.ajax({
+            url: '/admin/nhanvien/edit',
+            data: { email: email, name: name, gender: gender, phone: phone, address: address },
+            type: "POST",
+            dataType: 'json',
+            success: function (res) {
+                if (res.code == 0) {
+                    swal({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Cập nhật thành công',
+                        showConfirmButton: false,
+                    })
+                        .then(() => {
+                            window.location.href = "/admin/nhanvien"
+                        })
+                }
+
+            },
+            error: function (err) {
+                alert('error')
+            },
+        })
+    }
+
+    function btnClickDelete(email) {
+        // AJAX
+        $.ajax({
+            url: '/admin/nhanvien/delete',
+            data: { email: email },
+            type: "POST",
+            dataType: 'json',
+            success: function (res) {
+                if (res.code == 0) {
+                    swal({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Xóa thành công',
+                        showConfirmButton: false,
+                    })
+                        .then(() => {
+                            window.location.href = "/admin/nhanvien"
+                        })
+                }
+
+            },
+            error: function (err) {
+                alert('error')
+            },
+        })
+    }
+
+    function previewImage(event) {
+        const preview = document.getElementById('preview');
+        preview.src = URL.createObjectURL(event.target.files[0]);
+    }
+</script>
+<script src="/js/admin/staff.js"></script>

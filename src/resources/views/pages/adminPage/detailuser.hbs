@@ -1,0 +1,109 @@
+<link rel="stylesheet" href="/admin/css/list.css">
+
+<div class="board">
+    <table width="100%">
+        <thead>
+            <tr>
+                <td style="width: 420px">Loại phòng</td>
+                <td style="width: 70px">Ngày đặt</td>
+                <td style="width: 50px">Số lượng</td>
+                <td style="width: 180px">Thông tin</td>
+                <td style="width: 140px">
+                    Trạng thái
+                    <div style="display: flex;">
+                        <select onchange="changeStatus()" id="status" class="form-control" style="width:150px" name="status" data-role="select-dropdown" data-profile="minimal">
+                            <option class="statusFilter" selected value="5">Tất cả</option>
+                            <option class="statusFilter" value="0">Chờ xác nhận</option>
+                            <option class="statusFilter" value="1">Đã xác nhận</option>
+                            <option class="statusFilter" value="2">Nhận phòng</option>
+                            <option class="statusFilter" value="3">Trả phòng</option>
+                            <option class="statusFilter" value="4">Hủy</option>
+                        </select>
+                    </div>
+                </td>            
+                <td style="width: 60px">Tổng tiền</td>
+            </tr>
+        </thead>
+        <tbody id="allstatus"> 
+            {{#each bookings}}
+            <tr>
+                <td class="user" style="display: flex;">
+                    <img src="{{this.room.img_room}}" alt="image room" class="img__room">
+                    <div class="room">
+                        <p class="nameroom">{{this.room.name_room}}</p>
+                        <p class="idroom" style="text-align: left;">ID: {{this.idroom}}</p>
+                    </div>
+                </td>
+                <td class="user">
+                    <p class="date">{{ formatDate this.timeBooking 'DD/MM/YYYY HH:mm:ss' }}</p>
+                </td>
+                <td class="user">
+                    <p class="amountroom">{{this.infoBooking.amountRoom}}</p>
+                </td>
+                <td class="user">
+                    <p class="infobooking">Người lớn : {{this.infoBooking.adult}}</p>
+                    <p class="infobooking">Trẻ em : {{this.infoBooking.child}}</p>
+                    <p class="infobooking">Thời gian : {{ formatDate this.infoBooking.from 'DD/MM/YYYY HH:mm:ss' }} - {{ formatDate this.infoBooking.to 'DD/MM/YYYY HH:mm:ss' }}</p>
+                </td>
+                <td class="user">
+                    <p class="status">{{this.statusBooking}}</p>
+                </td>
+                <td class="user">
+                    <p class="price">{{this.totalPrice}} VNĐ</p>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+
+        {{#each bookingstt}}
+        <tbody id="status{{@index}}" hidden="hidden"> 
+            {{#each this}}
+            <tr>
+                <td class="user" style="display: flex;">
+                    <img src="{{room.img_room}}" alt="image room" class="img__room">
+                    <div class="room">
+                        <p class="nameroom">{{room.name_room}}</p>
+                        <p class="idroom" style="text-align: left;">ID: {{idroom}}</p>
+                    </div>
+                </td>
+                <td class="user">
+                    <p class="date">{{formatDate timeBooking 'DD/MM/YYYY HH:mm:ss'}}</p>
+                </td>
+                <td class="user">
+                    <p class="amountroom">{{infoBooking.amountRoom}}</p>
+                </td>
+                <td class="user">
+                    <p class="infobooking">Người lớn : {{infoBooking.adult}}</p>
+                    <p class="infobooking">Trẻ em : {{infoBooking.child}}</p>
+                    <p class="infobooking">Thời gian : {{ formatDate infoBooking.from 'DD/MM/YYYY HH:mm:ss' }} - {{ formatDate this.infoBooking.to 'DD/MM/YYYY HH:mm:ss' }}</p>
+                </td>
+                <td class="user">
+                    <p class="status">{{statusBooking}}</p>
+                </td>
+                <td class="user">
+                    <p class="price">{{totalPrice}} VNĐ</p>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+        {{/each}}
+    </table>
+</div>
+
+<script src="/js/status.js"></script>
+<script>
+    var statusBooking = document.querySelectorAll('.status');
+    var inner = ["Chờ xác nhận", "Đã xác nhận", "Nhận phòng", "Trả phòng", "Hủy"]
+    var color = ["rgb(209, 209, 8)", "blue", "green", "grey", "red"];
+    var bg = ["rgb(255, 255, 208)", "#bce2fc", "#d7fada", "rgb(203, 202, 202)", "#ffc2bcdf"];
+
+    for(let i = 0; i < statusBooking.length; i++) {
+        for(let j = 0; j < statusBooking.length; j++) {
+            if(parseInt(statusBooking[j].textContent) === i){
+                statusBooking[j].innerHTML = inner[i];
+                statusBooking[j].style.color = color[i];
+                statusBooking[j].style.background = bg[i];
+            }
+        }
+    }
+</script>

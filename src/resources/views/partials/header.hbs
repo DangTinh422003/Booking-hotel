@@ -1,0 +1,269 @@
+<link rel="stylesheet" href="/css/header.css" />
+<header id="header">
+  <div class="container d-flex justify-content-between">
+
+    {{! logo }}
+    <div class="header__logo">
+      <a href="/">
+        <img
+          src="https://res.ivivu.com/hotel/img/logo-2023n.svg"
+          alt=""
+          class="header__logo-img"
+        />
+      </a>
+    </div>
+
+    {{! navbar }}
+    <ul class="header__nav">
+      <li class="header__nav-item active">
+        <a href="/danh-sach-phong">Đặt phòng</a>
+      </li>
+      <li class="header__nav-item">
+        <a href="/danh-sach-tours">Tours</a>
+      </li>
+      {{#if user}}
+        <li class="header__nav-item add-feedback">
+          <span>
+            <p class="feedback-notification" style="margin: 0 0 0 4px;">Thêm
+              Feeback</p>
+          </span>
+        </li>
+      {{/if}}
+      <li class="header__nav-item more" style="margin-left: 25px;">
+        <i class="fas fa-ellipsis-h"></i>
+        <ul class="header__subnav">
+          <li class="header__subnav-item">
+            <a href="/profile">Thông Tin Tài Khoản</a>
+          </li>
+          <li class="header__subnav-item">
+            <a href="/gioi-thieu">Giới Thiệu</a>
+          </li>
+          <li class="header__subnav-item">
+            <a href="#">Hỏi Đáp</a>
+          </li>
+          <li class="header__subnav-item">
+            <a href="#">Hỗ Trợ</a>
+          </li>
+        </ul>
+      </li>
+
+      {{! line gold active }}
+      <li><div class="header__lineActive"></div></li>
+    </ul>
+
+    {{! customer menu }}
+    <div class="navbar-customer-menu">
+      <div class="row no-gutters">
+        <div class="col">
+          <div class="customer__account">
+            <div class="icon"><i class="fas fa-user"></i></div>
+            <div class="customer__account-check">
+              Tài Khoản
+              <i class="fas fa-chevron-down down-icon"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <a class="hotline" href="tel:19001870">
+            <div class="icon"><i class="fas fa-phone-volume"></i></div>
+            <p class="hotline__number" style="margin : 0">1900 1870</p>
+          </a>
+        </div>
+      </div>
+
+      {{! login form  }}
+      <div class="login-form">
+        <div class="close-btn"><i class="fas fa-times-circle"></i></div>
+        <button class="login-btn"><a href="#">Đăng nhập</a></button>
+        <p class="desc">Chưa có tài khoản?
+          <a href="/register">Đăng ký</a>
+          ngay</p>
+      </div>
+    </div>
+    <button
+      title="lên đầu trang"
+      id="gototop"
+      class="btn"
+      style="display;none;background-color:#1f79c7;position: absolute;top:50%;transform:translateY(-50%);  right:2%;z-index:999;border-radius:30%"
+      onclick="scrollToTop()"
+    ><i class="fa-solid fa-arrow-up"></i></button>
+  </div>
+  <!--end container-->
+
+  {{! login modal }}
+  <div class="loginModal hide">
+    <form class="loginModal__form">
+      {{! close modal btn }}
+      <div class="closeModal-btn"><i class="fas fa-times-circle"></i></div>
+
+      <h3>Đăng nhập tài khoản</h3>
+      <div class="group__input">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          {{! autocomplete="off" }}
+          placeholder="Vui lòng nhập email !"
+        />
+        <span class="message__err email-err"></span>
+      </div>
+      <div class="group__input">
+        <label for="password">Mật khẩu</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          autocomplete="off"
+          placeholder="Mật khẩu"
+        />
+        <span class="message__err password-err"></span>
+      </div>
+      <div class="row">
+        <div class="col-12"><button class="login-btn">Đăng nhập</button></div>
+        <div class="col-12"><p class="desc">Chưa có tài khoản?<a
+              href="/register"
+            >Đăng ký</a>ngay</p></div>
+      </div>
+
+      <div class="social-login">
+        <h4>Hoặc đăng nhập bằng</h4>
+        <div class="row">
+          <div class="col-6">
+            <a href="#" class="Facebook-login">
+              <i class="icon facebook-icon fab fa-facebook-f"></i>
+              Facebook
+            </a>
+          </div>
+          <div class="col-6">
+            <a href="#" class="Google-login">
+              <i class="icon google-icon fab fa-google"></i>
+              Google
+            </a>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  {{! alert-message  }}
+  <div class="alert-message-login">
+    <i class="fal fa-check-circle"></i>
+    <span>Đăng ký thành công</span>
+  </div>
+
+  {{! notification list }}
+  <div class="notification-list">
+    <h4 class="notification-list-heading">
+      Notifications
+      <i class="fal fa-times close-nof-btn"></i>
+    </h4>
+    <ul>
+      <li>Admin đã phản hồi feedback</li>
+      <li>Thông báo thứ hai</li>
+      <li>Thông báo thứ ba</li>
+    </ul>
+  </div>
+
+  {{#if user}}
+    <div class="feedback-modal">
+      {{! overlay }}
+      <div class="feedback-modal-overlay"></div>
+
+      <form class="feeback__form">
+        <h2 class="feeback__form-heading">
+          Feedback
+          <i class="fas fa-times close-feedback-form"></i>
+        </h2>
+        <p class="feeback__form-desc">
+          Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi, vui lòng để lại đánh giá
+          để chúng tôi có thể cải thiện được chất lượng của mình!
+        </p>
+
+        <div class="emotion-container">
+          <div class="emotion-list">
+            <div class="emotion-item">
+              <img src="/img/one_star.png" alt="" />
+            </div>
+            <div class="emotion-item">
+              <img src="/img/two_star.png" alt="" />
+            </div>
+            <div class="emotion-item">
+              <img src="/img/three_star.png" alt="" />
+            </div>
+            <div class="emotion-item">
+              <img src="/img/four_star.png" alt="" />
+            </div>
+            <div class="emotion-item">
+              <img src="/img/five_star.png" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="feeback__form-group">
+          <div class="feedback__star-rating">
+            <div class="feedback__star-rating-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="feedback__star-rating-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="feedback__star-rating-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="feedback__star-rating-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="feedback__star-rating-icon">
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="feeback__form-group">
+          <p>Tell us what can be Improved?</p>
+          <textarea
+            class="feedback-message"
+            name="contentFb"
+            placeholder="Vui lòng thêm đánh giá..."
+          ></textarea>
+        </div>
+
+        <button class="send-feedback-btm">Gửi</button>
+      </form>
+    </div>
+  {{/if}}
+</header>
+
+<link
+  rel="stylesheet"
+  href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+{{! <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/brands.min.css" integrity="sha512-9YHSK59/rjvhtDcY/b+4rdnl0V4LPDWdkKceBl8ZLF5TB6745ml1AfluEU6dFWqwDw9lPvnauxFgpKvJqp7jiQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> }}
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css"
+  integrity="sha512-SgaqKKxJDQ/tAUAAXzvxZz33rmn7leYDYfBP+YoMRSENhf3zJyx3SBASt/OfeQwBHA1nxMis7mM3EV/oYT6Fdw=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+{{! ------------------------script--------------------------- }}
+<script>
+  var gototopButton = document.getElementById("gototop");
+  gototopButton.style.display = "none"; window.addEventListener("scroll",
+  function() { if (window.pageYOffset > 650) { gototopButton.style.display =
+  "block"; } else { gototopButton.style.display = "none"; } }); function
+  scrollToTop() { window.scrollTo({ top: 0, behavior: "smooth" }); }
+</script>
+<script type="module">
+  import header from '/js/header.js' ; header();
+</script>

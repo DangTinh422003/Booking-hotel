@@ -1,0 +1,82 @@
+.tabpanel-content{
+    background-clip: border-box;
+    border: 0.0625rem solid rgba(231,234,243,.7);
+    border-radius: 0.75rem;
+    box-shadow: 0 6px 12px rgb(140 152 164 / 8%);
+}
+.ht-item{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 0.0625rem solid #e7eaf3;
+    padding: 8px 0px;
+}
+.ht-item-content{
+    padding: 5px !important;
+    padding-right: 0px !important;
+}
+.ht-item-content div , .ht-item-desc div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.ht-item-img img{
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+.ht-item-desc-content p{
+    margin:0px !important;
+}
+.ht-item-desc{
+    width: 100%;
+    justify-content: space-around;
+}
+.dv-item{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 420px;
+    border-radius: 4px;
+}
+.dv-item-img{
+    width: 100%;
+    height: 200px;
+}
+.dv-item-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: 4px;
+}
+.dv-item-content{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 4px 8px;
+    text-overflow: ellipsis;
+}
+.dv-item-name{
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+}
+.dv-item-price-div{
+    display: flex;
+    margin-top: 15px;
+    padding: 0px 8px;
+    align-items: center;
+    justify-content: space-between;
+}
+.dv-item-desc div{
+    font-size: 16px;
+    text-overflow: ellipsis;
+    text-align: justify;
+    /*white-space: nowrap;*/
+    overflow: hidden;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    white-space: normal;
+}

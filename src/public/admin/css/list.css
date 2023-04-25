@@ -1,0 +1,102 @@
+.item__name {
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 20px 30px 0 30px;
+    font-size: 25px;
+    color: #444a53;
+}
+
+.updateImg {
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+}
+
+.board {
+    margin: 30px;
+    overflow: auto;
+    background-color: white;
+    border-radius: 8px;
+    color: black;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin:0;
+}
+
+.name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #000000;
+    margin: 0;
+}
+
+.user p {
+    font-size: 13px;
+    margin: 0;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+tr {
+    border-bottom: 1px solid white;
+}
+
+thead td {
+    font-size: 14px;
+    text-transform: uppercase;
+    background-color: #0a2558;
+    text-align: center;
+    padding: 15px;
+    color: white;
+    height: 70px;
+    font-weight: bold;
+}
+
+tbody tr td {
+    padding: 10px;
+    text-align: center;
+}
+
+td.edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+}
+
+.edit a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.status {
+    padding: 8px;
+    display: inline-block;
+    border-radius: 40px;
+    color: #2b2b2b;
+    width: 110px;
+    font-weight: 700;
+}
+
+p.infobooking {
+    text-align: left;
+}
+
+.img__room {
+    width: 180px;
+    height: 120px;
+}
+
+.room {
+    padding: 15px;
+    display: block;
+    margin: auto;
+}

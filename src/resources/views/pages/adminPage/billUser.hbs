@@ -1,0 +1,450 @@
+<link rel="stylesheet" href="/admin/css/index.css">
+<style>
+    .soluong {
+        display: flex;
+        align-items: baseline;
+    }
+
+    .soluong div button {
+        padding: 12px;
+        background-color: #ddd;
+        border: 1px solid #ddd;
+    }
+
+    .soluong div b {
+        padding: 12px;
+        background-color: white;
+        border: 1px solid #ddd;
+    }
+
+    .uil-plus:hover {
+        cursor: pointer;
+    }
+
+    .bill-div div {
+        display: flex;
+        flex-direction: row;
+    }
+</style>
+
+
+<div class="sales-boxes">
+    <div class="recent-sales box" style="height: 520px;overflow: auto">
+        <div class="title">DỊCH VỤ CUNG CẤP</div>
+        <div class="row dvdvitem" style="overflow:auto;height: 100%">
+            {{#each services as |dv|}}
+            <div class="col-sm-6 col-md-3 dvdvitem-content" id="dv-row-+{{dv.stt}}">
+                <div class="dv-item" style="height: 200px;overflow: hidden">
+                    <div class="dv-item-img" style="height: 100px !important;">
+                        <img src="{{dv.imgsv}}">
+                    </div>
+                    <div class="dv-item-price-div">
+                        {{#unless (inObjectService dv.stt ../dataBooking.services)}}
+                        {{#if (ne ../dataBooking.statusBooking 3)}}
+                        <div>
+                            <i id="prsv-row-+{{dv.stt}}" class="uil-plus" style="font-size: 25px;color: red"
+                                onclick="handleaddpr('{{../dataBooking._id}},{{dv.stt}}')"></i>
+                        </div>
+                        {{/if}}
+
+                        {{/unless}}
+
+                        <div style="display: flex;align-items: center">
+                            <div class="dv-item-price lht-price-detail ml-2" style="color: #021ee9;font-weight: bold;">
+                                {{formatPrice dv.pricesv}}đ</div>
+                        </div>
+                    </div>
+                    <div class="dv-item-content">
+                        <div class="dv-item-name" style="font-size: 16px;font-weight: 400" id="dv-row-name-+{{dv.stt}}">
+                            {{dv.namesv}}</div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="top-sales box">
+        <div class="title">Thông tin khách hàng</div>
+        <div style="padding: 8px">
+            <div id="thongtinlienhe">
+                <div style="display: flex;align-items: center;justify-content: space-between">
+                    <div style="display: flex;align-items: center">
+                        <img id="avaaccount" style="width: 50px;height: 50px;object-fit: cover" class="rounded-circle"
+                            src="{{dataBooking.inforUser.image}}" />
+                        <div style="margin-left: 4px" id="tenaccount">{{dataBooking.inforUser.userName}}
+                        </div>
+                    </div>
+                </div>
+                <div class="ht-item">
+                    <div>
+                        <b>Thông tin liên hệ</b>
+                    </div>
+                    <div>
+                        <i class="uil-envelope mt-3"></i><i style="font-style: normal" id="emailaccount">
+                            {{dataBooking.inforUser.email}}</i>
+                        <br>
+                        <i class="uil-phone-alt mt-3"></i> <i style="font-style: normal" id="sdtaccount">
+                            {{dataBooking.inforUser.phoneNumber}}</i>
+                    </div>
+                </div>
+                <div class="ht-item" style="margin-top: 10px;">
+                    <div>
+                        <b>Thông tin đặt phòng</b>
+                    </div>
+                    <div>
+                        <i class="uil-user mt-3 mr-2"></i><i style="font-style: normal"
+                            id="nguoidaidien">{{dataBooking.infoBooking.name}}</i>
+                        <br>
+                        <i class="uil-envelope mt-3 mr-2"></i><i style="font-style: normal"
+                            id="emaildaidien">{{dataBooking.infoBooking.email}}</i>
+                        <br>
+                        <i class="uil-phone-alt mt-3 mr-2"></i><i style="font-style: normal"
+                            id="sdtdaidien">{{dataBooking.infoBooking.phone}}</i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--THÔNG TIN BILL-->
+<div class="sales-boxes" style="margin-top: 20px">
+    <div class="recent-sales box" style="width: 100%">
+        <div class="title">HÓA ĐƠN THANH TOÁN</div>
+        <div class="activity-data ">
+            <div style="padding: 8px">
+                {{!-- <div class="thongtinhotel">
+                    <div class="thongtinhotel-img" style="width: fit-content;">
+                        <img style="width: 200px;" src="{{dataBooking.imgr}}" alt="">
+                    </div>
+                    <div class="thongtinhotel-content">
+                        <p style="font-weight: 700;font-size: 18px;">{{dataBooking.namer}}</p>
+                        <p class="lht-price-detail" style="font-size:16px;color: #ee2c4a;font-weight: 700">{{formatPrice
+                            dataBooking.totalPrice}}đ</p>
+                    </div>
+                </div> --}}
+                <div>
+                    <div style="font-weight: 700; font-size: 18px;padding: 10px 0px">Dịch vụ kèm theo</div>
+                    <div>
+                        <div class="row" style="color:#bbb;font-size: 16px;margin-bottom: 15px">
+                            <div class="col-3">Dịch vụ</div>
+                            <div class="col-3">Đơn giá</div>
+                            <div class="col-2">Số lượng</div>
+                            <div class="col-3">Thành tiền</div>
+                            <div class="col-1">Thao tác</div>
+                        </div>
+                        {{#each dataBooking.services as |buy|}}
+                        <div class="row" style="margin-bottom: 15px" id="bought-service-{{buy.stt}}">
+                            <div class="col-3">
+                                <div style="width: 100%;">
+                                    <div>{{buy.name}}</div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="lht-price-detail" value="{{buy.price}}" id="dongia-row-{{buy.stt}}">
+                                    {{formatPrice buy.price}}đ</div>
+                            </div>
+                            <div class="col-2 soluong">
+                                <div>
+                                    <button id="down-{{buy.stt}}" onclick="handledown('{{buy.stt}}')">-</button>
+                                </div>
+                                <div>
+                                    <b value="{{buy.amount}}" id="soluong-row-{{buy.stt}}">{{buy.amount}}</b>
+                                </div>
+                                <div>
+                                    <button id="up-{{buy.stt}}" onclick="handleup('{{buy.stt}}')">+</button>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="lht-price-detail tongtiensvpr money"
+                                    value="{{multiply buy.amount buy.price}}" id="thanhtien-row-{{buy.stt}}">{{multiply
+                                    buy.amount buy.price}}</div>
+
+                            </div>
+                            <div class="col-md-1">
+                                {{#if (ne ../dataBooking.statusBooking 3)}}
+                                <div>
+                                    <i id="deletesvpr" class="uil-trash-alt" style="font-size: 20px;color: red"
+                                        onclick="deletesvpr('{{../dataBooking._id}},{{buy.stt}}')"></i>
+                                </div>
+                                {{/if}}
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+                <div>
+                    <div style="font-weight: 700; font-size: 18px;padding: 10px 0px">Giá phòng khách sạn</div>
+                    <div>
+                        <div class="row" style="color:#bbb;font-size: 16px;margin-bottom: 15px">
+                            <div class="col-3">Phòng</div>
+                            <div class="col-1">Số lượng phòng</div>
+                            <div class="col-2">Số lượng khách</div>
+                            <div class="col-2">Check in</div>
+                            <div class="col-2">Check out</div>
+                            <div class="col-2">Thành tiền</div>
+                        </div>
+                        <div class="row" style="margin-bottom: 15px">
+                            <div class="col-3" style="display:flex">
+                                <img style="width: 120px;height: 120px;object-fit: cover" src="{{dataBooking.imgr}}">
+                                <b class="ml-3">{{dataBooking.namer}}</b>
+                            </div>
+                            <div class="col-1">
+                                <div>{{dataBooking.infoBooking.amountRoom}}</div>
+                            </div>
+                            <div class="col-2">
+                                <div>{{dataBooking.infoBooking.adult}} Người lớn - {{dataBooking.infoBooking.child}} Trẻ
+                                    em</div>
+                            </div>
+                            <div class="col-2">
+                                <div>{{dataBooking.infoBooking.from}}</div>
+                            </div>
+                            <div class="col-2">
+                                <div>{{dataBooking.infoBooking.to}}</div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="lht-price-detail">{{formatPrice dataBooking.totalPrice}}đ</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--TỔNG BILL-->
+                    <div>
+                        <div class="bill-div"
+                            style="font-size: 14px;color: rgba(0,0,0,.54);display: flex;flex-direction: column;justify-content: flex-end;background: #fffefb;box-shadow: 0 1px 1px 0 rgb(0 0 0 / 5%); border-top: 1px solid #f1f0ed;">
+                            <div>
+                                <div class="col-8"></div>
+                                <div class="col-4">
+                                    <p style="width: 60%">Tổng tiền dịch vụ</p>
+                                    <p id="tongtiendichvu">{{formatPrice dataBooking.totalService}}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-8"></div>
+                                <div class="col-4">
+                                    <p style="width: 60%">Tổng tiền phòng</p>
+                                    <p value="{{dataBooking.totalPrice}}" id="tongtienphong" class="lht-price-detail">
+                                        {{formatPrice dataBooking.totalPrice}} đ</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-8"></div>
+                                <div class="col-4" style="align-items: center">
+                                    <p style="width: 40%">Tổng thanh toán</p>
+                                    <p id="tongthanhtoan" style="font-size: 28px;color: #ee4d2d;">{{formatPrice
+                                        dataBooking.totalBill}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8"></div>
+                                <div class="col-4">
+                                    {{#if (ne dataBooking.statusBooking 3)}}
+                                    <div id="thanhtoanvatraphong"
+                                        onclick="thanhtoanvatraphong('{{dataBooking._id}},{{dataBooking.idroom}}')"
+                                        class="btn btn-success" style="background: #ee4d2d;color: #fff;">
+                                        THANH TOÁN - TRẢ PHÒNG
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let money = document.querySelectorAll('.money')
+    money.forEach(ele => {
+        let value = ele.getAttribute('value')
+        ele.innerText = Number(value).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    })
+
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function () {
+        sidebar.classList.toggle("active");
+        if (sidebar.classList.contains("active")) {
+            sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+        } else
+            sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    }
+</script>
+
+<script>
+
+    document.getElementById('item-datphong').classList.add("active")
+
+    let sumbill = () => {
+        let sum = 0
+        $('.tongtiensvpr').each(function (key, value) {
+            sum = sum + Number($(this).attr('value'))
+        })
+        return sum;
+
+    }
+
+    $('#tongtiendichvu').text(setPrice(sumbill() + ' đ'))
+    $('#tongtiendichvu').attr('value', sumbill())
+    function setPrice(price) {
+        let result = "";
+        var price1 = Number(price.substring(0, price.indexOf(' ')))
+        result = new Intl.NumberFormat({ style: 'currency', currency: 'JPY' }).format(price1) + " đ"
+        return result;
+    }
+
+    $('#tongthanhtoan').text(setPrice(Number($('#tongtiendichvu').attr('value')) + Number($('#tongtienphong').attr('value')) + ' đ'))
+
+    function handleup(sttservice) {
+        let thanhtien = $('#thanhtien-row-' + sttservice)
+        let num = $('#soluong-row-' + sttservice)
+        let dongia = $('#dongia-row-' + sttservice).attr('value')
+
+        num.text(Number(num.text()) + 1)
+        num.attr('value', num.text())
+        $('#thanhtien-row-' + sttservice).text(setPrice(dongia * num.attr('value') + ' đ'))
+        thanhtien.attr('value', dongia * num.attr('value'))
+
+        $('#tongtiendichvu').text(setPrice(Number($('#tongtiendichvu').attr('value')) + Number(dongia) + ' đ'))
+        $('#tongtiendichvu').attr('value', $('#tongtiendichvu').text().split(' ')[0].replaceAll('.', ''))
+        $('#tongthanhtoan').text(setPrice(Number($('#tongtiendichvu').attr('value')) + Number($('#tongtienphong').attr('value')) + ' đ'))
+
+    }
+
+    function handledown(sttservice) {
+        let thanhtien = $('#thanhtien-row-' + sttservice)
+        let num = $('#soluong-row-' + sttservice)
+        let dongia = $('#dongia-row-' + sttservice).attr('value')
+        if (Number(num.attr('value')) == 1)
+            $('#down-' + sttservice).preventDefault()
+        else {
+            num.text(Number(num.text()) - 1)
+            num.attr('value', num.text())
+            thanhtien.attr('value', dongia * num.attr('value'))
+            $('#thanhtien-row-' + sttservice).text(setPrice(dongia * num.attr('value') + ' đ'))
+
+            $('#tongtiendichvu').text(setPrice(Number($('#tongtiendichvu').attr('value')) - Number(dongia) + ' đ'))
+            $('#tongtiendichvu').attr('value', $('#tongtiendichvu').text().split(' ')[0].replaceAll('.', ''))
+            $('#tongthanhtoan').text(setPrice(Number($('#tongtiendichvu').attr('value')) + Number($('#tongtienphong').attr('value')) + ' đ'))
+        }
+    }
+
+    //XÓA DỊCH VỤ
+    function deletesvpr(text) {
+        let arrdata = text.split(',')
+        $.ajax({
+            type: "PUT",
+            url: "/admin/booking/khach-hang/buy/cancel",
+            data: JSON.stringify({
+                id: arrdata[0],
+                idsv: arrdata[1],
+            }),
+            processData: false,
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                swal({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Xóa thành công',
+                    showConfirmButton: false,
+                    timer: 1000
+                }).then(() => {
+                    $('#bought-service-' + arrdata[1]).remove()
+                    location.reload();
+                })
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        });
+    }
+
+    //MUA DỊCH VỤ
+    function handleaddpr(text) {
+        let arrdata = text.split(',')
+        let data = {
+            id: arrdata[0],
+            idsv: arrdata[1],
+            amountsv: 1,
+        }
+        $.ajax({
+            type: "POST",
+            url: "/admin/booking/khach-hang/buy",
+            data: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            success: function (response) {
+                swal({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Đã chọn',
+                    showConfirmButton: false,
+                    timer: 1000
+                }).then(() => {
+                    $('#prsv-row-' + arrdata[0]).css('display', 'none')
+                    location.reload();
+                })
+            },
+            error: function (e) {
+                console.log("Lỗi")
+            }
+        });
+    }
+
+
+    //THANH TOÁN & TRẢ PHÒNG
+    function thanhtoanvatraphong(text) {
+        //iduser,idbooking
+        const quantities = [];
+        const elements = document.querySelectorAll('[id^="soluong-row-"]');
+        elements.forEach((element) => {
+            const stt = element.id.replace('soluong-row-', '');
+            const value = parseInt(element.getAttribute('value'));
+            let obj = {
+                "stt": Number(stt),
+                "amount": value
+            }
+            quantities.push(obj)
+        });
+        $.ajax({
+            type: "PUT",
+            url: "/admin/booking/payment",
+            data: {
+                id: text.split(',')[0],
+                idroom: text.split(',')[1],
+                updatesv: quantities,
+            },
+            success: function (response) {
+                console.log(response)
+                swal({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Khách hàng đã trả phòng!',
+                    showConfirmButton: false,
+                    timer: 1000
+                }).then(() => {
+                    $('#soluong').text($('#soluong').text() - 1)
+                    $('#thanhtoanvatraphong').css('display', 'none')
+                    $('.uil-plus').each(function () {
+                        $(this).css('display', 'none')
+                    })
+                    $('#deletesvpr').each(function () {
+                        $(this).css('display', 'none')
+                    })
+
+                })
+            },
+            error: function (e) {
+                console.log("Lỗi")
+            }
+        });
+    }
+
+</script>

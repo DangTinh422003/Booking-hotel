@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iVIVU</title>
+    {{!-- icon --}}
+    <link rel="icon" type="image/x-icon" href="/img/favicon.png" />
+    <link rel="stylesheet" href="/css/detail.css">
+    <link rel="stylesheet" href="/css/feedback.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" rel="stylesheet"
+        type="text/css" />
+    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+    <!-- Mobiscroll JS and CSS Includes -->
+    <link rel="stylesheet" href="/calendar/css/mobiscroll.jquery.min.css">
+    <script src="/calendar/js/mobiscroll.jquery.min.js"></script>
+    <script>
+        // Ignore this in your implementation
+        window.isMbscDemo = true;
+    </script>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        button {
+            display: inline-block;
+            margin: 5px 5px 0 0;
+            padding: 10px 30px;
+            outline: 0;
+            border: 0;
+            cursor: pointer;
+            background: #5185a8;
+            color: #fff;
+            text-decoration: none;
+            font-family: arial, verdana, sans-serif;
+            font-size: 14px;
+            font-weight: 100;
+        }
+
+        input {
+            width: 100%;
+            margin: 0 0 5px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 0;
+            font-family: arial, verdana, sans-serif;
+            font-size: 14px;
+            box-sizing: border-box;
+            -webkit-appearance: none;
+        }
+
+        .mbsc-page {
+            padding: 1em;
+        }
+
+        /*.mbsc-ios.mbsc-page {
+            background: none !important;
+            color: #000;
+        }
+
+        .mbsc-ios.mbsc-datepicker-inline {
+            background: none !important;
+            border-color: #ccc;
+            color: #000;
+        }
+
+        .mbsc-datepicker-tab-wrapper {
+            justify-content: space-around !important;
+        }*/
+
+        /*.mbsc-datepicker-tab-wrapper{
+            display: none;
+        }*/
+    </style>
+</head>
+
+<body>
+    {{>header}}
+
+    <div class="detal1Page" style="margin-top : 20px">
+        <div class="container" id="number_room" value="{{room.number_room}}">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <iframe src="{{room.direction}}" width="260" height="300" style="border:0;"
+                                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p class="detail">
+                            <h5 class="title--small" style="font-size: 16px;">Trải nghiệm phải thử ở Khu nghỉ dưỡng
+                                Fusion
+                                Phú Quốc</h5>
+                            - Được xây dựng dựa trên ý tưởng mang đến một kỳ nghỉ hoàn hảo cho du khách, Fusion Resort
+                            Phú
+                            Quốc là nơi bạn tận hưởng những dịch vụ đặc trưng của Fusion như “Spa trọn gói”, “Ăn sáng
+                            mọi
+                            lúc mọi nơi” và thỏa thích hòa mình vào không gian sống tràn ngập cảnh sắc thiên nhiên tại
+                            các
+                            villa có hồ bơi riêng biệt, hướng biển, hướng sông hoặc hướng ra khu vườn xanh mát. <br>
+                            - Thương hiệu Fusion vốn nổi tiếng với các khu nghỉ dưỡng và khách sạn cung cấp “dịch vụ spa
+                            trọn gói”. Để du khách thoát khỏi nhịp điệu cuộc sống hiện đại đầy bận rộn, Fusion Resort
+                            Phú
+                            Quốc cung cấp đến du khách liệu trình spa hàng ngày mà không cần phải trả thêm chi phí, nổi
+                            tiếng nhất tại đây phải kể đến liệu trình massage với tinh dầu hồ tiêu, một loại đặc sản của
+                            Phú
+                            Quốc - có tác dụng làm ấm cơ thể và thư giãn tâm trí.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <h3 class="title">{{room.name_room}}</h3>
+                            <div class="row">
+                                <div class="col-sm-3 pr-0">
+                                    <div class="cardinfo__star" style="color: #fdbf65;">
+                                        {{{loopStar room.star}}}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 pl-0 AvgPoint">
+                                    <span class="score-container__inner" data-toggle="tooltip" title=""
+                                        data-original-title="Click để xem đánh giá">
+                                        <a href="#" class="score__a">
+                                            <div class="score">
+                                                <span class="score__title" id="score-bg">{{room.point}}</span>
+                                                <span class="score__description">{{room.feedback_normal}}</span>
+                                                <span class="score__num">| {{room.count_cmt}} đánh giá</span>
+                                            </div>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <p class="address"><i class="fas fa-map-marker-alt"></i>Bãi biển Vũng Bàu, Huyện Phú
+                                        Quốc, Tỉnh Kiên Giang, Việt Nam</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-lg-3">
+                            <button class="btnBook btnBook1">Đặt ngay</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12" style="margin-bottom: 20px;">
+                            <div class="main">
+                                <img class="img-feature" src="{{room.img_room}}" alt="">
+                                <div class="control prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>
+                                <div class="control next"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
+                            </div>
+                            
+                            <div class="list-image">
+                                {{#each room.img_room_list as |img_list|}}
+                                    <div class="img"><img src="{{img_list}}" alt=""></div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-7">
+                            <iframe class="btn1" src="https://www.youtube.com/embed/mERNCRZ8U5Y"
+                                title="Fusion Resort Phu Quoc" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen id="myYoutube"></iframe>
+                        </div>
+                        <div class="col-sm-12 col-md-5">
+                            <p class="youtubeDes">Video về khu nghỉ dưỡng Fusion Phú Quốc</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="combo">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="combo combo--main">
+                                            <h2 class="combo__heading">Combo 3N2Đ + Vé máy bay + Spa + Voucher 500K</h2>
+                                            <h5 class="combo__sub">Combo bao gồm</h5>
+                                            <div class="combo__des">
+                                                - Vé máy bay khứ hồi <br>
+                                                - 02 đêm nghỉ dưỡng tại Pool Villa 1 Bedroom <br>
+                                                (Phòng + khuôn viên 100m2 - hồ bơi riêng 28m2)
+                                                - Bữa sáng phong cách Fusion "Bất cứ khi nào, bất cứ ở đâu" <br>
+                                                (Quý khách sẽ được phục vụ set menu sau khi thức dậy dù là chiều muộn,
+                                                bữa
+                                                ăn sẽ được bố trí tại phòng riêng/hồ bơi/khuôn viên villa.. đảm bảo sự
+                                                riêng
+                                                tư và thư giãn nhất) <br>
+                                                - Trải nghiệm dịch vụ spa chuyên nghiệp, giúp đánh thức các giác quan
+                                                của cơ
+                                                thể, xua tan mệt mỏi (mỗi ngày/giai đoạn lưu trú) <br>
+                                                - Thả mình trong hồ bơi bán nguyệt màu lục lam tươi mát <br>
+                                                - Chèo thuyền kayak dọc con sông tự nhiên xuyên suốt khu nghỉ dưỡng hoặc
+                                                tham gia các lớp taichi, yoga nâng cao sức khỏe <br>
+                                                - Tặng voucher ăn uống trị giá 500,000VNĐ/phòng ngủ/đêm sử dụng tại các
+                                                nhà
+                                                hàng trong khu nghỉ <br>
+                                            </div>
+                                            <h5 class="combo__sub">Ghi chú đặc biệt:</h5>
+                                            <div class="combo__des">
+                                                - Đưa đón sân bay theo lịch trình khách hàng khi đặt 4 đêm trở lên
+                                            </div>
+                                            <h5 class="combo__sub">Điều kiện áp dụng</h5>
+                                            <div class="combo__des">
+                                                - Đặt tối thiểu 2 khách/villa <br>
+                                                - Giá áp dụng khi toàn bộ khách lưu trú là người Việt Nam (Không ghép
+                                                quốc
+                                                tịch khác cùng phòng) <br>
+                                                - Không hoàn hủy/đổi tên/dời ngày <br>
+                                                - Thời gian đặt: Từ nay - 05.05.2023 <br>
+                                                - Hạn lưu trú: đến 05.05.2023 <br>
+                                                Cuối tuần, Lễ Tết và các giai đoạn cao điểm có phụ thu <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="combo combo--list">
+                                            <div class="combo__slidebar">
+                                                <div class="combo__item">
+                                                    <h5 class="combo__title">Khởi hành từ Hồ Chí Minh</h5>
+                                                    <div class="combo__flight">
+                                                        <ul class="combo__flight--timeline">
+                                                            <li class="timeline">
+                                                                <p><span style="line-height: 2;">01/03 → 31/03 </span>
+                                                                    <span
+                                                                        class="combo__flight--best-price">9.099.000<span
+                                                                            style="font-size: 12px;  vertical-align: top;">đ</span></span>
+                                                                </p>
+                                                            </li>
+                                                            <li class="timeline">
+                                                                <p><span style="line-height: 2;">01/04 → 30/04 </span>
+                                                                    <span class="combo__flight--price">10.699.000<span
+                                                                            style="font-size: 12px;  vertical-align: top;">đ</span></span>
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <a href="#" class="combo__depart">Xem lịch khởi hành</a>
+                                                </div>
+                                                <div class="combo__item">
+                                                    <h5 class="combo__title">Khởi hành từ Hà Nội</h5>
+                                                    <div class="combo__flight">
+                                                        <ul class="combo__flight--timeline">
+                                                            <li class="timeline">
+                                                                <p><span style="line-height: 2;">01/03 → 31/03 </span>
+                                                                    <span
+                                                                        class="combo__flight--best-price">9.099.000<span
+                                                                            style="font-size: 12px;  vertical-align: top;">đ</span></span>
+                                                                </p>
+                                                            </li>
+                                                            <li class="timeline">
+                                                                <p><span style="line-height: 2;">01/04 → 30/04 </span>
+                                                                    <span class="combo__flight--price">10.699.000<span
+                                                                            style="font-size: 12px;  vertical-align: top;">đ</span></span>
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <a href="#" class="combo__depart">Xem lịch khởi hành</a>
+                                                </div>
+                                            </div>
+                                            <div class="combo__booking">
+                                                <div class="form--booking">
+                                                    <div class="row">
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12" style="z-index: 1;">
+                                                            <label class="form__title">Số người, Số phòng</label>
+                                                            <div class="row">
+                                                                <div class="col-sm-12">
+                                                                    <div class="number-box">
+                                                                        <li>
+                                                                            <div class="number-left">
+                                                                                <p>Người lớn</p>
+                                                                            </div>
+                                                                            <div class="number-right adult">
+                                                                                <i class="fa fa-minus adultMinus"></i>
+                                                                                <span
+                                                                                    value="{{room.adult}}">{{room.adult}}</span>
+                                                                                <i class="fa fa-plus adultPlus"></i>
+                                                                            </div>
+                                                                        </li>
+                                                                        <li>
+                                                                            <div class="number-left">
+                                                                                <p>Trẻ em</p>
+                                                                            </div>
+                                                                            <div class="number-right child">
+                                                                                <i class="fa fa-minus childMinus"></i>
+                                                                                <span
+                                                                                    value="{{room.child}}">{{room.child}}</span>
+                                                                                <i class="fa fa-plus childPlus"></i>
+                                                                            </div>
+                                                                        </li>
+                                                                        <li>
+                                                                            <div class="number-left">
+                                                                                <p>Phòng</p>
+                                                                            </div>
+                                                                            <div class="number-right room">
+                                                                                <i class="fa fa-minus roomMinus"></i>
+                                                                                <span class="roomData" data-sl="1"
+                                                                                    data-dg="{{room.newprice}}">1</span>
+                                                                                <i class="fa fa-plus roomPlus"></i>
+                                                                            </div>
+                                                                        </li>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <label class="form__title">Tổng cộng:</label>
+                                                            <div class="sum">
+                                                                <span style="float: right;"><span
+                                                                        class="sum__room"></span>
+                                                                    phòng, <span class="sum__adult"></span> người lớn,
+                                                                    <span class="sum__child"></span> trẻ em</span>
+                                                                <div class="sum__price"
+                                                                    value="{{formatPrice room.newprice}}">{{formatPrice
+                                                                    room.newprice}}<span style="font-size: 18px;">đ
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <button class="btnBook btnBook2"
+                                                                data-room="{{room.number_room}}"
+                                                                style="margin:10px auto; float: none; display:block;">Yêu
+                                                                cầu đặt</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-12 mt-3">
+                            <div mbsc-page class="demo-date-time-range">
+                                <div style="height:100%">
+                                    <div id="demo-calendar"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{!-- FEEDBACK --}}
+                    <div style="margin-top:30px">
+
+                        <div style="display:inline-flex;align-items:center">
+                            <div
+                                style="width: 6px;height: 44px; background-color: #ff5b00;border-radius: 6px;margin-right: 5px;">
+                            </div>
+                            <p style="margin-bottom:0;font-size: 24px;font-weight: 600;">Đánh giá </p>
+                        </div>
+                        <div class="fb_main btn_vote">
+                            <button class="filterstar" title="selected" id="allfeedback">Tất cả</button>
+                            <button class="filterstar" value="5">5 <i class="fa fa-star"
+                                    style="color: #ff9c00;font-size: 14px;"></i></button>
+                            <button class="filterstar" value="4">4 <i class="fa fa-star"
+                                    style="color: #ff9c00;font-size: 14px;"></i></button>
+                            <button class="filterstar" value="3">3 <i class="fa fa-star"
+                                    style="color: #ff9c00;font-size: 14px;"></i></button>
+                            <button class="filterstar" value="2">2 <i class="fa fa-star"
+                                    style="color: #ff9c00;font-size: 14px;"></i></button>
+                            <button class="filterstar" value="1">1 <i class="fa fa-star"
+                                    style="color: #ff9c00;font-size: 14px;"></i></button>
+                            <i style="font-size:16px;color:#757575"
+                                th:text="${@feedBackService.listFeedBackByIDHotel(idhotel).size()}+' đánh giá'"></i>
+                        </div>
+                        <div class="fb_main fb_main_content">
+                            
+                        </div>
+                        <div class="div-pagination">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="/js/detail1.js"></script>
+    <script src="/js/detail.js"></script>
+    <script src="/js/booking.js"></script>
+    <script src="/js/feedback.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        mobiscroll.setOptions({
+            locale: mobiscroll.localeEn,             // Specify language like: locale: mobiscroll.localePl or omit setting to use default
+            theme: 'ios',                            // Specify theme like: theme: 'ios' or omit setting to use default
+            themeVariant: 'light'                // More info about themeVariant: https://docs.mobiscroll.com/5-23-2/range#opt-themeVariant
+        });
+
+        $(function () {
+            // Mobiscroll Range initialization
+            $('#demo-calendar').mobiscroll().datepicker({
+                controls: ['calendar', 'time'],      // More info about controls: https://docs.mobiscroll.com/5-23-2/range#opt-controls
+                select: 'range',                     // More info about select: https://docs.mobiscroll.com/5-23-2/range#methods-select
+                display: 'inline'                    // Specify display mode like: display: 'bottom' or omit setting to use default
+            });
+
+            // Mobiscroll Range initialization
+            $('#demo-calendar-timegrid').mobiscroll().datepicker({
+                controls: ['calendar', 'timegrid'],  // More info about controls: https://docs.mobiscroll.com/5-23-2/range#opt-controls
+                select: 'range',                     // More info about select: https://docs.mobiscroll.com/5-23-2/range#methods-select
+                display: 'inline'                    // Specify display mode like: display: 'bottom' or omit setting to use default
+            });
+
+            // Mobiscroll Range initialization
+            $('#demo-date').mobiscroll().datepicker({
+                controls: ['date'],                  // More info about controls: https://docs.mobiscroll.com/5-23-2/range#opt-controls
+                select: 'range',                     // More info about select: https://docs.mobiscroll.com/5-23-2/range#methods-select
+                display: 'inline'                    // Specify display mode like: display: 'bottom' or omit setting to use default
+            });
+
+            // Mobiscroll Range initialization
+            $('#demo-one-input').mobiscroll().datepicker({
+                controls: ['calendar'],              // More info about controls: https://docs.mobiscroll.com/5-23-2/range#opt-controls
+                select: 'range'                      // More info about select: https://docs.mobiscroll.com/5-23-2/range#methods-select
+            });
+
+            // Mobiscroll Range initialization
+            $('#demo-start-end').mobiscroll().datepicker({
+                controls: ['calendar'],              // More info about controls: https://docs.mobiscroll.com/5-23-2/range#opt-controls
+                select: 'range',                     // More info about select: https://docs.mobiscroll.com/5-23-2/range#methods-select
+                startInput: '#demo-start',           // More info about startInput: https://docs.mobiscroll.com/5-23-2/range#opt-startInput
+                endInput: '#demo-end'                // More info about endInput: https://docs.mobiscroll.com/5-23-2/range#opt-endInput
+            });
+        });
+    </script>
+</body>
+
+</html>

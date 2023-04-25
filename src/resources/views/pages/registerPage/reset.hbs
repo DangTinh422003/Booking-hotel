@@ -1,0 +1,74 @@
+<div class="tab-log">
+    <div>
+        <nav>
+            <div id="nav-tab">
+                <a class="nav-item nav-link" id="nav-register-tab">Khôi phục mật khẩu</a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div id="nav-register">
+                <div id="nav-login">
+                    <div class="login-input">
+                        <form method="POST" id="forgotPass-form">
+                            <div class="login-input-item">
+                                <input minlength="6" id="reg-password" name="password" type="password" placeholder="Mật khẩu"
+                                    class="form-control" required>
+                            </div>
+                            <div class="login-input-item">
+                                <input minlength="6" id="reg-confirmPassword" name="confirmPassword" type="password"
+                                    placeholder="Nhập lại mật khẩu" class="form-control" required>
+                            </div>
+                            <div class="btn">
+                                <button type="submit" class="register-form-reg-btn">Xác nhận</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $("#forgotPass-form").submit(function (event) {
+        event.preventDefault()
+        const data = new FormData($("#forgotPass-form")[0])
+        if ($('#reg-confirmPassword').val() != $('#reg-password').val()) {
+            swal("Lỗi", "Mật khẩu nhập lại không hợp lệ", "error")
+        }
+        else {
+            const url = new URLSearchParams(window.location.search);
+            const otp = url.get('otp');
+            const email = url.get('email');
+            $.ajax({
+                type: "POST",
+                url: "/register/account/reset/confirm",
+                data: JSON.stringify({
+                    otp: otp,
+                    email: email,
+                    password: data.get("password")
+                }),
+                processData: false,
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                success: function (res) {
+                    console.log(res)
+                    if (res.code === 0) {
+                        swal("Thành công", "Bạn có thể đăng nhập tài khoản", "success")
+                            .then(() => {
+                                window.location.href = "/"
+                            })
+                    }
+                    if (res.code == 1) {
+                        swal("Thất bại", "Vui lòng kiểm tra lại", "error")
+                    }
+                },
+                error: function (err) {
+                    console.log("fail")
+                }
+            })
+        }
+    })
+</script>

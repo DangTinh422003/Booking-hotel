@@ -1,0 +1,351 @@
+<style>
+    /* TOGGLE */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 25px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 22px;
+        width: 22px;
+        left: 6px;
+        bottom: 2px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked+.slider {
+        background-color: #2196F3;
+    }
+
+    input:focus+.slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+    /* TOGGLE */
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="/admin/css/index.css">
+<div class="sales-boxes">
+    <div class="recent-sales box" style="width: 100%;">
+        <div class="title">Danh sách dịch vụ
+            <button class="btn btn-primary ml-3" data-toggle="modal" data-target="#addService">Thêm dịch vụ</button>
+        </div>
+        <div style="margin-top: 20px">
+            <div class="row dvdvitem">
+                {{#each dataService}}
+                <div class="col-sm-6 col-md-4 dvdvitem-content" id="dv-row-{{this.stt}}">
+                    <div class="dv-item">
+                        <div class="dv-item-img">
+                            <img src="{{this.imgsv}}">
+                        </div>
+                        <div class="dv-item-price-div">
+                            <div>
+                                <div style='height:50%'>
+                                    <div style='display:flex;justify-content:center;height:50%;margin-top:6px'>
+                                        <label class="switch">
+                                            {{#if (ne this.toggle false) }}
+                                            <input type="checkbox" data-id="{{this.stt}}" checked>
+                                            {{/if}}
+                                            {{#if (ne this.toggle true)}}
+                                            <input type="checkbox" data-id="{{this.stt}}">
+                                            {{/if}}
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                    <div data-toggle="modal" data-target="#editService" style="color: red;"
+                                        onclick="editService('{{this.stt}}')">Chỉnh sửa</div>
+                                </div>
+                            </div>
+                            <div style="display: flex;align-items: center">
+                                <div class="dv-item-price lht-price-detail ml-2"
+                                    style="color: #021ee9;font-weight: bold;">{{formatPrice this.pricesv}}đ</div>
+                            </div>
+                        </div>
+                        <div class="dv-item-content">
+                            <div class="dv-item-name" id="dv-row-name-{{this.stt}}">{{this.namesv}}</div>
+                            <div class="dv-item-desc dv-item-desc-{{this.stt}}">
+                                <div>
+                                    {{this.descriptionsv}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{!-- MODAL EDIT SERVICE --}}
+                <div class="modal fade" id="editService"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Chỉnh sửa dịch vụ</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    <div class="form-group">
+                                        <label for="nameService" class="col-form-label">Tên dịch vụ</label>
+                                        <input placeholder="Nhập tên dịch vụ" required type="text"
+                                            class="form-control name-edit">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description" class="col-form-label">Giới thiệu dịch vụ</label>
+                                        <textarea rows="10" placeholder="Giới thiệu dịch vụ" required type="text"
+                                            class="form-control intro-edit"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="price" class="col-form-label">Giá</label>
+                                        <input class="form-control price-edit" required>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary closeModelEdit"
+                                            data-dismiss="modal">Hủy</button>
+                                        <button class="btn btn-primary btn-Confirm-Edit" value-stt="0"  onclick="confirmEdit()">Sửa</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--MODAL THÊM DỊCH VỤ-->
+<div class="modal fade" id="addService" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm dịch vụ mới</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" enctype="multipart/form-data" id="add-form" action="/admin/dichvu/add">
+                    <div class="form-group">
+                        <label for="namesv" class="col-form-label">Tên dịch vụ</label>
+                        <input placeholder="Nhập tên dịch vụ" required type="text" class="form-control" id="namesv"
+                            name="namesv">
+                    </div>
+                    <div class="form-group">
+                        <label for="descriptionsv" class="col-form-label">Giới thiệu dịch vụ</label>
+                        <textarea rows="10" placeholder="Giới thiệu dịch vụ" required type="text" class="form-control"
+                            id="descriptionsv" name="descriptionsv"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="pricesv" class="col-form-label">Giá</label>
+                        <input class="form-control" name="pricesv" id="pricesv" required>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="type" id="inlineRadio1" value="1">
+                        <label class="form-check-label" for="inlineRadio1">Dịch vụ</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="type" id="inlineRadio2" value="2">
+                        <label class="form-check-label" for="inlineRadio2">Sản phẩm</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="login-input-item">
+                            <input onchange="previewImage(event)" type="file" class="form-control-file"
+                                style="padding:0" id="file" name="file" accept="image/*">
+                        </div>
+                        <img id="preview" src="#" alt="Preview"
+                            style="display: none;width: 150px;height: 150px;object-fit: cover;margin: 0 auto;margin-top: 22px;border-radius: 8px;">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-primary">Thêm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+
+    /*(function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('change', function (event) {
+
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                    if (form.checkValidity() === true) {
+                        $("#themnv").prop('disabled', false)
+                    }
+                }, false);
+            });
+        }, false)
+    })();*/
+
+    document.getElementById('item-dichvu').classList.add("active")
+
+    //XÓA DỊCH VỤ
+    function updateToggleFood() {
+        let toggle
+        let listToggle = document.querySelectorAll('input[type="checkbox"]')
+        listToggle.forEach(ele => {
+            ele.onclick = function (e) {
+                if ($(this).is(':checked')) {
+                    toggle = true
+                }
+                else {
+                    toggle = false
+                }
+
+                let data = {
+                    stt: $(this).data('id'),
+                    toggle: toggle
+                }
+                console.log(data)
+                $.ajax({
+                    type: "PUT",
+                    url: "/admin/dichvu/toggle",
+                    data: JSON.stringify(data),
+                    processData: false,
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (res) {
+                        console.log("Thành công");
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                })
+
+            }
+        })
+    }
+    updateToggleFood()
+
+    //CHỈNH SỬA DỊCH VỤ
+    function editService(stt) {
+        $.ajax({
+            type: "GET",
+            url: "/admin/dichvu/infor/" + stt,
+            success: function (res) {
+                console.log(res)
+                $('.name-edit').val(res.data.namesv)
+                $('.price-edit').val(res.data.pricesv)
+                $('.intro-edit').val(res.data.descriptionsv)
+                $('.btn-Confirm-Edit').attr('value-stt',res.data.stt)
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    }
+
+    function confirmEdit() {
+        let data = {
+            stt: $('.btn-Confirm-Edit').attr('value-stt'),
+            namesv: $('.name-edit').val(),
+            pricesv: $('.price-edit').val(),
+            descriptionsv: $('.intro-edit').val()
+        }
+        if ($('.name-edit').val() != '' && $('.price-edit').val() && $('.intro-edit').val() != '') {
+            $.ajax({
+                type: "PUT",
+                url: "/admin/dichvu/update",
+                data: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                success: function (res) {
+                    /*$('.closeModelEdit').click()
+                    $('.lht-price-detail').text(data.pricesv)
+                    $('.dv-item-desc').text(data.descriptionsv)*/
+                    location.reload()
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+        }
+    }
+
+    //SEARCH
+    function searchBar() {
+        $('#search_field').on('keyup', function () {
+            console.log("ok")
+            let searchString = $(this).val();
+            $(".dvdvitem-content").each(function (index, value) {
+                currentName = $(value).text()
+                if (currentName.toUpperCase().indexOf(searchString.toUpperCase()) > -1) {
+                    $(value).show();
+                } else {
+                    $(value).hide();
+                }
+            });
+        });
+    };
+    searchBar();
+
+    function previewImage(event) {
+        const preview = document.getElementById('preview');
+        preview.style.display = "block";
+        preview.src = URL.createObjectURL(event.target.files[0]);
+    }
+
+
+
+
+</script>
+<script src="/js/admin/services.js"></script>

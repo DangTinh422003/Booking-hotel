@@ -1,0 +1,107 @@
+/* FEEDBACK */
+button:focus {
+    outline: none !important;
+    outline: none !important;
+}
+[title=selected]
+    {
+      color: #ff5b00 !important;
+      border-color: #ff5b00 !important;
+      background-color: #fff0e5 !important;
+    }
+.btn_vote button {
+    color: black;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 12px;
+    margin-right: 16px;
+    border: 1px solid #e0e0e0;
+    background-color: white;
+}
+.fb_main{
+    /* border-bottom: 1px solid rgba(0,0,0,.09); */
+    padding-top: 30px;
+}
+.fb-main-main{
+    margin-bottom: 24px;
+  }
+.fb_item{
+    margin-bottom: 14px;
+}
+.fb_img_name{
+    display: flex;
+    align-items: center;
+}
+.fb_img{
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+.fb_img img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+.fb_name{
+    font-weight: 600;
+    font-size: 16px;
+}
+.fb_vote{
+    display: flex;
+    align-items: center;
+}
+.btn_vote{
+    border-bottom: none !important;
+    padding-bottom: 0px !important;
+}
+
+.btn_vote button{
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 12px;
+    margin-right: 16px;
+    border: 1px solid #e0e0e0;
+    background-color: white;
+}
+/* Ẩn dấu , */
+#list-imgfb {
+    font-size: 0;
+  }
+  
+#list-imgfb * {
+    font-size: initial;
+}
+
+/* PAGIN */
+.pagination {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+    border: 1px solid #eee;
+}
+  
+  .pagination a {
+    display: inline-block;
+    padding: 10px;
+    background-color: white;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pagination a:hover {
+    background-color: white;
+  }
+  
+  .pagination a.active,
+  .pagination a.active:hover {
+    background-color: #fff0e5 ;
+    color: #ff5b00;
+  }
+  
+  .pagination a.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+  }

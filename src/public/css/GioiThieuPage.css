@@ -1,0 +1,68 @@
+.introduce {
+  background: #f9fbfc;
+}
+
+.directory ul {
+  margin-top: 10px;
+  list-style-type: none;
+  display: flex;
+  gap: 30px;
+  position: relative;
+  padding: 10px;
+  background: #ffffff;
+}
+
+.directory ul a {
+  position: relative;
+}
+
+.directory ul a::after {
+  content: "";
+  position: absolute;
+  left: calc(100% + 15px);
+  height: 100%;
+  width: 1px;
+  background: #cccccc;
+  transform: rotate(10deg);
+}
+
+.menu__list {
+  list-style-type: none;
+  background: #ffffff;
+}
+
+.menu__list-item {
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+.active.menu__list-item {
+  font-weight: bold;
+  color: #ffac23;
+  border-right: 2px solid #ffac23;
+}
+
+.menu__list-item:hover {
+  background: #efefef;
+}
+
+.main h1 {
+  font-size: 36px;
+  font-weight: normal;
+  line-height: 1.1;
+}
+
+.main p {
+  text-align: justify;
+  font-size: 14px;
+  margin: 0 0 10px;
+  margin-top: 30px;
+}
+
+.main p span {
+  font-weight: bold;
+}
+
+#gioithieu {
+  margin-bottom: 50px;
+}

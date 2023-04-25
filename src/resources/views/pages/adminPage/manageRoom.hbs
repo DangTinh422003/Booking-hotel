@@ -1,0 +1,196 @@
+<link rel="stylesheet" href="/css/danhsachphong.css" />
+<link rel="stylesheet" href="/css/manageRoom.css" />
+
+<div class="container">
+  <div class="manageRoom__content">
+
+    <div class="row">
+
+      {{#each rooms as |room|}}
+        <div class="col-12" style="margin-bottom: 60px!important;">
+          <div class="room-item">
+            <div class="room-intro">
+              <i class="fal fa-clock"></i>
+              <p>{{room.intro}}</p>
+            </div>
+            <div class="row">
+              <div class="col-4" style="padding-right: 0;">
+                <div class="room-thumbnail">
+                  <img src="{{room.img_room}}" alt="" />
+                </div>
+              </div>
+              <div class="col-5" style="padding: 0;">
+                <div class="room-detail">
+                  <h4 class="room-detail-name">{{room.name_room}}</h4>
+                  <div class="room-detail-rating">
+                    <span class="star-rating">
+                      {{{loopStar room.star}}}
+                    </span>
+                    <span class="point-rating">{{room.point}}</span>
+                    <span class="message-rating">{{room.feedback_normal}}</span>
+                    <span class="numbers-rating">{{room.count_cmt}}
+                      đánh giá</span>
+                  </div>
+                  <div class="room-address">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Ven Biển, xã Phước Thuận</span>
+                  </div>
+
+                  {{#each characters as |character|}}
+                    <div class="room-supertag">
+                      <i class="fas fa-check"></i>
+                      {{character}}
+                    </div>
+                  {{/each}}
+
+                  <div class="room-pill-container">
+                    <div class="room-pill-container-icon">
+                      <i class="fas fa-star"></i>
+                    </div>
+                    <p class="room-pill-container-content">{{room.voucher}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="room-state">
+                  <p class="room-status">{{room.status}}</p>
+                  <p class="room-state-oldprice">{{formatPrice room.oldprice}}
+                    VDN</p>
+                  <p class="room-state-newprice">{{formatPrice room.newprice}}
+                    VDN</p>
+                  <div class="bonus">
+                    <div class="type_room">{{room.type_room}}</div>
+                    <div class="type_room-bonus">{{room.type_room_bonus}}</div>
+                  </div>
+                  <button
+                    class="updateRoom-btn"
+                    data-id={{room._id}}
+                    style="border-radius: 12px;
+                          padding: 10px 20px;
+                          color: #fff;
+                          background: #26BED6;
+                          border: none;
+                          margin-top: 15px;"
+                  >Chỉnh sửa</button>
+                  {{#if room.hide}}
+                  <button
+                    class="UNdeleteRoom-btn"
+                    data-id={{room._id}}
+                    style="border-radius: 12px;
+                          padding: 10px 20px;
+                          color: #fff;
+                          background: {{#if room.hide}}#d36c39{{else}}#26BED6{{/if}};
+                          border: none;
+                          margin-top: 15px;"
+                  >Mở phòng</button>
+                  {{/if}}
+                  
+                  {{#ifCondition room.hide "==" false}}
+                  <button
+                    class="deleteRoom-btn"
+                    data-id={{room._id}}
+                    style="border-radius: 12px;
+                          padding: 10px 20px;
+                          color: #fff;
+                          background: {{#if room.hide}}#d36c39{{else}}#26BED6{{/if}};
+                          border: none;
+                          margin-top: 15px;"
+                  >Xóa</button>
+                  {{/ifCondition}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+
+    </div>
+  </div>
+</div>
+
+<div class="modal-deleting">
+  <div class="overlay"></div>
+  <div class="loading-icon"></div>
+</div>
+
+<div class="modal-updateroom">
+  <div class="overlay"></div>
+  <form>
+    <h4>Cập nhật thông tin phòng</h4>
+    <div class="row">
+
+      <div class="col-6">
+        <div class="form-group">
+          <label style="display: block;">Mã phòng</label>
+          <input type="text" name="number_room" />
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          <label style="display: block;">Direction</label>
+          <input type="text" name="direction" />
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          <label style="display: block;">Intro</label>
+          <input type="text" name="intro" />
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          <label style="display: block;">Url hình ảnh phòng</label>
+          <input type="text" name="img_room" />
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          <label style="display: block;">Tên phòng</label>
+          <input type="text" name="name_room" />
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          <label style="display: block;">Slug</label>
+          <input type="text" name="slug" />
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          <label style="display: block;">Số sao đánh giá</label>
+          <input type="text" name="star" />
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          <label style="display: block;">Feedback</label>
+          <input type="text" name="feedback_normal" />
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          <label style="display: block;">Giá cũ</label>
+          <input type="text" name="oldprice" />
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          <label style="display: block;">Giá mới</label>
+          <input type="text" name="newprice" />
+        </div>
+      </div>
+    </div>
+    <button class="sendRequestUpdateRoom">Cập nhật</button>
+  </form>
+</div>
+
+<script src="/js/roomManage.js"></script>

@@ -1,0 +1,634 @@
+<style>
+  .imgWrapp{
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+.img-hover {
+  transition: transform 0.2s ease-in-out;
+}
+
+.imgWrapp:hover .img-hover{
+  transform: scale(1.1);
+}
+
+.imgWrapp:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+</style>
+
+    <div class="col-md-8">
+      <div class="tab-log" style="padding: 0;width:100%">
+        <div>
+          {{!-- header 4 trạng thái --}}
+          <nav class="mb-2">
+            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+              <a class="nav-item nav-link active" id="nav-choxacnhan-tab" data-toggle="tab"
+                 href="#choxacnhan" role="tab" aria-controls="choxacnhan" aria-selected="true"
+                 style="font-size: 16px; ">Chờ xác nhận</a>
+              <a class="nav-item nav-link" id="daxacnhan" data-toggle="tab" href="#nav-daxacnhan"
+                 role="tab" aria-controls="nav-daxacnhan" aria-selected="false"
+                 style="font-size: 16px; ">Đã xác nhận</a>
+              <a class="nav-item nav-link" id="nav-hoanthanh-tab" data-toggle="tab"
+                 href="#nav-hoanthanh" role="tab" aria-controls="nav-hoanthanh" aria-selected="false"
+                 style="font-size: 16px; ">Đã nhận phòng</a>
+              <a class="nav-item nav-link" id="nav-huy-tab" data-toggle="tab"
+                 href="#nav-huy" role="tab" aria-controls="nav-huy" aria-selected="false"
+                 style="font-size: 16px; ">Đã trả phòng</a>
+            </div>
+          </nav>
+          
+          <div class="tab-content" id="nav-tabContent">
+            <!--CHỜ XÁC NHÂN-->
+            <div class="tab-pane fade show active" id="choxacnhan" role="tabpanel" aria-labelledby="nav-choxacnhan-tab">
+              {{#each pendingBookings}}
+              <div class="card mb-4" style="box-shadow:3px 3px 10px #eee">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    <a href="{{this.href}}" class="imgWrapp"style="display: block">
+                      <img src="{{this.room.img_room}}" alt="image room" class="card-img img-hover">
+                    </a>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h4 class="card-title"><a href="{{this.href}}" style="color: black;text-decoration: none !important">{{this.room.name_room}}</a></h4>
+                      <div class="d-flex justify-content-between">
+                        <p class="card-text mb-0"><small class="text-muted">Số phòng: {{this.room.number_room}}</small></p>
+                        <div>
+                          <a href="{{this.room.direction}}" class="card-link">
+                            <span class="fa-solid fa-map-location-dot mr-2"></span>
+                            <small style="color: #0b3af4">Xem bản đồ</small>
+                          </a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="d-flex align-items-center">
+                          <span class="fa fa-star checked mr-2"></span>
+                          <small>{{ formatDate this.infoBooking.from 'DD/MM/YYYY HH:mm:ss' }} - {{ formatDate this.infoBooking.to 'DD/MM/YYYY HH:mm:ss' }}</small>
+                        </div>
+                        {{!-- <div>
+                          <button class="btn btn-primary" style="padding: 6px !important" disabled>Chờ xác nhận</button>
+                        </div> --}}
+                      </div>
+                      <div class="mb-3" style="font-weight:bold;font-size:16px">{{this.infoBooking.name}} - {{this.infoBooking.phone}} - {{this.infoBooking.email}}</div>
+                      <div class="d-flex justify-content-between">
+                        <div>
+                          <span style="display:inline;font-weight: bold;margin-right:3px">Giá: </span>
+                          <span>{{money-format this.totalPrice}}</span>
+                        </div>
+                        <div>
+                          <span style="font-weight: bold;margin-right:3px">Thời gian đặt: </span>
+                          <span>{{formatDate this.timeBooking 'DD/MM/YYYY HH:mm'}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {{/each}}
+            </div>
+            <!--ĐÃ XÁC NHÂN-->
+            <div class="tab-pane fade" id="nav-daxacnhan" role="tabpanel" aria-labelledby="daxacnhan">
+              {{#each confirmedBookings}}
+              <div class="card mb-4" style="box-shadow:3px 3px 10px #eee">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    <a href="{{this.href}}" class="imgWrapp"style="display: block">
+                      <img src="{{this.room.img_room}}" alt="image room" class="card-img img-hover">
+                    </a>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h4 class="card-title"><a href="{{this.href}}" style="color: black;text-decoration: none !important">{{this.room.name_room}}</a></h4>
+                      <div class="d-flex justify-content-between">
+                        <p class="card-text mb-0"><small class="text-muted">Số phòng: {{this.room.number_room}}</small></p>
+                        <div>
+                          <a href="{{this.room.direction}}" class="card-link">
+                            <span class="fa-solid fa-map-location-dot mr-2"></span>
+                            <small style="color: #0b3af4">Xem bản đồ</small>
+                          </a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="d-flex align-items-center">
+                          <span class="fa fa-star checked mr-2"></span>
+                          <small>{{ formatDate this.infoBooking.from 'DD/MM/YYYY HH:mm:ss' }} - {{ formatDate this.infoBooking.to 'DD/MM/YYYY HH:mm:ss' }}</small>
+                        </div>
+                        {{!-- <div>
+                          <button class="btn btn-warning" style="padding: 6px !important">Đã xác nhận</button>
+                        </div> --}}
+                      </div>
+                      <div class="mb-3" style="font-weight:bold;font-size:16px">{{this.infoBooking.name}} - {{this.infoBooking.phone}} - {{this.infoBooking.email}}</div>
+                      <div class="d-flex justify-content-between">
+                        <div>
+                          <span style="display:inline;font-weight: bold;margin-right:3px">Tổng tiền: </span>
+                          <span>{{money-format this.totalPrice}}</span>
+                        </div>
+                        <div>
+                          <span style="font-weight: bold;margin-right:3px">Mã đặt phòng: </span>
+                          <span>{{this._id}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {{/each}}
+{{!-- <div class="d-flex justify-content-center">
+  <nav>
+    <ul class="pagination">
+      {{#if pagination.confirmedBookings.hasPrevPage}}
+        <li class="page-item">
+          <a class="page-link" href="?page={{pagination.confirmedBookings.prevPage}}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+      {{else}}
+        <li class="page-item">
+          <a class="page-link" style="background-color: white !important; color:#ddd;cursor: default" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+      {{/if}}
+      <li class="page-item"><span class="page-link">Trang {{pagination.confirmedBookings.page}} / {{pagination.confirmedBookings.totalPages}}</span></li>
+      {{#if pagination.confirmedBookings.hasNextPage}}
+        <li class="page-item">
+          <a class="page-link" href="?page={{pagination.confirmedBookings.nextPage}}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      {{else}}
+        <li class="page-item">
+          <a class="page-link" style="background-color: white !important; color:#ddd;cursor: default" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      {{/if}}
+    </ul>
+  </nav>
+</div> --}}
+            </div>
+            <!--THÀNH CÔNG-->
+            <div class="tab-pane fade" id="nav-hoanthanh" role="tabpanel" aria-labelledby="nav-hoanthanh-tab">
+              {{#each checkInBookings}}
+              <div class="card mb-4" style="box-shadow:3px 3px 10px #eee">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    <a href="{{this.href}}" class="imgWrapp"style="display: block">
+                      <img src="{{this.room.img_room}}" alt="image room" class="card-img img-hover">
+                    </a>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h4 class="card-title"><a href="{{this.href}}" style="color: black;text-decoration: none !important">{{this.room.name_room}}</a></h4>
+                      <div class="d-flex justify-content-between">
+                        <p class="card-text mb-0"><small class="text-muted">Số phòng: {{this.room.number_room}}</small></p>
+                        <div>
+                          <a href="{{this.room.direction}}" class="card-link">
+                            <span class="fa-solid fa-map-location-dot mr-2"></span>
+                            <small style="color: #0b3af4">Xem bản đồ</small>
+                          </a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="d-flex align-items-center">
+                          <span class="fa fa-star checked mr-2"></span>
+                          <small>{{ formatDate this.infoBooking.from 'DD/MM/YYYY HH:mm:ss' }} - {{ formatDate this.infoBooking.to 'DD/MM/YYYY HH:mm:ss' }}</small>
+                        </div>
+                        {{!-- <div>
+                          <button class="btn btn-success" style="padding: 6px !important">Thành công</button>
+                        </div> --}}
+                      </div>
+                      <div class="mb-3" style="font-weight:bold;font-size:16px">{{this.infoBooking.name}} - {{this.infoBooking.phone}} - {{this.infoBooking.email}}</div>
+                      <div class="d-flex justify-content-between">
+                        <div>
+                          <span style="display:inline;font-weight: bold;margin-right:3px">Tổng tiền: </span>
+                          <span>{{money-format this.totalPrice}}</span>
+                        </div>
+                        <div>
+                          <span style="font-weight: bold;margin-right:3px">Mã đặt phòng: </span>
+                          <span>{{this._id}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {{/each}}
+            </div>
+            <!--ĐÃ TRẢ PHÒNG-->
+            <div class="tab-pane fade" id="nav-huy" role="tabpanel" aria-labelledby="nav-huy-tab">
+              {{#each checkOutBookings}}
+              <div class="card mb-4" style="box-shadow:3px 3px 10px #eee">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    <a href="{{this.href}}" class="imgWrapp"style="display: block">
+                      <img src="{{this.room.img_room}}" alt="image room" class="card-img img-hover">
+                    </a>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h4 class="card-title"><a href="{{this.href}}" style="color: black;text-decoration: none !important">{{this.room.name_room}}</a></h4>
+                      <div class="d-flex justify-content-between">
+                        <p class="card-text mb-0"><small class="text-muted">Số phòng: {{this.room.number_room}}</small></p>
+                        <div>
+                          <a href="{{this.room.direction}}" class="card-link">
+                            <span class="fa-solid fa-map-location-dot mr-2"></span>
+                            <small style="color: #0b3af4">Xem bản đồ</small>
+                          </a>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="d-flex align-items-center">
+                          <span class="fa fa-star checked mr-2"></span>
+                          <small>{{ formatDate this.infoBooking.from 'DD/MM/YYYY HH:mm:ss' }} - {{ formatDate this.infoBooking.to 'DD/MM/YYYY HH:mm:ss' }}</small>
+                        </div>
+                        <div style="display: flex">
+                          <div style="margin-top: 6px">
+                            <button class="btn btn-success" disabled>Đã trả phòng</button>
+                          </div>
+                          <div id="room{{this.room.number_room}}_booking{{this._id}}" style="margin-top: 6px">
+                            <button 
+                              type="submit"
+                             class="btn btn_feedback btnfeedback" 
+                             style="{{#if this.feedback}}display:none;{{/if}}background-color: #ff5722 !important;padding: 6px !important;color:white;margin-left: 4px;" 
+                             data-toggle="modal" 
+                             data-target="#ModalFeedback" 
+                             data-value="{{this.room.number_room}}"
+                             data-value2="{{this._id}}">
+                            Đánh giá </button>
+                            <button
+                              class="btn btn_feedback btnDisabled" 
+                              style="{{#unless this.feedback}}display:none;{{/unless}}background-color: #ff5722 !important;padding: 6px !important;color:white;margin-left: 4px;" 
+                              data-toggle="modal" 
+                              data-target="#ModalFeedback" {{#if this.feedback}}disabled{{/if}}>
+                              {{!-- data-value ="feeded"> --}}
+                            Đã đánh giá</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mb-3" style="font-weight:bold;font-size:16px">{{this.infoBooking.name}} - {{this.infoBooking.phone}} - {{this.infoBooking.email}}</div>
+                      <div class="d-flex justify-content-between">
+                        <div>
+                          <span style="display:inline;font-weight: bold;margin-right:3px">Tổng tiền: </span>
+                          <span>{{money-format this.totalPrice}}</span>
+                        </div>
+                        <div>
+                          <span style="font-weight: bold;margin-right:3px">Mã đặt phòng: </span>
+                          <span>{{this._id}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+{{!-- <div class="d-flex justify-content-center">
+  <nav>
+    <ul class="pagination">
+      {{#if pagination.pendingBookings.hasPrevPage}}
+        <li class="page-item">
+          <a class="page-link" href="?page={{pagination.pendingBookings.prevPage}}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+      {{else}}
+        <li class="page-item">
+          <a class="page-link" style="background-color: white !important; color:#ddd;cursor: default" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+      {{/if}}
+      <li class="page-item"><span class="page-link">Trang {{pagination.pendingBookings.page}} / {{pagination.pendingBookings.totalPages}}</span></li>
+      {{#if pagination.pendingBookings.hasNextPage}}
+        <li class="page-item">
+          <a class="page-link" href="?page={{pagination.pendingBookings.nextPage}}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      {{else}}
+        <li class="page-item">
+          <a class="page-link" style="background-color: white !important; color:#ddd;cursor: default" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      {{/if}}
+    </ul>
+  </nav>
+</div> --}}
+    </div>
+
+
+<!-- MODAL ĐÁNH GIÁ -->
+<div class="modal fade modalFeedback" id="ModalFeedback" tabindex="-1" role="dialog" aria-labelledby="ModalFeedbackLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalFeedbackLabel">ĐÁNH GIÁ CỦA BẠN VỀ CHẤT LƯỢNG KHÁCH SẠN</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="form-group">
+            <div class="rating mx-auto d-flex justify-content-center" id="rating">
+              <i class="fa-regular fa-star star_feedback mx-3" style="font-size:2rem; cursor:pointer;" data-value="1"></i>
+              <i class="fa-regular fa-star star_feedback mx-3" style="font-size:2rem; cursor:pointer;" data-value="2"></i>
+              <i class="fa-regular fa-star star_feedback mx-3" style="font-size:2rem; cursor:pointer;" data-value="3"></i>
+              <i class="fa-regular fa-star star_feedback mx-3" style="font-size:2rem; cursor:pointer;" data-value="4"></i>
+              <i class="fa-regular fa-star star_feedback mx-3" style="font-size:2rem; cursor:pointer;" data-value="5"></i>
+            </div>
+            <style>
+              .fa-solid.fa-star {
+                color: gold;
+              }
+              .selected {
+                font-weight: bold;
+              }
+            </style>
+          </div>
+          <div class="form-group">
+            <h4 for="message-text" class="col-form-label">Nội dung đánh giá</h4>
+            <textarea class="form-control" id="message-text" rows="5" style="font-size:1.2rem;"></textarea>
+          </div>
+          <div class="form-group">
+            <h4 class="col-form-label" id="totalSize">Ảnh (nếu có): <span>0</span> MB</h4>
+            <div class="image-container">
+              <div class="add-image">
+                <span class="add-image-icon"><i class="fa-regular fa-plus"></i></span>
+                <input type="file" class="image-input" accept="image/*" multiple>
+              </div>
+            </div>
+          </div>
+          <style>
+            .image-container {
+              display: flex;
+              flex-wrap: wrap;
+              margin-top: 10px;
+            }
+            .add-image {
+              position: relative;
+              width: 100px;
+              height: 100px;
+              margin-right: 10px;
+              margin-bottom: 10px;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              overflow: hidden;
+            }
+            .add-image-icon {
+              font-size: 30px;
+              color: #ccc;
+            }
+            .add-image:hover .add-image-icon {
+              color: #333;
+            }
+            .add-image input {
+              position: absolute;
+              top: 0;
+              left: 0;
+              opacity: 0;
+              width: 100%;
+              height: 100%;
+              cursor: pointer;
+            }
+            .image-container .image-item {
+              position: relative;
+              width: 100px;
+              height: 100px;
+              margin-right: 10px;
+              margin-bottom: 10px;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              overflow: hidden;
+            }
+            .image-container .image-item img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+            .image-item .delete-image {
+              position: absolute;
+              top: 5px;
+              right: 5px;
+              font-size: 14px;
+              color: #fff;
+              background-color: #f00;
+              border-radius: 50%;
+              width: 20px;
+              height: 20px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              cursor: pointer;
+            }
+          </style>
+          <script>
+            $(document).ready(function() {
+  var totalSize = 0; // Khởi tạo biến tổng kích thước
+  var numFilesUploaded = 0; // Khởi tạo biến đếm số lượng tập tin ảnh đã được tải lên
+  
+  $('.image-input').on('change', function(e) {
+    var files = e.target.files;
+    numFilesUploaded = 0; // Reset biến đếm
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var image = $('<div>').addClass('image-item')
+          .append($('<img>').attr('src', e.target.result))
+          .append($('<div>').addClass('delete-image').html('<i class="fa-solid fa-times"></i>')
+            .click(function() {
+              totalSize -= file.size; // Trừ kích thước ảnh khỏi biến tổng
+              {{!-- console.log("Total size: " + totalSize) --}}
+              $("h4#totalSize span").text((totalSize/1024/1024).toFixed(3))
+              $(this).parent().remove();
+            }));
+        $('.add-image').before(image);
+        totalSize += file.size; // Cộng thêm kích thước ảnh vào biến tổng
+        {{!-- console.log("Total size: " + totalSize) --}}
+        $("h4#totalSize span").text((totalSize/1024/1024).toFixed(3))
+        numFilesUploaded++; // Tăng biến đếm
+        if (numFilesUploaded === files.length) { // Kiểm tra nếu tất cả các tập tin ảnh đã được tải lên thì tính toán tổng kích thước
+          if (totalSize > 1 * 1024 * 1024) { // Kiểm tra nếu tổng kích thước vượt quá 1MB thì thông báo
+            Swal.fire({
+              title: 'Thông báo',
+              text: 'Tổng kích thước ảnh vượt quá 1MB',
+              icon: 'warning',
+              confirmButtonText: 'OK'
+            });
+            $('.image-item').last().remove(); // Xóa ảnh cuối cùng vừa được thêm vào
+            totalSize -= file.size; // Trừ kích thước ảnh cuối cùng khỏi biến tổng
+            {{!-- console.log("Total size: " + totalSize) --}}
+            $("h4#totalSize span").text((totalSize/1024/1024).toFixed(3))
+            return; // Thoát khỏi hàm
+          }
+        }
+      }
+      reader.readAsDataURL(file);
+    }
+  });
+});
+          </script>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="btnhuyfb" data-dismiss="modal">Hủy</button>
+        <button type="submit" id="sendfeedback" class="btn btn-primary" data-dismiss="modal">Gửi đánh giá</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="success-message" class="alert alert-danger" style="box-shadow:3px 3px 15px #333;min-width: 250px;display: none; position: fixed; top: 65px; right: 0px; z-index: 999;">
+  Đã gửi đánh giá thành công
+</div>
+<style>
+  .alert#success-message {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.alert-success#$success-message {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+</style>
+
+<!-- <script src="../assets/js/js.js"></script> -->
+<script>
+  let feedbackData = {};
+  const rating = document.getElementById('rating');
+  const stars = rating.querySelectorAll('.star_feedback');
+  let selectedStar = 0;
+
+  function toggleStarClass(index) {
+    for (let i = 0; i < stars.length; i++) {
+      if (i <= index - 1) {
+        stars[i].classList.remove('fa-regular');
+        stars[i].classList.add('fa-solid', 'selected');
+      } else {
+        stars[i].classList.remove('fa-solid', 'selected');
+        stars[i].classList.add('fa-regular');
+      }
+    }
+  }
+
+  stars.forEach((star) => {
+    star.addEventListener('mouseover', () => {
+      const index = parseInt(star.getAttribute('data-value'));
+      toggleStarClass(index);
+    });
+    
+    star.addEventListener('click', () => {
+      const index = parseInt(star.getAttribute('data-value'));
+      selectedStar = index;
+      toggleStarClass(index);
+    });
+  });
+
+  rating.addEventListener('mouseout', () => {
+    toggleStarClass(selectedStar);
+  });
+  
+  $('.btnfeedback').click(function(e) {
+    feedbackData['idroom'] = $(this).data('value');
+    feedbackData['idbooking'] = $(this).data('value2');
+  });
+
+  $('#sendfeedback').click(function (e) {
+    e.preventDefault();
+    // Lấy danh sách các ảnh trong image-container
+    var imageList = [];
+    $('.image-container .image-item').each(function() {
+      var imageUrl = $(this).find('img').attr('src');
+      imageList.push(imageUrl);
+    });
+    // Thêm danh sách ảnh vào feedbackData
+    feedbackData['imageFb'] = imageList;
+    feedbackData['starFb'] = selectedStar;
+    feedbackData['contentFb'] = $('#message-text').val();
+    {{!-- console.log(feedbackData) --}}
+    // Gửi dữ liệu đánh giá lên server bằng Ajax
+    const currentPath = window.location.pathname;
+    $.ajax({
+      type: 'POST',
+      {{!-- dataType: 'json', --}}
+      url: currentPath,
+      data: feedbackData,
+      success: function(data) {
+        // Xử lý kết quả trả về từ server
+        {{!-- console.log(data) --}}
+        if (!data.errors){
+            Swal.fire({
+              title: 'Thành công',
+              text: 'Đã gửi đánh giá thành công',
+              icon: 'success',
+              confirmButtonText: 'OK'
+            }).then(function(result){
+              let divE = $(`#room${feedbackData['idroom']}_booking${feedbackData['idbooking']}`)
+              let btnE = divE.find('button.btnfeedback');
+              let btnDisabled = divE.find('button.btnDisabled');
+              {{!-- console.log(divE)
+              console.log(btnE)
+              console.log(btnDisabled) --}}
+              btnE.css("display", "none");
+              btnDisabled.css("display", "block").attr("disabled", true);
+            })
+          {{!-- $('#successModalTick p').text("Đã gửi đánh giá thành công"); --}}
+          {{!-- $('#successModalTick').fadeIn().delay(3000).fadeOut() --}}
+        }else{
+            Swal.fire({
+              title: 'Không thành công',
+              text: 'Hãy chọn ngôi sao để đánh giá',
+              icon: 'warning',
+              confirmButtonText: 'OK'
+            });
+        }
+      },
+      error: function(xhr, textStatus, errorThrown) {
+        if (xhr.status === 413) {
+          $('#success-message').text("Lỗi: Kích thước quá lớn! Vui lòng các ảnh dưới 1MB.");
+          $("#success-message").fadeIn().delay(3000).fadeOut();
+        } else {
+          console.log('Lỗi khi gửi đánh giá: ', errorThrown);
+        }
+      }
+    });
+  
+  })
+</script>
+

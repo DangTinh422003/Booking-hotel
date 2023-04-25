@@ -1,0 +1,103 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
+.banner-gift {
+  background-image: url("https://res.klook.com/image/upload/v1646622187/banner/pxwg6thqlo7batxtqysk.jpg") ;
+  background-size: cover ;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.cardd {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-align: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  background: white !important;
+  /*border:1px solid #f79350 !important;*/
+  border-radius: 8px !important;
+  /*margin: auto !important;*/
+  resize: horizontal !important;
+  overflow: hidden !important;
+  /*transform: scale(2) !important;*/
+  /*width: 360px !important;*/
+  min-width: 280px !important;
+  -webkit-mask-image: radial-gradient(
+      circle at 121px 4px,
+      transparent 4px,
+      red 4.5px
+    ),
+    radial-gradient(closest-side circle at 50%, red 99%, transparent 100%) !important;
+  mask-image: radial-gradient(circle at 121px 4px, transparent 4px, red 4.5px),
+    radial-gradient(closest-side circle at 50%, red 99%, transparent 100%) !important;
+  -webkit-mask-size: 100%, 66px 5px !important;
+  mask-size: 100%, 66px 5px !important;
+  -webkit-mask-repeat: repeat, repeat-y !important;
+  mask-repeat: repeat, repeat-y !important;
+  -webkit-mask-position: 0 -4px, 87px !important;
+  mask-position: 0 -4px, 87px !important;
+  -webkit-mask-composite: source-out !important;
+  mask-composite: subtract !important;
+  margin-bottom: 8px !important;
+  margin-right: 20px !important;
+}
+.card-leftt {
+  width: 120px !important;
+  text-align: center !important;
+  font-size: 16px !important;
+  color: white !important;
+  background-color: #ee4d2d !important;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-align: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  height: 100% !important;
+  -webkit-box-pack: center !important;
+  -ms-flex-pack: center !important;
+  justify-content: center !important;
+}
+.card-leftt span {
+  font-size: 13px !important;
+}
+.card-rightt {
+  padding: 16px 12px !important;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-flex: 1 !important;
+  -ms-flex: 1 !important;
+  flex: 1 !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+  -ms-flex-direction: column !important;
+  flex-direction: column !important;
+  background-color: #f5f5f5 !important;
+}
+.card-info {
+  margin: 0 !important;
+  font-size: 18px !important;
+  line-height: 20px !important;
+  color: rgba(33, 32, 44, 0.9) !important;
+  margin-bottom: 4px !important;
+}
+.card-time {
+  font-size: 18px !important;
+  line-height: 16px !important;
+  font-weight: normal !important;
+  color: #f22424 !important;
+  margin-top: 4px !important;
+  margin-bottom: 4px !important;
+}
+.card-time:nth-child(2) {
+  line-height: 2 !important;
+}

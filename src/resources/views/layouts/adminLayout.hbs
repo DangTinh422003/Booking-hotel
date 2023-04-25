@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title> Trang chủ </title>
+    {{!-- icon --}}
+    <link rel="icon" type="image/x-icon" href="/img/favicon.png" />
+    <title>iVIVU</title>
+    <link rel="stylesheet" href="/admin/css/style.css">
+    <link rel="stylesheet" href="/admin/css/message.css">
+
+    {{!-- LOADING --}}
+    <link rel="stylesheet" href="/css/loading.css">
+
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Thư viện SweetAlert -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.3/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.3/dist/sweetalert2.all.min.js"></script>
+
+    <!-- Thư viện SweetAlert -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.3/dist/sweetalert2.min.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        #bell {
+            position: relative;
+        }
+
+        #num-bell {
+            background-color: red;
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            position: absolute;
+            top: -1px;
+            left: 10px;
+            /* bottom: 0; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            /* font-weight: 700; */
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo-details mx-auto justify-content-center">
+            <a href="/admin" class="logo_name">
+                <img style="width: 100%;" src="https://res.ivivu.com/hotel/img/logo-2023n.svg">
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a id="item-home" href="/admin">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="links_name">Trang chủ</span>
+                </a>
+            </li>
+            <li>
+                <a class="x" href="/admin/dichvu" id="item-dichvu">
+                    <i class='bx bx-box'></i>
+                    <span class="links_name">Dịch vụ</span>
+                </a>
+            </li>
+            <li>
+                <a class="x" href="/admin/booking" id="item-datphong">
+                    <i class='bx bx-list-ul'></i>
+                    <span class="links_name">Đặt phòng</span>
+                </a>
+            </li>
+            <li>
+                <a class="x" href="/admin/khachsan" id="item-khachsan">
+                    <i class='bx bx-pie-chart-alt-2'></i>
+                    <span class="links_name">Khách sạn</span>
+                </a>
+            </li>
+            <li>
+                <a class="x" href="/admin/nhanvien" id="item-nhanvien">
+                    <i class='bx bx-coin-stack'></i>
+                    <span class="links_name">Nhân viên</span>
+                </a>
+            </li>
+            <li>
+                <a class="x" href="/admin/user" id="item-khachhang">
+                    <i class='bx bx-book-alt'></i>
+                    <span class="links_name">Khách hàng</span>
+                </a>
+            </li>
+            <li>
+                <a class="x" href="#" id="item-phanhoi">
+                    <i class='bx bx-user'></i>
+                    <span class="links_name">Phản hồi</span>
+                </a>
+            </li>
+            <li>
+                <a class="x" href="#">
+                    <i class='bx bx-message'></i>
+                    <span class="links_name">Tin tức</span>
+                </a>
+            </li>
+            <li>
+                <a class="x" href="/admin/voucher" id="item-voucher">
+                    <i class='bx bx-heart'></i>
+                    <span class="links_name">Voucher</span>
+                </a>
+            </li>
+            <li>
+                <a class="x" href="#">
+                    <i class='bx bx-cog'></i>
+                    <span class="links_name">Cài đặt</span>
+                </a>
+            </li>
+            <li class="log_out">
+                <a class="x" href="#">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links_name">Đăng xuất</span>
+                </a>
+                <script>
+                    $(".log_out").on("click", () => {
+                        Swal.fire({
+                            title: 'Bạn có chắc muốn đăng xuất?',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Đăng xuất',
+                            cancelButtonText: 'Hủy'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.post("/api/logout", () => {
+                                    window.location.href = "/admin";
+                                });
+                            }
+                        });
+                    });
+
+                </script>
+            </li>
+        </ul>
+    </div>
+
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="dashboard">Dashboard</span>
+            </div>
+            <div class="search-box">
+                <input id="search_field" type="text" placeholder="Tìm kiếm..." name="key">
+                <i class='bx bx-search'></i>
+            </div>
+            <div class="profile-details" style="cursor:pointer;" onclick="toggleDropdown()">
+                <img src="{{adminData.image}}" alt="avt">
+                <span class="admin_name">{{adminData.userName}}</span>
+                <i class='bx bx-chevron-down' id="arrow"></i>
+                <div class="dropdown-content" id="dropdownContent">
+                    <a href="#" data-toggle="modal" data-target="#profileAdmin">Thông tin cá nhân</a>
+                    <a href="#">Cài đặt</a>
+                    {{!-- <a href="#">Đăng xuất</a> --}}
+                </div>
+            </div>
+            <style>
+                .profile-details {
+                    position: relative;
+                }
+
+                .border-flat {
+                    border-bottom-right-radius: 0px !important;
+                    border-bottom-left-radius: 0px !important;
+                }
+
+                .dropdown-content {
+                    position: absolute;
+                    top: 100%;
+                    left: -2px;
+                    z-index: 99;
+                    width: 100%;
+                    min-width: 190px;
+                    background-color: #F5F6FA;
+                    box-shadow: 3px 3px 10px #ddd;
+                    border: 2px solid #EFEEF1;
+                    max-height: 0;
+                    overflow: hidden;
+                    border-bottom-right-radius: 10px;
+                    border-bottom-left-radius: 10px;
+                    transition: max-height 0.3s ease-out;
+                }
+
+                .dropdown-content a {
+                    display: block;
+                    padding: 10px;
+                    color: #333;
+                    text-decoration: none;
+                }
+
+                .dropdown-content a:hover {
+                    background-color: #f2f2f2;
+                }
+
+                .dropdown-content.show {
+                    max-height: 200px;
+                    overflow: hidden;
+                }
+            </style>
+            <script>
+                function toggleDropdown() {
+                    var dropdownContent = document.getElementById("dropdownContent");
+                    dropdownContent.classList.toggle("show");
+                    $(".profile-details").toggleClass("border-flat");
+                    $("#arrow").toggleClass("bx-chevron-down bx-chevron-up");
+                }
+            </script>
+        </nav>
+
+        <div class="home-content">
+            {{{body}}}
+        </div>
+    </section>
+    <div id="loading">
+        <img src="/img/loading.svg" />
+    </div>
+
+<div class="modal fade" id="profileAdmin" tabindex="-1" role="dialog" aria-labelledby="profileAdminLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="profileAdminLabel">Cập nhật thông tin ADMIN</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+<form method="post" id="updateAdminForm">
+    <div>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label for="name">Họ và tên</label>
+                    <input value="{{adminData.userName}}" type="text" class="form-control thongtincanhanh-input" id="name" name="name" placeholder="Nhập họ và tên" required>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                <label for="">Giới tính</label>
+                    <div>
+                        <input {{#ifEqual adminData.gender "Male"}}checked{{/ifEqual}} type="radio" name="gender" id="male" value="Male" required>
+                        <label for="male">Nam</label>
+                        <input {{#ifEqual adminData.gender "Female"}}checked{{/ifEqual}} type="radio" name="gender" id="female" value="Female" required>
+                        <label for="female">Nữ</label>
+                        <input {{#ifEqual adminData.gender "Other"}}checked{{/ifEqual}} type="radio" name="gender" id="other" value="Other" required>
+                        <label for="other">Khác</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input value="{{adminData.email}}" type="email" class="form-control thongtincanhanh-input" id="emailField" name="email" readonly>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                <label for="phone">Điện thoại</label>
+                <input value="{{adminData.phoneNumber}}" type="text" placeholder="Nhập số điện thoại" class="form-control thongtincanhanh-input" id="phone" name="phone" pattern="[0]{1}[0-9]{3}[0-9]{3}[0-9]{3}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                <label for="address">Địa chỉ</label>
+                <input value="{{adminData.address}}" type="text" class="form-control" placeholder="Nhập địa chỉ" id="address" name="address" required>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-control border-0">
+                <input type="checkbox" id="changepass" name="changePass">
+                <label for="changepass">Đặt lại mật khẩu (đăng nhập bằng email)</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                <label for="passNow">Mật khẩu hiện tại</label>
+                <input name="passNow" type="text" class="form-control" placeholder="Mật khẩu hiện tại của bạn" id="passNow">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                <label for="passNew">Mật khẩu mới</label>
+                <input minlength="6" type="password" name="passNew" type="text" class="form-control" placeholder="Mật khẩu mới" id="passNew">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                <label for="passNewPre">Xác nhận mật khẩu mới</label>
+                <input type="password" name="passNewPre" type="text" class="form-control" placeholder="Xác nhận mật khẩu mới" id="passNewPre">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-start">
+        {{!-- <div class="alert alert-success" id="response_success" style="display:none;"></div> --}}
+    </div>
+    <div class="row justify-content-start">
+        <div class="alert alert-danger" id="response_alert" style="display:none;"></div>
+    </div>
+    <div class="row justify-content-start">
+        <div class="col-4 col-md-2">
+        <button type="submit" class="btn btn-success">Lưu</button>
+        </div>
+    </div>
+</form> 
+      </div>
+        {{!-- <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            <button id="repSubmit" data-dismiss="modal" type="button" class="btn btn-primary">Gửi</button>
+        </div> --}}
+    </div>
+  </div>
+</div>
+
+<script>
+    const changePassCheckboxValidate = document.getElementById("changepass");
+    const passNowInputValidate = document.getElementById("passNow");
+    const passNewInputValidate = document.getElementById("passNew");
+    const passNewPreInputValidate = document.getElementById("passNewPre");
+
+    // Thêm xử lý sự kiện khi checkbox được thay đổi
+    changePassCheckboxValidate.addEventListener("change", function() {
+    if (this.checked) {
+        // Nếu checkbox được chọn, thêm thuộc tính required cho ô nhập liệu passNow
+        passNowInputValidate.setAttribute("required", true);
+        passNewInputValidate.setAttribute("required", true);
+        passNewPreInputValidate.setAttribute("required", true);
+    } else {
+        // Nếu checkbox không được chọn, xóa thuộc tính required khỏi ô nhập liệu passNow
+        passNowInputValidate.removeAttribute("required");
+        passNewInputValidate.setAttribute("required", true);
+        passNewPreInputValidate.setAttribute("required", true);
+    }
+    });
+</script>
+<script>
+const form = document.getElementById('updateAdminForm');
+const nameInput = $("#name");
+const emailInput = $("#emailField");
+const phoneInput = $("#phone");
+const addressInput = $("#address");
+const changePassInput = $("#changepass");
+const passNowInput = $("#passNow");
+const passNewInput = $("#passNew");
+const passNewPreInput = $("#passNewPre");
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault(); // prevent default form submission
+  
+  // Lấy giá trị của radio button gender được chọn
+  const genderInput = $('input[name=gender]:checked').val();
+  
+  const data = {
+    name: nameInput.val(),
+    gender: genderInput,
+    email: emailInput.val(),
+    phone: phoneInput.val(),
+    address: addressInput.val(),
+    changePass: changePassInput.prop('checked'), // sử dụng prop() để lấy giá trị của checkbox
+    passNow: passNowInput.val(),
+    passNew: passNewInput.val(),
+    passNewPre: passNewPreInput.val()
+  };
+  console.log(data)
+  const currentPath = window.location.pathname;
+  fetch(currentPath, {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    contentType: 'application/json'
+  })
+  .then(response => {
+    return response.json()
+  })
+  .then(data => {
+    console.log(data)
+    if(data.errors){
+        Swal.fire({
+          title: 'Warning',
+          text: 'Cập nhật thông tin thất bại',
+          icon: 'warning',
+          confirmButtonText: 'OK'
+        })
+    } else {
+        Swal.fire({
+          title: 'Success',
+          text: 'Cập nhật thông tin thành công',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        })
+        {{!-- .then(result => {
+            if (result.isConfirmed) {
+                $("#profileAdmin").fadeOut().hide()
+            }
+        }) --}}
+    }
+  })
+  .catch(error => {
+    // handle error response
+    console.log('Error:', error.message);
+    Swal.fire({
+      title: 'Thông báo',
+      text: 'Đã xảy ra lỗi khi gửi biểu mẫu',
+      icon: 'warning',
+      confirmButtonText: 'OK'
+    });
+  });
+});
+
+</script>
+
+    <script src="/js/loading.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+</body>
+
+</html>

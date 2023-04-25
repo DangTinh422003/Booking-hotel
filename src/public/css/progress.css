@@ -1,0 +1,174 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:700);
+
+.container {
+  width: 100%;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  height: 100px;
+}
+
+.progressbar {
+  counter-reset: step;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.progressbar li {
+  position: relative;
+  list-style: none;
+  float: left;
+  width: 33.33%;
+  text-align: center;
+}
+
+/* Circles */
+.progressbar li:before {
+  content: counter(step);
+  counter-increment: step;
+  width: 40px;
+  height: 40px;
+  display: block;
+  text-align: center;
+  margin: 0 auto 10px auto;
+  border-radius: 50%;
+  background-color: #ff9c00;
+  content: "...";
+  line-height: 39px;
+}
+.progressbar li:nth-child(2)::before {
+  content: "2" !important;
+}
+.progressbar li:nth-child(3)::before {
+  background-color: #ccc !important;
+}
+
+.progressbar li:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: #ccc;
+  top: 20px;
+  left: -50%;
+  z-index: -1;
+}
+
+.progressbar li:first-child:after {
+  content: none;
+}
+
+.progressbar li.active:before {
+  background: #088649;
+  content: "✔";
+}
+
+.progressbar li.active + li:after {
+  background: #088649;
+}
+
+.main {
+  height: 1200px;
+  background-color: #f5f5f5;
+  width: 100%;
+}
+.pay-block {
+  border-bottom: 1px solid #eee;
+}
+.pay-title {
+  padding: 10px;
+}
+.payinfo {
+  background-color: white;
+  border-radius: 4px;
+}
+@supports (height: fit-content) {
+  .payinfo {
+    height: fit-content;
+    background-color: white;
+    border-radius: 4px;
+  }
+}
+.thongtinhotel {
+  display: flex;
+  padding: 14px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
+.thongtinhotel-img {
+  width: 40%;
+  height: 100%;
+}
+.thongtinhotel-img {
+  object-fit: cover;
+  width: 30%;
+}
+.thongtinhotel-content {
+  width: 60%;
+  padding-left: 10px;
+}
+.iteminfo {
+  margin-bottom: 20px;
+}
+.inputvoucher {
+  position: relative;
+}
+.btnvoucher {
+  position: absolute;
+  right: 0px;
+  top: 45%;
+  background-color: #ff5722;
+  color: white;
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* BILL */
+.bill {
+  background-color: white;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 4px;
+}
+.bill-title {
+  font-size: 18px !important;
+  font-weight: bold;
+}
+.bill-item {
+  padding: 8px;
+}
+.bill-date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.bill-date-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: #222;
+}
+.bill-date-input {
+  font-size: 16px;
+  font-weight: 600;
+}
+.bill-people {
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 0px;
+}
+.bill-people-item {
+  display: flex;
+  background-color: #f4f4f5;
+  align-items: center;
+  padding: 8px;
+  border-radius: 8px;
+}
+.bill-people-item input {
+  width: 50px;
+  border: 1px solid #ccc;
+  margin-right: 4px;
+}
